@@ -1,0 +1,23 @@
+.social-media-link {
+  background: #124B77;
+  padding: 2%;
+  border-radius: 4px;
+  border: 2px solid #124B77;
+  margin-bottom: 4%;
+
+  a{
+    color: white;
+    text-decoration: none;
+  }
+
+
+  h3 {
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-size: 2em;
+  }
+
+  &:hover {
+    border: 2px solid #1b77c6;
+  }
+}

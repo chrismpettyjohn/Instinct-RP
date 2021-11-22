@@ -1,0 +1,17 @@
+.employment-block {
+  background: #000b13;
+  border: 1px solid  #000b13;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: -5px;
+  width: 100%;
+  img {
+    height: 60px;
+    width: 60px;
+    margin-top: 5px;
+  }
+  &:hover {
+    border: 1px solid #0F406C;
+  }
+}

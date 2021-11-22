@@ -1,0 +1,31 @@
+{
+  "name": "@instinct-plugin/roleplay-types",
+  "version": "1.12.0",
+  "main": "dist/index.js",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn run clean && yarn run compile",
+    "clean": "rimraf -rf ./dist && rimraf -rf ./build",
+    "compile": "NODE_OPTIONS=--max_old_space_size=4096 rollup -c && yarn run compile:types",
+    "compile:types": "tsc -d -p tsconfig.build.json --emitDeclarationOnly --declarationDir dist/types"
+  },
+  "dependencies": {
+    "@instinct-prj/interface": "^2.4.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@types/node": "^16.11.9",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-node": "10.4.0",
+    "tsconfig-paths": "3.12.0",
+    "typescript": "^4.5.2"
+  },
+  "gitHead": "66b61bc221ace5230cd659bc3631eb6331da51e6"
+}

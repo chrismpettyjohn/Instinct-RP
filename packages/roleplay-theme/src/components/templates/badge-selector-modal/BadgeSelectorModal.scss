@@ -1,0 +1,17 @@
+.business-badge {
+  background: #0F406B;
+  border: 2px solid #1b77c6;
+  border-radius: 100%;
+  cursor: pointer;
+  margin-top: 15px;
+  padding: 5px;
+  height: 50px;
+  width: 50px;
+  &:hover {
+    border-color: white;
+  }
+}
+
+.active-badge {
+  border-color: white;
+}

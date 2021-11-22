@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@instinct-plugin/roleplay-types": ["packages/@instinct-plugin/roleplay-types/src"],
+      "@instinct-plugin/roleplay-api":  ["packages/@instinct-plugin/roleplay-api/src"],
+      "@instinct-plugin/roleplay-types":  ["packages/@instinct-plugin/roleplay-types/src"],
+    },
+    "noEmit": true
+  },
+  "include": [
+    "packages"
+  ]
+}

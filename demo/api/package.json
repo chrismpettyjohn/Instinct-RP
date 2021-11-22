@@ -1,0 +1,50 @@
+{
+  "name": "@instinct-client/demo-api",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node_modules/.bin/ts-node -r tsconfig-paths/register src/index.ts"
+  },
+  "dependencies": {
+    "@instinct-api/articles": "^3.1.0",
+    "@instinct-api/beta-codes": "^3.1.0",
+    "@instinct-api/common": "^2.5.0",
+    "@instinct-api/config": "^3.1.0",
+    "@instinct-api/database": "^3.1.0",
+    "@instinct-api/database-migrations": "^3.1.0",
+    "@instinct-api/emails": "^3.0.0",
+    "@instinct-api/emulator": "^3.0.0",
+    "@instinct-api/forum": "^3.0.0",
+    "@instinct-api/google": "^3.0.0",
+    "@instinct-api/groups": "^3.0.0",
+    "@instinct-api/health": "^3.0.0",
+    "@instinct-api/photos": "^3.0.0",
+    "@instinct-api/ranks": "^2.5.0",
+    "@instinct-api/rooms": "^3.0.0",
+    "@instinct-api/session": "^3.0.0",
+    "@instinct-api/users": "^2.5.0",
+    "@instinct-plugin/findretros-api": "^2.5.0",
+    "@instinct-plugin/forgot-password-api": "^2.5.0",
+    "@instinct-plugin/manage-users-api": "^2.5.0",
+    "@instinct-plugin/roleplay-api": "^3.0.0",
+    "@instinct-plugin/user-guestbook-api": "^2.5.0",
+    "@instinct-prj/interface": "^2.4.5",
+    "@instinct-web/admin": "^2.5.0",
+    "@instinct-web/flash-client": "^2.5.0",
+    "@instinct-web/nitro-client": "^2.5.0",
+    "@nestjs/common": "^8.2.2",
+    "@nestjs/core": "^8.2.2",
+    "@nestjs/platform-express": "^8.2.2",
+    "@nestjs/typeorm": "^8.0.2",
+    "class-transformer": "^0.5.0",
+    "class-validator": "^0.13.2",
+    "cors": "^2.8.5",
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.12.0",
+    "typeorm": "0.2.41",
+    "typescript": "~4.5.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
+  },
+  "gitHead": "2305e183b7fa01b3837f0f20c401ecdec6858de6"
+}

@@ -9,7 +9,7 @@ export function BusinessTypeOption({
   onClick,
 }: BusinessTypeOptionProps) {
   console.log(businessType);
-  const businessTypeInfo = businessTypes.find(_ => _.value == businessType);
+  const businessTypeInfo = businessTypes.find(_ => _.value === businessType);
 
   return (
     <div

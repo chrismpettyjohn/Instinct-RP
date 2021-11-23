@@ -5,7 +5,9 @@ import {businessEditorContext} from '../../context/BusinessEditor';
 import {EditPositionModal} from '../edit-position-modal/EditPositionModal';
 
 export function JobPositionsTable() {
-  const {business, delPosition, movePositionUp, movePositionDown} = useContext(businessEditorContext);
+  const {business, delPosition, movePositionUp, movePositionDown} = useContext(
+    businessEditorContext
+  );
 
   const orderedBusinesses = orderBy(business.positions, 'order');
 
@@ -24,10 +26,20 @@ export function JobPositionsTable() {
           {orderedBusinesses.map((_, i) => (
             <tr key={`position_${i}_${_.order}`}>
               <td style={{cursor: 'pointer'}}>
-                {i < business.positions.length -1 && <Icon type="caret-down" onClick={() => movePositionUp(_.order)} />}
-                {i > 1 && <Icon type="caret-up" onClick={() => movePositionDown(_.order)} />}
+                {i < business.positions.length - 1 && (
+                  <Icon
+                    type="caret-down"
+                    onClick={() => movePositionUp(_.order)}
+                  />
+                )}
+                {i > 1 && (
+                  <Icon
+                    type="caret-up"
+                    onClick={() => movePositionDown(_.order)}
+                  />
+                )}
               </td>
-                <td>{_.name}</td>
+              <td>{_.name}</td>
               <td>${_.shiftWage}</td>
               <td>
                 <div className="d-flex">

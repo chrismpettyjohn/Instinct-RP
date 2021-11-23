@@ -58,10 +58,13 @@ export function BusinessEditorProvider({
   function movePositionUp(order: number) {
     setBusinessState(_ => {
       const newPositions = [..._.positions];
-      const positionIndex = newPositions.findIndex((pos: any) => pos.order === order)!;
+      const positionIndex = newPositions.findIndex(
+        (pos: any) => pos.order === order
+      )!;
 
       if (positionIndex > 1) {
-        newPositions[positionIndex].order = newPositions[positionIndex].order - 1;
+        newPositions[positionIndex].order =
+          newPositions[positionIndex].order - 1;
       }
 
       return {
@@ -74,10 +77,13 @@ export function BusinessEditorProvider({
   function movePositionDown(order: number) {
     setBusinessState(_ => {
       const newPositions = [..._.positions];
-      const positionIndex = newPositions.findIndex((pos: any) => pos.order === order)!;
+      const positionIndex = newPositions.findIndex(
+        (pos: any) => pos.order === order
+      )!;
 
       if (positionIndex < newPositions.length - 1) {
-        newPositions[positionIndex].order = newPositions[positionIndex].order + 1;
+        newPositions[positionIndex].order =
+          newPositions[positionIndex].order + 1;
       }
 
       return {
@@ -89,7 +95,15 @@ export function BusinessEditorProvider({
 
   return (
     <businessEditorContext.Provider
-      value={{business, setBusiness, addPosition, delPosition, editPosition, movePositionUp, movePositionDown}}
+      value={{
+        business,
+        setBusiness,
+        addPosition,
+        delPosition,
+        editPosition,
+        movePositionUp,
+        movePositionDown,
+      }}
     >
       {children}
     </businessEditorContext.Provider>

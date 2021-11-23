@@ -35,10 +35,8 @@ export const defaultBusinessEditorContext: BusinessEditorContext = {
     key: K,
     value: BusinessPositionDTO[K]
   ) {},
-  movePositionDown(index: number) {
-  },
-  movePositionUp(index: number) {
-  }
+  movePositionDown(index: number) {},
+  movePositionUp(index: number) {},
 };
 
 export interface BusinessEditorContextProviderProps {

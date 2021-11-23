@@ -1,6 +1,6 @@
 {
   "name": "@instinct-plugin/roleplay-api",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/types",
   "files": [
@@ -15,13 +15,13 @@
     "axios": "^0.24.0"
   },
   "devDependencies": {
-    "@instinct-api/common": "^2.5.0",
-    "@instinct-api/database": "^3.0.0",
-    "@instinct-api/ranks": "^2.5.0",
-    "@instinct-api/rooms": "^3.0.0",
-    "@instinct-api/session": "^3.0.0",
-    "@instinct-api/users": "^2.5.0",
-    "@instinct-plugin/roleplay-types": "^1.12.0",
+    "@instinct-api/common": "^2.4.7",
+    "@instinct-api/database": "^2.4.6",
+    "@instinct-api/ranks": "^2.4.7",
+    "@instinct-api/rooms": "^2.4.6",
+    "@instinct-api/session": "^2.4.6",
+    "@instinct-api/users": "^2.4.7",
+    "@instinct-plugin/roleplay-types": "^1.0.0",
     "@instinct-prj/interface": "^2.4.5",
     "@nestjs/common": "^8.2.2",
     "@nestjs/core": "^8.2.2",
@@ -35,13 +35,13 @@
     "typescript": "~4.5.2"
   },
   "peerDependencies": {
-    "@instinct-api/common": "^2.5.0",
+    "@instinct-api/common": "^2.4.7",
     "@instinct-api/database": "^3.1.0",
-    "@instinct-api/ranks": "^2.4.8",
-    "@instinct-api/rooms": "^2.4.8",
+    "@instinct-api/ranks": "^2.4.7",
+    "@instinct-api/rooms": "^2.4.7",
     "@instinct-api/session": "^2.4.7",
-    "@instinct-api/users": "^2.4.8",
-    "@instinct-plugin/roleplay-types": "^1.11.0",
+    "@instinct-api/users": "^2.4.7",
+    "@instinct-plugin/roleplay-types": "^1.0.0",
     "@instinct-prj/interface": "^2.4.5",
     "@nestjs/common": "^8.2.2",
     "@nestjs/core": "^8.2.2",

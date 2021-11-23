@@ -1,6 +1,6 @@
 {
   "name": "@instinct-plugin/roleplay-types",
-  "version": "1.12.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index",
   "files": [

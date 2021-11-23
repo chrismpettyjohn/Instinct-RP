@@ -1,6 +1,6 @@
 {
   "name": "@instinct-theme/roleplay",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/types",
   "files": [
@@ -15,9 +15,9 @@
   "dependencies": {
     "@instinct-plugin/roleplay-types": "^1.12.0",
     "@instinct-prj/interface": "^2.4.5",
-    "@instinct-web/core": "^2.5.0",
-    "@instinct-web/flash-client": "^2.5.0",
-    "@instinct-web/nitro-client": "^2.5.0",
+    "@instinct-web/core": "^2.4.7",
+    "@instinct-web/flash-client": "^2.4.7",
+    "@instinct-web/nitro-client": "^2.4.7",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
@@ -62,7 +62,7 @@
     "rollup": "^2.60.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-scss": "^2.4.6",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",

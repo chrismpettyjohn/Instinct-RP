@@ -1,5 +1,5 @@
 {
-  "name": "@instinct-client/demo-web",
+  "name": "demo-web",
   "version": "1.0.0",
   "scripts": {
     "start": "PORT=3001 SKIP_PREFLIGHT_CHECK=true react-app-rewired start",
@@ -10,8 +10,8 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@instinct-theme/roleplay": "^0.4.0",
-    "@instinct-web/admin": "^2.5.0",
+    "@instinct-theme/roleplay": "^1.0.0",
+    "@instinct-web/admin": "^2.4.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.2",
     "@types/node": "^16.11.9",
     "@types/react": "^17.0.36",

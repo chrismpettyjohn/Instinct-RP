@@ -8,7 +8,13 @@ import {Row} from '../../../../components/generic/row/Row';
 import {Card} from '../../../../components/generic/card/Card';
 import {UserLayout} from '../../../../components/layout/user/UserLayout';
 import {Container} from '../../../../components/generic/container/Container';
-import {Avatar, setURL, useFetchArticleByID, useFetchArticleByUser, Icon} from '@instinct-web/core';
+import {
+  Avatar,
+  setURL,
+  useFetchArticleByID,
+  useFetchArticleByUser,
+  Icon,
+} from '@instinct-web/core';
 import {MiniJumbotron} from '../../../../components/generic/mini-jumbotron/MiniJumbotron';
 
 setURL('community/news/:articleID', <ViewArticle />);

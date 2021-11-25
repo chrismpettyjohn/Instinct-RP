@@ -19,5 +19,4 @@ export class GuideServiceMock implements GuideService {
   async deleteByID(guideID: string) {}
 
   async reactByID(guideID: string) {}
-
 }

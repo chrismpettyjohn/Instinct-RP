@@ -35,7 +35,7 @@ export function UserProfile() {
           <Column side="left">
             {profile && rpStats && (
               <>
-                <MyEmploymentCard user={{...profile.user as any, rpStats}} />
+                <MyEmploymentCard user={{...(profile.user as any), rpStats}} />
                 <Guestbook profile={profile} />
               </>
             )}

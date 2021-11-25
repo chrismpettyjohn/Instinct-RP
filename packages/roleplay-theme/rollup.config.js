@@ -42,10 +42,7 @@ export default {
         // E.g. @import '~ckeditor5-theme-lark/theme/theme.scss';
         // See https://github.com/jtangelder/sass-loader#imports
         if (url.startsWith('~')) {
-          const filePath = path.resolve(
-              'node_modules',
-              url.slice(1)
-          );
+          const filePath = path.resolve('node_modules', url.slice(1));
 
           return {
             file: filePath,

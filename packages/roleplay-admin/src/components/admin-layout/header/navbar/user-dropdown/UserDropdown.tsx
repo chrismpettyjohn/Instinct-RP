@@ -1,6 +1,5 @@
 import {Link} from 'wouter';
 import React, {useContext} from 'react';
-import {NavBarChildLink} from '../../generic/navbar/navbar-child-link/NavBarChildLink';
 import {Avatar, Icon, sessionContext} from '@instinct-web/core';
 
 export function UserDropdown() {
@@ -24,18 +23,20 @@ export function UserDropdown() {
         </span>
       </Link>
       <ul className="navigation-submenu">
-        <NavBarChildLink to="/preferences">Settings</NavBarChildLink>
-        <NavBarChildLink to={`/profile/${user.username}`}>
-          My Profile
-        </NavBarChildLink>
-        <NavBarChildLink to="/logout">Logout</NavBarChildLink>
         {user.rank?.permissions.websiteShowAdminPanel && (
-          <>
-            <hr />
-            <NavBarChildLink to="/admin">Manage Hotel</NavBarChildLink>
-            <NavBarChildLink to="/rp-admin">Manage RP</NavBarChildLink>
-          </>
+          <li className="navigation-subitem">
+            <Link to="/admin">Admin Panel</Link>
+          </li>
         )}
+        <li className="navigation-subitem">
+          <Link to="/preferences">Account Settings</Link>
+        </li>
+        <li className="navigation-subitem">
+          <Link to={`/profile/${user.username}`}>My Profile</Link>
+        </li>
+        <li className="navigation-subitem">
+          <Link to="logout">Logout</Link>
+        </li>
       </ul>
     </>
   );

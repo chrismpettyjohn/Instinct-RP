@@ -7,11 +7,12 @@
   },
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "@instinct-web/core": "^3.0.2",
+    "@instinct-theme/roleplay": "^1.0.0",
+    "@instinct-plugin/roleplay-admin": "^1.0.0"
   },
   "devDependencies": {
-    "@instinct-theme/roleplay": "^1.0.0",
-    "@instinct-web/admin": "^3.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.2",
     "@types/node": "^16.11.10",
     "@types/react": "^17.0.37",

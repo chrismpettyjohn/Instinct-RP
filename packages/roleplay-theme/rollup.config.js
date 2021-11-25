@@ -34,7 +34,7 @@ export default {
 
     // // Bundle CSS and SASS files
     scss({
-      output: './dist/public/css/flat-theme.css',
+      output: './dist/public/css/roleplay-theme.css',
       failOnError: true,
       includePaths: ['node_modules/'],
       sass: require('sass'),
@@ -43,11 +43,8 @@ export default {
         // See https://github.com/jtangelder/sass-loader#imports
         if (url.startsWith('~')) {
           const filePath = path.resolve(
-            '..',
-            '..',
-            '..',
-            'node_modules',
-            url.slice(1)
+              'node_modules',
+              url.slice(1)
           );
 
           return {
@@ -58,7 +55,11 @@ export default {
     }),
 
     copy({
-      targets: [{src: 'src/public/images/**/*', dest: 'dist/public/images'}],
+      targets: [
+        {src: 'src/public/css/*.css', dest: 'dist/public/css'},
+        {src: 'src/public/img/**/*', dest: 'dist/public/img'},
+        {src: 'src/public/fonts/**/*', dest: 'dist/public/fonts'},
+      ],
     }),
 
     image({

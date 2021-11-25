@@ -37,11 +37,11 @@ export function GuideEdit() {
 
   async function onSubmit(guideDTO: GuideDTO) {
     try {
-      await guideService.updateByID(guide!.id, guideDTO);
+      await guideService.updateByID(`${guide!.id}`, guideDTO);
       toast.success(`Guide ${guideDTO.name} has been updated`);
       setRefresh(_ => _ + 1);
     } catch {
-      toast.error(`Guide ${guide.name} could not be updated at this time`);
+      toast.error(`Guide ${guide!.name} could not be updated at this time`);
     }
   }
 

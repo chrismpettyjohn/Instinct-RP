@@ -17,4 +17,7 @@ export class GuideServiceMock implements GuideService {
   async updateByID(guideID: string, guideDTO: GuideDTO) {}
 
   async deleteByID(guideID: string) {}
+
+  async reactByID(guideID: string) {}
+
 }

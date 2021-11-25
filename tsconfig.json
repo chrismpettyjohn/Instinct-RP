@@ -3,9 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@instinct-plugin/roleplay-types": ["packages/@instinct-plugin/roleplay-types/src"],
-      "@instinct-plugin/roleplay-api":  ["packages/@instinct-plugin/roleplay-api/src"],
-      "@instinct-plugin/roleplay-types":  ["packages/@instinct-plugin/roleplay-types/src"],
+      "@instinct-plugin/roleplay-theme": ["packages/roleplay-theme/src"],
+      "@instinct-plugin/roleplay-api":  ["packages/roleplay-api/src"],
+      "@instinct-plugin/roleplay-types":  ["packages/roleplay-types/src"]
     },
     "noEmit": true
   },

@@ -19,11 +19,11 @@ export function DeleteBusinessModal({business}: BusinessToolsProps) {
   async function onConfirm(): Promise<void> {
     try {
       setSpinner(true);
-      await businessService.delete(business.id);
+      await businessService.delete(`${business.id}`);
       toast.success(`Your business ${business.name} has been deleted`);
       setLocation('/businesses');
     } catch {
-      toast.error(`There was a problem deleting ${businessname}`);
+      toast.error(`There was a problem deleting ${business.name}`);
     } finally {
       setSpinner(false);
     }

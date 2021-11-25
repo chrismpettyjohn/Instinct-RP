@@ -89,7 +89,7 @@ export const BUSINESS_TYPES: Record<
   },
 };
 
-// @ts-ignore
 export const businessTypes = Object.keys(BUSINESS_TYPES).map(
+  // @ts-ignore
   _ => BUSINESS_TYPES[_]
 );

@@ -45,7 +45,6 @@ export function EditLaw({baseLawDTO, onSubmit}: EditLawProps) {
               name="description"
               onChange={updateLaw}
               value={lawDTO.description}
-              å
             />
           </FormGroup>
           <FormGroup className="mb-2">

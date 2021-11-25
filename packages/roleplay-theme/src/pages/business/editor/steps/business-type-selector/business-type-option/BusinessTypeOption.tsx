@@ -8,7 +8,6 @@ export function BusinessTypeOption({
   selected = false,
   onClick,
 }: BusinessTypeOptionProps) {
-  console.log(businessType);
   const businessTypeInfo = businessTypes.find(_ => _.value === businessType);
 
   return (

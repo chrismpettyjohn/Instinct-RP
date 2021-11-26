@@ -5,8 +5,8 @@ import {AdminLayoutProps} from './AdminLayout.types';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 
 export function AdminLayout({children, permission}: AdminLayoutProps) {
-  return (
-    <RPPermissionGuard permission={permission}>
+  const body = (
+    <>
       <span className="page-container">
         <Header />
         <main>
@@ -14,6 +14,10 @@ export function AdminLayout({children, permission}: AdminLayoutProps) {
         </main>
       </span>
       <Footer />
-    </RPPermissionGuard>
+    </>
   );
+
+  if (!permission) return body;
+
+  return <RPPermissionGuard permission={permission}>{body}</RPPermissionGuard>;
 }

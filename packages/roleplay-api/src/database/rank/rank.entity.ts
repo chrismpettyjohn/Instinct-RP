@@ -37,8 +37,17 @@ export class RPRankEntity extends RankEntity implements RPRankEntityStruct {
   @Column({name: 'website_create_guide_categories', type: 'enum', default: '0'})
   websiteCreateGuideCategories!: PermissionStatus;
 
-  @Column({name: 'website_manage_rp', type: 'enum', default: '0'})
-  websiteManageRP!: PermissionStatus;
+  @Column({name: 'website_manage_food', type: 'enum', default: '0'})
+  websiteManageFood!: PermissionStatus;
+
+  @Column({name: 'website_manage_vending_machines', type: 'enum', default: '0'})
+  websiteManageVendingMachines!: PermissionStatus;
+
+  @Column({name: 'website_manage_gambling', type: 'enum', default: '0'})
+  websiteManageGambling!: PermissionStatus;
+
+  @Column({name: 'website_manage_weapons', type: 'enum', default: '0'})
+  websiteManageWeapons!: PermissionStatus;
 
   @Column({
     name: 'website_register_political_party',

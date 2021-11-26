@@ -33,7 +33,13 @@ export function rpRankWire(
         entity.websiteCreateGuideCategories === PermissionStatus.Enabled,
       websiteDeleteGuideCategories:
         entity.websiteDeleteGuideCategories === PermissionStatus.Enabled,
-      websiteManageRP: entity.websiteManageRP === PermissionStatus.Enabled,
+      websiteManageFood: entity.websiteManageFood === PermissionStatus.Enabled,
+      websiteManageVendingMachines:
+        entity.websiteManageVendingMachines === PermissionStatus.Enabled,
+      websiteManageGambling:
+        entity.websiteManageGambling === PermissionStatus.Enabled,
+      websiteManageWeapons:
+        entity.websiteManageWeapons === PermissionStatus.Enabled,
     },
   };
 }

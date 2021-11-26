@@ -1,3 +1,4 @@
+import Toggle from 'react-toggle';
 import {toast} from 'react-toastify';
 import React, {useState} from 'react';
 import {Food} from '@instinct-plugin/roleplay-types';
@@ -41,7 +42,7 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
         <FormGroup>
           <Label>Type</Label>
           <FoodTypeSelector
-            foodType={food.type}
+            foodType={foodDTO.type}
             onChange={_ => updateFoodDTO({type: _})}
           />
         </FormGroup>
@@ -73,6 +74,29 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
             onChange={_ =>
               updateFoodDTO({hungerRestored: Number(_.target.value)})
             }
+          />
+        </FormGroup>
+        <hr />
+        <FormGroup>
+          <Label>Is Servable</Label>
+          <br />
+          <Toggle
+            checked={foodDTO.servable}
+            onChange={_ => updateFoodDTO({servable: !foodDTO.servable})}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Text When Serving</Label>
+          <Input
+            value={foodDTO.serveText}
+            onChange={_ => updateFoodDTO({serveText: _.target.value})}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Text When Consuming</Label>
+          <Input
+            value={foodDTO.eatText}
+            onChange={_ => updateFoodDTO({eatText: _.target.value})}
           />
         </FormGroup>
       </Form>

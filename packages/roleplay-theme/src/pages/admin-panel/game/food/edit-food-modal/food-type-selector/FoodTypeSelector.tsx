@@ -25,7 +25,7 @@ export function FoodTypeSelector({foodType, onChange}: FoodTypeSelectorProps) {
   }
 
   return (
-    <div className="row p-4">
+    <div className="row">
       {getFoodType('coffee', 'Drink', FoodType.Drink)}
       {getFoodType('drumstick', 'Food', FoodType.Food)}
     </div>

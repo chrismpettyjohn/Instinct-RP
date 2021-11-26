@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllGamblingMachines} from '../../../../hooks/gambling-machine/fetch-all';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
+import {DeleteGamblingMachine} from './delete-gambling-machine-modal/DeleteGamblingMachine';
 
 setURL('rp-admin/game/gambling', <ListGambling />);
 
 export function ListGambling() {
-  const gamblingMachines = useFetchAllGamblingMachines();
+  const [refresh, setRefresh] = useState(0);
+
+  function onChange() {
+    setRefresh(_ => _ + 1);
+  }
+
+  const gamblingMachines = useFetchAllGamblingMachines(refresh);
 
   return (
     <GameLayout>
@@ -46,10 +53,10 @@ export function ListGambling() {
                       <Icon type="pencil" />
                       Edit
                     </button>
-                    <button className="btn btn-outline-danger">
-                      <Icon type="trash" />
-                      Delete
-                    </button>
+                    <DeleteGamblingMachine
+                      gamblingMachine={_}
+                      onDelete={onChange}
+                    />
                   </td>
                 </tr>
               ))}

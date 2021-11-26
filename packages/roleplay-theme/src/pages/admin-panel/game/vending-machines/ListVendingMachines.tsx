@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllVendingMachines} from '../../../../hooks/vending-machine';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
+import {DeleteVendingMachineModal} from './delete-vending-machine-modal/DeleteVendingMachineModal';
 
 setURL('rp-admin/game/vending-machines', <ListVendingMachines />);
 
 export function ListVendingMachines() {
-  const vendingMachines = useFetchAllVendingMachines();
+  const [refresh, setRefresh] = useState(0);
+
+  function onChange() {
+    setRefresh(_ => _ + 1);
+  }
+
+  const vendingMachines = useFetchAllVendingMachines(refresh);
 
   return (
     <GameLayout>
@@ -56,10 +63,10 @@ export function ListVendingMachines() {
                       <Icon type="pencil" />
                       Edit
                     </button>
-                    <button className="btn btn-outline-danger">
-                      <Icon type="trash" />
-                      Delete
-                    </button>
+                    <DeleteVendingMachineModal
+                      vendingMachine={_}
+                      onDelete={onChange}
+                    />
                   </td>
                 </tr>
               ))}

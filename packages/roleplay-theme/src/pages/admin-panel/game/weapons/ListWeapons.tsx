@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllWeapons} from '../../../../hooks/weapon';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
+import {DeleteWeaponModal} from './delete-weapon-modal/DeleteWeaponModal';
 
 setURL('rp-admin/game/weapons', <ListWeapons />);
 
 export function ListWeapons() {
-  const weapons = useFetchAllWeapons();
+  const [refresh, setRefresh] = useState(0);
+
+  function onChange() {
+    setRefresh(_ => _ + 1);
+  }
+
+  const weapons = useFetchAllWeapons(refresh);
 
   return (
     <GameLayout>
@@ -62,10 +69,7 @@ export function ListWeapons() {
                       <Icon type="pencil" />
                       Edit
                     </button>
-                    <button className="btn btn-outline-danger">
-                      <Icon type="trash" />
-                      Delete
-                    </button>
+                    <DeleteWeaponModal weapon={_} onDelete={onChange} />
                   </td>
                 </tr>
               ))}

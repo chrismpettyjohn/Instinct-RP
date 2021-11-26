@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllFood} from '../../../../hooks/food/fetch-all';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
+import {DeleteFoodModal} from './delete-food-modal/DeleteFoodModal';
 
 setURL('rp-admin/game/food', <ListFood />);
 
 export function ListFood() {
-  const foodOptions = useFetchAllFood();
+  const [refresh, setRefresh] = useState(0);
+
+  function onChange() {
+    setRefresh(_ => _ + 1);
+  }
+
+  const foodOptions = useFetchAllFood(refresh);
 
   return (
     <GameLayout>
@@ -55,10 +62,7 @@ export function ListFood() {
                       <Icon type="pencil" />
                       Edit
                     </button>
-                    <button className="btn btn-outline-danger">
-                      <Icon type="trash" />
-                      Delete
-                    </button>
+                    <DeleteFoodModal food={_} onDelete={onChange} />
                   </td>
                 </tr>
               ))}

@@ -7,6 +7,7 @@ import {DatabaseModule} from './database/database.module';
 import {BusinessModule} from './business/business.module';
 import {GovernmentModule} from './government/government.module';
 import {GuideModule} from './guide/guide.module';
+import {FoodModule} from './food/food.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import {GuideModule} from './guide/guide.module';
     SessionModule,
     FeatureModule,
     RPUserModule,
+    FoodModule,
     GovernmentModule,
   ],
   exports: [
@@ -27,6 +29,7 @@ import {GuideModule} from './guide/guide.module';
     SessionModule,
     FeatureModule,
     RPUserModule,
+    FoodModule,
     GovernmentModule,
   ],
 })

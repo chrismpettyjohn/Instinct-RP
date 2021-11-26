@@ -1,4 +1,5 @@
 export * from './business';
+export * from './food';
 export * from './law';
 export * from './political-party';
 export * from './gang';

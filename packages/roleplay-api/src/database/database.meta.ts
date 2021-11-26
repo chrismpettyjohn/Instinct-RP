@@ -34,6 +34,8 @@ import {GuideReactionEntity} from './guide/guide-reaction.entity';
 import {GuideRepository} from './guide/guide.repository';
 import {GuideCategoryRepository} from './guide/guide-category.repository';
 import {GuideReactionRepository} from './guide/guide-reaction.repository';
+import {FoodEntity} from './food/food.entity';
+import {FoodRepository} from './food/food.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -52,6 +54,7 @@ export const rpDatabaseEntities: Function[] = [
   LawCommentEntity,
   PoliticalPartyEntity,
   PoliticalPartyMemberEntity,
+  FoodEntity,
 ];
 
 export const rpDatabaseProviders: Provider[] = [
@@ -67,6 +70,7 @@ export const rpDatabaseProviders: Provider[] = [
   UserRPStatRepository,
   BusinessPositionRepository,
   PoliticalPartyRepository,
+  FoodRepository,
   PoliticalPartyMemberRepository,
   RPUserRepository, // Ensure rp services can be type protected
   RPRankRepository, // Ensure rp services can be type protected

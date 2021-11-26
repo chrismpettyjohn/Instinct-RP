@@ -1,10 +1,13 @@
 import React from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
+import {useFetchAllVendingMachines} from '../../../../hooks/vending-machine';
 
 setURL('rp-admin/game/vending-machines', <ListVendingMachines />);
 
 export function ListVendingMachines() {
+  const vendingMachines = useFetchAllVendingMachines();
+
   return (
     <GameLayout>
       <table className="table">
@@ -19,37 +22,44 @@ export function ListVendingMachines() {
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Bag of Cheetos</td>
-            <td>
-              -<Icon className="text-success" type="dollar-sign" />5
-            </td>
-            <td>
-              +5 <Icon type="drumstick" />
-            </td>
-            <td>
-              +10 <Icon className="text-danger" type="heart" />
-            </td>
-            <td>
-              +5
-              <span style={{color: 'yellow'}}>
-                <Icon type="bolt" />
-              </span>
-            </td>
-            <td>
-              <button className="btn btn-outline-primary mr-2">
-                <Icon type="pencil" />
-                Edit
-              </button>
-              <button className="btn btn-outline-danger">
-                <Icon type="trash" />
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
+        {vendingMachines === undefined && <Icon type="spinner fa-spin" />}
+        {vendingMachines && (
+          <tbody>
+            {vendingMachines.map(_ => (
+              <tr key={`vending_machine_${_.id}`}>
+                <th scope="row">{_.id}</th>
+                <td>{_.name}</td>
+                <td>
+                  -<Icon className="text-success" type="dollar-sign" />
+                  {_.cost}
+                </td>
+                <td>
+                  +{_.hungerRestored} <Icon type="drumstick" />
+                </td>
+                <td>
+                  +{_.healthGained}{' '}
+                  <Icon className="text-danger" type="heart" />
+                </td>
+                <td>
+                  +{_.energyGained}
+                  <span style={{color: 'yellow'}}>
+                    <Icon type="bolt" />
+                  </span>
+                </td>
+                <td>
+                  <button className="btn btn-outline-primary mr-2">
+                    <Icon type="pencil" />
+                    Edit
+                  </button>
+                  <button className="btn btn-outline-danger">
+                    <Icon type="trash" />
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
       </table>
       <div className="text-right">
         <button className="btn btn-outline-success mr-2">

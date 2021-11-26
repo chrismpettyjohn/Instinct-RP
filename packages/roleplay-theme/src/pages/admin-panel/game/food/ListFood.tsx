@@ -5,21 +5,33 @@ import {useFetchAllFood} from '../../../../hooks/food/fetch-all';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteFoodModal} from './delete-food-modal/DeleteFoodModal';
 import {EditFoodModal} from './edit-food-modal/EditFoodModal';
+import {useFilter} from '../../../../hooks/filter/use-filter';
+import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/food', <ListFood />);
 
 export function ListFood() {
+  const [filter, setFilter] = useFilter();
   const [refresh, setRefresh] = useState(0);
+  const foodOptions = useFetchAllFood(refresh);
+
+  const filteredFood =
+    foodOptions?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
 
   function onChange() {
     setRefresh(_ => _ + 1);
   }
 
-  const foodOptions = useFetchAllFood(refresh);
-
   return (
     <GameLayout>
       <RPPermissionGuard permission="websiteManageFood" redirect={false}>
+        <div className="p-2">
+          <Input
+            value={filter}
+            onChange={setFilter}
+            placeholder="Search food..."
+          />
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -36,7 +48,7 @@ export function ListFood() {
           {foodOptions === undefined && <Icon type="spinner fa-spin" />}
           {foodOptions && (
             <tbody>
-              {foodOptions.map(_ => (
+              {filteredFood.map(_ => (
                 <tr key={`food_${_.id}`}>
                   <th scope="row">{_.id}</th>
                   <td>{_.name}</td>

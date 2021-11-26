@@ -1,3 +1,3 @@
 export * from './RPUser.provider';
 export * from './RPUser';
-exprot * from './RPUser.types';
+export * from './RPUser.types';

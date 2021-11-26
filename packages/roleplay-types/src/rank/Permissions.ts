@@ -13,6 +13,7 @@ export interface RPPermissions
   websiteCreateGuides: boolean;
   websiteCreateGuideCategories: boolean;
   websiteDeleteGuideCategories: boolean;
+  websiteManageRP: boolean;
 }
 
 export const exampleRPPermissions: RPPermissions = {
@@ -28,4 +29,5 @@ export const exampleRPPermissions: RPPermissions = {
   websiteCreateGuides: false,
   websiteCreateGuideCategories: false,
   websiteDeleteGuideCategories: false,
+  websiteManageRP: false,
 };

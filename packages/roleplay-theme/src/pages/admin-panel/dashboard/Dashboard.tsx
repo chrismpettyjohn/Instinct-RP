@@ -10,15 +10,12 @@ setURL('rp-admin', <Dashboard />);
 export function Dashboard() {
   return (
     <AdminLayout permission="websiteShowAdminPanel">
-      <Jumbotron style={{background: '#263238'}} title="Admin Panel">
+      <Jumbotron style={{background: '#263238'}} title="RP Admin Panel">
         <p>Welcome to the RP admin panel</p>
       </Jumbotron>
       <div className="page-content">
         <div className="row">
           <Col xs={6}>
-            <Card header="Hotel Statistics">
-              <p>Coming soon</p>
-            </Card>
             <Card header="Inspirational Video">
               <iframe
                 width="100%"
@@ -28,11 +25,6 @@ export function Dashboard() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            </Card>
-          </Col>
-          <Col xs={6}>
-            <Card header="Diagnostics">
-              <p>Coming soon</p>
             </Card>
           </Col>
         </div>

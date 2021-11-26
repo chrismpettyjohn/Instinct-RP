@@ -1,12 +1,12 @@
 import React from 'react';
 import {Header} from './header/Header';
 import {Footer} from './footer/Footer';
-import {PermissionGuard} from '@instinct-web/core';
 import {AdminLayoutProps} from './AdminLayout.types';
+import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 
 export function AdminLayout({children, permission}: AdminLayoutProps) {
   return (
-    <PermissionGuard permission={permission}>
+    <RPPermissionGuard permission={permission}>
       <span className="page-container">
         <Header />
         <main>
@@ -14,6 +14,6 @@ export function AdminLayout({children, permission}: AdminLayoutProps) {
         </main>
       </span>
       <Footer />
-    </PermissionGuard>
+    </RPPermissionGuard>
   );
 }

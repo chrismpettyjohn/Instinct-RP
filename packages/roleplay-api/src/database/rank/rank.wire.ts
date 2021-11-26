@@ -33,6 +33,7 @@ export function rpRankWire(
         entity.websiteCreateGuideCategories === PermissionStatus.Enabled,
       websiteDeleteGuideCategories:
         entity.websiteDeleteGuideCategories === PermissionStatus.Enabled,
+      websiteManageRP: entity.websiteManageRP === PermissionStatus.Enabled,
     },
   };
 }

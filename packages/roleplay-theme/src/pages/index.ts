@@ -1,4 +1,5 @@
 import '../public/css/RoleplayTheme.scss';
+import './admin-panel';
 import './auth';
 import './business';
 import './community';

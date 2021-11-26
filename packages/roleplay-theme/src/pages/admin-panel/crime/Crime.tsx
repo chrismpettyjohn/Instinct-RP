@@ -8,28 +8,18 @@ import {AdminLayoutProps} from '../components/admin-layout/AdminLayout.types';
 
 const userLinks: Array<{text: string; icon: string; to: string}> = [
   {
-    text: 'Food',
-    icon: 'cheeseburger',
-    to: '/rp-admin/game/food',
+    text: 'Laws',
+    icon: 'gavel',
+    to: '/rp-admin/crime/laws',
   },
   {
-    text: 'Gambling',
-    icon: 'dice-two',
-    to: '/rp-admin/game/gambling',
-  },
-  {
-    text: 'Weapons',
-    icon: 'axe',
-    to: '/rp-admin/game/weapons',
-  },
-  {
-    text: 'Vending Machines',
-    icon: 'coin',
-    to: '/rp-admin/game/vending-machines',
+    text: 'Bounties',
+    icon: 'skull-crossbones',
+    to: '/rp-admin/crime/bounties',
   },
 ];
 
-export function GameLayout({children}: Omit<AdminLayoutProps, 'permission'>) {
+export function CrimeLayout({children}: Omit<AdminLayoutProps, 'permission'>) {
   const [location] = useLocation();
 
   function getHeader() {
@@ -52,8 +42,10 @@ export function GameLayout({children}: Omit<AdminLayoutProps, 'permission'>) {
 
   return (
     <AdminLayout permission="websiteManageRP">
-      <Jumbotron style={{background: '#263238'}} title="RP Settings">
-        <p>Here you can manage various settings for your RP</p>
+      <Jumbotron style={{background: '#263238'}} title="Crime Settings">
+        <p>
+          Here you can manage various settings for your RP relating to crime
+        </p>
       </Jumbotron>
       <div className="page-content">
         <Card header={getHeader()}>{children}</Card>

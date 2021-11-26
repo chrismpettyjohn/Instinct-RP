@@ -3,14 +3,20 @@ import {toast} from 'react-toastify';
 import {Icon} from '@instinct-web/core';
 import {DeleteModal} from '../../../components/delete-modal/DeleteModal';
 import {DeleteGamblingMachineProps} from './DeleteGamblingMachine.types';
+import {gamblingMachineService} from '@instinct-plugin/roleplay-web';
 
 export function DeleteGamblingMachine({
   gamblingMachine,
   onDelete,
 }: DeleteGamblingMachineProps) {
   async function onConfirmDelete() {
-    toast.success(`${gamblingMachine.name} has been deleted successfully`);
-    onDelete();
+    try {
+      await gamblingMachineService.deleteByID(`${gamblingMachine.id}`);
+      toast.success(`${gamblingMachine.name} has been deleted successfully`);
+      onDelete();
+    } catch {
+      toast.error(`${gamblingMachine.name} could not be deleted`);
+    }
   }
 
   return (

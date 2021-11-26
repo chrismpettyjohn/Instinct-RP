@@ -27,7 +27,7 @@ export function EditCrimeModal({crime, onChange}: EditCrimeModalProps) {
       header={
         <>
           <Icon type="badge-sheriff" />
-          Editing Crime <b>{crime.name}</b>
+          Editing Crime: <b>{crime.name}</b>
         </>
       }
       onSubmit={onSubmit}

@@ -29,7 +29,7 @@ export function EditVendingMachineModal({
       header={
         <>
           <Icon type="coin" />
-          Editing Vending Machine <b>{vendingMachine.name}</b>
+          Editing Vending Machine: <b>{vendingMachine.name}</b>
         </>
       }
       onSubmit={onSubmit}

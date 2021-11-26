@@ -27,7 +27,7 @@ export function EditWeaponModal({weapon, onChange}: EditWeaponModalProps) {
       header={
         <>
           <Icon type="axe" />
-          Editing Weapon <b>{weapon.name}</b>
+          Editing Weapon: <b>{weapon.name}</b>
         </>
       }
       onSubmit={onSubmit}

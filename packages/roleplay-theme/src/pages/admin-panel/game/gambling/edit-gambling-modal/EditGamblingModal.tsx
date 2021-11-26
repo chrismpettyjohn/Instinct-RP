@@ -29,7 +29,7 @@ export function EditGamblingModal({
       header={
         <>
           <Icon type="dice-two" />
-          Editing Gambling Machine <b>{gamblingMachine.name}</b>
+          Editing Gambling Machine: <b>{gamblingMachine.name}</b>
         </>
       }
       onSubmit={onSubmit}

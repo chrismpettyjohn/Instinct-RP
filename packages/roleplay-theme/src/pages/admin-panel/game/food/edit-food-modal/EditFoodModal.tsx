@@ -28,7 +28,7 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
       header={
         <>
           <Icon type="drumstick" />
-          Editing Food <b>{food.name}</b>
+          Editing Food: <b>{food.name}</b>
         </>
       }
       onSubmit={onSubmit}

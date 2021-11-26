@@ -1,6 +1,7 @@
 import Toggle from 'react-toggle';
 import {toast} from 'react-toastify';
 import React, {useState} from 'react';
+import {Icon} from '@instinct-web/core';
 import {Food} from '@instinct-plugin/roleplay-types';
 import {EditFoodModalProps} from './EditFoodModal.types';
 import {Form, FormGroup, Input, Label} from 'reactstrap';
@@ -26,7 +27,8 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
     <EditModal
       header={
         <>
-          Editing <b>{food.name}</b>
+          <Icon type="drumstick" />
+          Editing Food <b>{food.name}</b>
         </>
       }
       onSubmit={onSubmit}
@@ -88,6 +90,7 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
         <FormGroup>
           <Label>Text When Serving</Label>
           <Input
+            disabled={!foodDTO.servable}
             value={foodDTO.serveText}
             onChange={_ => updateFoodDTO({serveText: _.target.value})}
           />

@@ -5,21 +5,33 @@ import {useFetchAllWeapons} from '../../../../hooks/weapon';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteWeaponModal} from './delete-weapon-modal/DeleteWeaponModal';
 import {EditWeaponModal} from './edit-weapon-modal/EditWeaponModal';
+import {useFilter} from '../../../../hooks/filter/use-filter';
+import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/weapons', <ListWeapons />);
 
 export function ListWeapons() {
+  const [filter, setFilter] = useFilter();
   const [refresh, setRefresh] = useState(0);
+  const weapons = useFetchAllWeapons(refresh);
+
+  const filteredWeapons =
+    weapons?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
 
   function onChange() {
     setRefresh(_ => _ + 1);
   }
 
-  const weapons = useFetchAllWeapons(refresh);
-
   return (
     <GameLayout>
       <RPPermissionGuard permission="websiteManageWeapons" redirect={false}>
+        <div className="p-2">
+          <Input
+            value={filter}
+            onChange={setFilter}
+            placeholder="Search weapons..."
+          />
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -36,7 +48,7 @@ export function ListWeapons() {
           {weapons === undefined && <Icon type="spinner fa-spin" />}
           {weapons && (
             <tbody>
-              {weapons.map(_ => (
+              {filteredWeapons.map(_ => (
                 <tr key={`weapon_${_.id}`}>
                   <th scope="row">{_.id}</th>
                   <td>{_.name}</td>

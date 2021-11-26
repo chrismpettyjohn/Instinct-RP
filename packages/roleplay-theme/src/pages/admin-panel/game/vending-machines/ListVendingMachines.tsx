@@ -15,12 +15,13 @@ export function ListVendingMachines() {
   const [refresh, setRefresh] = useState(0);
   const vendingMachines = useFetchAllVendingMachines(refresh);
 
-  const filteredVendingMachines = vendingMachines?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
+  const filteredVendingMachines =
+    vendingMachines?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
 
   function onChange() {
     setRefresh(_ => _ + 1);
   }
-  
+
   return (
     <GameLayout>
       <RPPermissionGuard
@@ -31,8 +32,9 @@ export function ListVendingMachines() {
           <Input
             value={filter}
             onChange={setFilter}
-            placeholder="Search gambling machines..."
+            placeholder="Search vending machines..."
           />
+        </div>
         <table className="table">
           <thead>
             <tr>

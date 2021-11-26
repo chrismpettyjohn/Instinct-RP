@@ -5,6 +5,7 @@ import {Form, FormGroup, Input, Label} from 'reactstrap';
 import {GamblingMachine} from '@instinct-plugin/roleplay-types';
 import {EditGamblingModalProps} from './EditGamblingModal.types';
 import {EditModal} from '../../../components/edit-modal/EditModal';
+import {gamblingMachineService} from '@instinct-plugin/roleplay-web';
 
 export function EditGamblingModal({
   gamblingMachine,
@@ -20,8 +21,16 @@ export function EditGamblingModal({
   }
 
   async function onSubmit() {
-    toast.success(`${gamblingMachineDTO.name} has been updated successfully`);
-    onChange();
+    try {
+      await gamblingMachineService.updateByID(
+        `${gamblingMachine.id}`,
+        gamblingMachineDTO
+      );
+      toast.success(`${gamblingMachineDTO.name} has been updated successfully`);
+      onChange();
+    } catch {
+      toast.error(`${gamblingMachineDTO.name} could not be updated`);
+    }
   }
 
   return (

@@ -25,6 +25,7 @@
     "websocket": "^1.0.34"
   },
   "devDependencies": {
+    "@types/react-toggle": "^4.0.3",
     "@instinct-plugin/roleplay-types": "^1.0.0",
     "@instinct-prj/interface": "^3.0.1",
     "@instinct-web/core": "^3.0.4",

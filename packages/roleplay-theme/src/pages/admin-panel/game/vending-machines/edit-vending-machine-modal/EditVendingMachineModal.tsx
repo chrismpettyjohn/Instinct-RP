@@ -5,6 +5,7 @@ import {Form, FormGroup, Input, Label} from 'reactstrap';
 import {VendingMachine} from '@instinct-plugin/roleplay-types';
 import {EditVendingMachineProps} from './EditVendingMachine.types';
 import {EditModal} from '../../../components/edit-modal/EditModal';
+import {vendingMachineService} from '@instinct-plugin/roleplay-web';
 
 export function EditVendingMachineModal({
   vendingMachine,
@@ -20,8 +21,16 @@ export function EditVendingMachineModal({
   }
 
   async function onSubmit() {
-    toast.success(`${vendingMachineDTO.name} has been updated successfully`);
-    onChange();
+    try {
+      await vendingMachineService.updateByID(
+        `${vendingMachine.id}`,
+        vendingMachineDTO
+      );
+      toast.success(`${vendingMachineDTO.name} has been updated successfully`);
+      onChange();
+    } catch {
+      toast.error(`${vendingMachineDTO.name} could not be updated`);
+    }
   }
 
   return (

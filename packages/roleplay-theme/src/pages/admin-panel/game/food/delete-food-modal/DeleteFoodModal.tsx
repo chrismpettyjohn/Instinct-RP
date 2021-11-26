@@ -6,7 +6,6 @@ import {DeleteModal} from '../../../components/delete-modal/DeleteModal';
 import {foodService} from '@instinct-plugin/roleplay-web';
 
 export function DeleteFoodModal({food, onDelete}: DeleteFoodModalProps) {
-
   async function onConfirmDelete() {
     try {
       await foodService.deleteByID(`${food.id}`);

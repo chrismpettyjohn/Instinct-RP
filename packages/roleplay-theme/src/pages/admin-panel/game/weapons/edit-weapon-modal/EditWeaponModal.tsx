@@ -6,6 +6,7 @@ import {Weapon} from '@instinct-plugin/roleplay-types';
 import {Form, FormGroup, Input, Label} from 'reactstrap';
 import {EditWeaponModalProps} from './EditWeaponModal.types';
 import {EditModal} from '../../../components/edit-modal/EditModal';
+import {weaponService} from '@instinct-plugin/roleplay-web';
 
 export function EditWeaponModal({weapon, onChange}: EditWeaponModalProps) {
   const [weaponDTO, setWeaponDTO] = useState(weapon);
@@ -18,8 +19,13 @@ export function EditWeaponModal({weapon, onChange}: EditWeaponModalProps) {
   }
 
   async function onSubmit() {
-    toast.success(`${weaponDTO.name} has been updated successfully`);
-    onChange();
+    try {
+      await weaponService.updateByID(`${weapon.id}`, weaponDTO);
+      toast.success(`${weaponDTO.name} has been updated successfully`);
+      onChange();
+    } catch {
+      toast.error(`${weaponDTO.name} could not be updated`);
+    }
   }
 
   return (

@@ -6,6 +6,7 @@ import {Crime} from '@instinct-plugin/roleplay-types';
 import {Form, FormGroup, Input, Label} from 'reactstrap';
 import {EditCrimeModalProps} from './EditCrimeModal.types';
 import {EditModal} from '../../components/edit-modal/EditModal';
+import {crimeService} from '@instinct-plugin/roleplay-web';
 
 export function EditCrimeModal({crime, onChange}: EditCrimeModalProps) {
   const [crimeDTO, setCrimeDTO] = useState(crime);
@@ -18,8 +19,13 @@ export function EditCrimeModal({crime, onChange}: EditCrimeModalProps) {
   }
 
   async function onSubmit() {
-    toast.success(`${crime.name} has been updated successfully`);
-    onChange();
+    try {
+      await crimeService.updateByID(`${crime.id}`, crimeDTO);
+      toast.success(`${crime.name} has been updated successfully`);
+      onChange();
+    } catch {
+      toast.error(`${crime.name} could not be updated`);
+    }
   }
 
   return (

@@ -7,6 +7,7 @@ import {EditFoodModalProps} from './EditFoodModal.types';
 import {Form, FormGroup, Input, Label} from 'reactstrap';
 import {EditModal} from '../../../components/edit-modal/EditModal';
 import {FoodTypeSelector} from './food-type-selector/FoodTypeSelector';
+import {foodService} from '@instinct-plugin/roleplay-web';
 
 export function EditFoodModal({food, onChange}: EditFoodModalProps) {
   const [foodDTO, setFoodDTO] = useState(food);
@@ -19,8 +20,13 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
   }
 
   async function onSubmit() {
-    toast.success(`${food.name} has been updated successfully`);
-    onChange();
+    try {
+      await foodService.updateByID(`${food.id}`, foodDTO);
+      toast.success(`${food.name} has been updated successfully`);
+      onChange();
+    } catch {
+      toast.error(`${food.name} could not be updated`);
+    }
   }
 
   return (

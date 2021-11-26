@@ -4,6 +4,7 @@ import {Food} from '@instinct-plugin/roleplay-types';
 import {EditFoodModalProps} from './EditFoodModal.types';
 import {Form, FormGroup, Input, Label} from 'reactstrap';
 import {EditModal} from '../../../components/edit-modal/EditModal';
+import {FoodTypeSelector} from './food-type-selector/FoodTypeSelector';
 
 export function EditFoodModal({food, onChange}: EditFoodModalProps) {
   const [foodDTO, setFoodDTO] = useState(food);
@@ -35,6 +36,13 @@ export function EditFoodModal({food, onChange}: EditFoodModalProps) {
           <Input
             value={foodDTO.name}
             onChange={_ => updateFoodDTO({name: _.target.value})}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Type</Label>
+          <FoodTypeSelector
+            foodType={food.type}
+            onChange={_ => updateFoodDTO({type: _})}
           />
         </FormGroup>
         <FormGroup>

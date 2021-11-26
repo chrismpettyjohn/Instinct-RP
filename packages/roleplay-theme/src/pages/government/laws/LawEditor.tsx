@@ -4,7 +4,7 @@ import {toast} from 'react-toastify';
 import {EditLaw} from './edt-law/EditLaw';
 import {setURL} from '@instinct-web/core';
 import {Link, useLocation, useRoute} from 'wouter';
-import {lawService} from '../../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {LawDTO} from '@instinct-plugin/roleplay-types';
 import {useFetchLawByID} from '../../../hooks/law/fetch-law-by-id';
 import {RPPermissionGuard} from '../../../components/templates/permission-guard';

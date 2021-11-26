@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {VendingMachine} from '@instinct-plugin/roleplay-types';
-import {vendingMachineService} from '../../services/vending-machine';
+import {vendingMachineService} from '@instinct-plugin/roleplay-web';
 
 export function useFetchVendingMachineByID(
   vendingMachineID: string

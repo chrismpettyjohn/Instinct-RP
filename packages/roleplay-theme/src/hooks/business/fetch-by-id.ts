@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Business} from '@instinct-plugin/roleplay-types';
-import {businessService} from '../../services/business';
+import {businessService} from '@instinct-plugin/roleplay-web';
 
 export function useFetchBusinessByID(businessID: string): Business | undefined {
   const [business, setBusiness] = useState<Business>();

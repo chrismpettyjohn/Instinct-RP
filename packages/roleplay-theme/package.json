@@ -70,7 +70,8 @@
     "tslib": "^2.3.1",
     "typescript": "~4.5.0",
     "wouter": "^2.7.5",
-    "@uiw/react-md-editor": "^3.8.1"
+    "@uiw/react-md-editor": "^3.8.1",
+    "@instinct-plugin/roleplay-web": "^1.0.0"
   },
   "peerDependencies": {
     "@instinct-prj/interface": "^3.0.1",
@@ -91,7 +92,8 @@
     "tslib": "^2.3.1",
     "typescript": "~4.5.0",
     "wouter": "^2.7.5",
-    "@uiw/react-md-editor": "^3.8.1"
+    "@uiw/react-md-editor": "^3.8.1",
+    "@instinct-plugin/roleplay-web": "^1.0.0"
   },
   "gitHead": "f6dd8f31256f0e49ed7b56c3df71e96a5b7f3897"
 }

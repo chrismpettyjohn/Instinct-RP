@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {lawService} from '../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {Law} from '@instinct-plugin/roleplay-types';
 
 export function useFetchLawByID(

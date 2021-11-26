@@ -7,7 +7,7 @@ import {UserLayout} from '../../../components/layout/user';
 import {Card} from '../../../components/generic/card/Card';
 import {EditPoliticalParty} from './edit-party/EditParty';
 import {PoliticalPartyDTO} from '@instinct-plugin/roleplay-types';
-import {politicalPartyService} from '../../../services/political-party';
+import {politicalPartyService} from '@instinct-plugin/roleplay-web';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 import {useFetchPoliticalPartyByID} from '../../../hooks/political-party/fetch-political-party-by-id';

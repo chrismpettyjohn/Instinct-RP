@@ -11,7 +11,7 @@ import {GuideDTO, GuideReaction} from '@instinct-plugin/roleplay-types';
 import ReactMarkdown from 'react-markdown';
 import {useFetchGuideByID} from '../../hooks/guide/fetch-guide-by-id';
 import {GuideEditor} from './guide-editor/GuideEditor';
-import {guideService} from '../../services/guide';
+import {guideService} from '@instinct-plugin/roleplay-web';
 import {toast} from 'react-toastify';
 
 setURL('guides/edit/:guideID', <GuideEdit />);

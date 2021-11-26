@@ -1,4 +1,4 @@
-import {guideService} from '../../services/guide';
+import {guideService} from '@instinct-plugin/roleplay-web';
 import {createFetchHook} from '@instinct-web/core';
 import {Guide} from '@instinct-plugin/roleplay-types';
 

@@ -5,7 +5,7 @@ import {setURL, Icon} from '@instinct-web/core';
 import {Row} from '../../components/generic/row/Row';
 import {BusinessEditor} from './editor/BusinessEditor';
 import {UserLayout} from '../../components/layout/user';
-import {businessService} from '../../services/business';
+import {businessService} from '@instinct-plugin/roleplay-web';
 import {useFetchBusinessByID} from '../../hooks/business';
 import {BusinessDTO} from '@instinct-plugin/roleplay-types';
 import {Container} from '../../components/generic/container/Container';

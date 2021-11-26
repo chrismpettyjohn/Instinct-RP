@@ -2,7 +2,7 @@ import {useLocation} from 'wouter';
 import {toast} from 'react-toastify';
 import React, {useState} from 'react';
 import {Icon} from '@instinct-web/core';
-import {businessService} from '../../../../services/business';
+import {businessService} from '@instinct-plugin/roleplay-web';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {ConfirmBusinessCreationModalProps} from './ConfirmBusinessCreationModal.types';
 import {businessRegistrationFee} from '../../Business.const';

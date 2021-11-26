@@ -1,5 +1,5 @@
 import {Food} from '@instinct-plugin/roleplay-types';
-import {foodService} from '../../services/food';
+import {foodService} from '@instinct-plugin/roleplay-web';
 import {createFetchHook} from '@instinct-web/core';
 
 export const useFetchAllFood = (refresh = 0) =>

@@ -1,6 +1,6 @@
 import {useContext, useEffect} from 'react';
 import {webSocketContext} from '../../context/web-socket';
-import {WebSocketSubscriber} from '../../services/web-socket';
+import {WebSocketSubscriber} from '@instinct-plugin/roleplay-web';
 import {configContext, sessionContext} from '@instinct-web/core';
 import {
   WebSocketIncomingEvent,

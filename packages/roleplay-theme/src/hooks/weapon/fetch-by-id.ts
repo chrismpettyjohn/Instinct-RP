@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {weaponService} from '../../services/weapon';
+import {weaponService} from '@instinct-plugin/roleplay-web';
 import {Weapon} from '@instinct-plugin/roleplay-types';
 
 export function useFetchWeaponByID(weaponID: string): Weapon | undefined {

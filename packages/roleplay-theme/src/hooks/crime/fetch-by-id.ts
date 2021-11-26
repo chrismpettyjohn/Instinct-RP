@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {crimeService} from '../../services/crime';
+import {crimeService} from '@instinct-plugin/roleplay-web';
 import {Crime} from '@instinct-plugin/roleplay-types';
 
 export function useFetchCrimeByID(crimeID: string): Crime | undefined {

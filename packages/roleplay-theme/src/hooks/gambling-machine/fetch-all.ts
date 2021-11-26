@@ -1,6 +1,6 @@
 import {createFetchHook} from '@instinct-web/core';
-import {Food, GamblingMachine} from '@instinct-plugin/roleplay-types';
-import {gamblingMachineService} from '../../services/gambling-machine';
+import {GamblingMachine} from '@instinct-plugin/roleplay-types';
+import {gamblingMachineService} from '@instinct-plugin/roleplay-web';
 
 export const useFetchAllGamblingMachines = (refresh = 0) =>
   createFetchHook<GamblingMachine[]>(gamblingMachineService.getAll, refresh);

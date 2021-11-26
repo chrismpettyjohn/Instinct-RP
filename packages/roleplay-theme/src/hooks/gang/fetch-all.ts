@@ -1,5 +1,5 @@
 import {Gang} from '@instinct-plugin/roleplay-types';
-import {gangService} from '../../services/gang';
+import {gangService} from '@instinct-plugin/roleplay-web';
 import {createFetchHook} from '@instinct-web/core';
 
 export const useFetchAllGangs = () =>

@@ -2,7 +2,7 @@ import {toast} from 'react-toastify';
 import React, {useContext, useState} from 'react';
 import {Icon, sessionContext} from '@instinct-web/core';
 import {PartyActionsProps} from '../PartyActions.types';
-import {politicalPartyService} from '../../../../../services/political-party';
+import {politicalPartyService} from '@instinct-plugin/roleplay-web';
 
 export function JoinPartyButton({politicalParty, onChange}: PartyActionsProps) {
   const {user} = useContext(sessionContext);

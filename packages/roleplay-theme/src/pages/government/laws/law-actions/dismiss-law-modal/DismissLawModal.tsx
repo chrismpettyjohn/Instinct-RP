@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Icon} from '@instinct-web/core';
-import {lawService} from '../../../../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {DismissLawModalProps} from './DismissLawModal.types';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {RPPermissionGuard} from '../../../../../components/templates/permission-guard';

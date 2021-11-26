@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {PoliticalParty} from '@instinct-plugin/roleplay-types';
-import {politicalPartyService} from '../../services/political-party';
+import {politicalPartyService} from '@instinct-plugin/roleplay-web';
 
 export function useFetchPoliticalPartyByID(
   politicalPartyID: number | string,

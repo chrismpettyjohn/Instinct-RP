@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Icon} from '@instinct-web/core';
-import {lawService} from '../../../../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {VoteOnLawModalProps} from './VoteOnLawModal.types';
 import {LawVoteStatus} from '@instinct-plugin/roleplay-types';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';

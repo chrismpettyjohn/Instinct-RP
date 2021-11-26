@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {GamblingMachine} from '@instinct-plugin/roleplay-types';
-import {gamblingMachineService} from '../../services/gambling-machine';
+import {gamblingMachineService} from '@instinct-plugin/roleplay-web';
 
 export function useFetchGamblingMachineByID(
   gamblingMachineID: string

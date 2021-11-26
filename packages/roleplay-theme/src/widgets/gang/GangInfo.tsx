@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Draggable from 'react-draggable';
-import {gangService} from '../../services/gang';
+import {gangService} from '@instinct-plugin/roleplay-web';
 import {Avatar} from '@instinct-web/core';
 import {useWebSocketEventListener} from '../../hooks/web-socket';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';

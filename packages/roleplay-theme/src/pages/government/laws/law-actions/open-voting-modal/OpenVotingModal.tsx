@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {OpenVotingModalProps} from './OpenVotingModal.types';
-import {lawService} from '../../../../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {Icon} from '@instinct-web/core';
 import {RPPermissionGuard} from '../../../../../components/templates/permission-guard';

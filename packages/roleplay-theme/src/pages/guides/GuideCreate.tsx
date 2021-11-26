@@ -7,7 +7,7 @@ import {MiniJumbotron} from '../../components/generic/mini-jumbotron/MiniJumbotr
 import {Link, useLocation} from 'wouter';
 import {GuideEditor} from './guide-editor/GuideEditor';
 import {GuideDTO} from '@instinct-plugin/roleplay-types';
-import {guideService} from '../../services/guide';
+import {guideService} from '@instinct-plugin/roleplay-web';
 import {toast} from 'react-toastify';
 
 setURL('guides/create', <GuideCreate />);

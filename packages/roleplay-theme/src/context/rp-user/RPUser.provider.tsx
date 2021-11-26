@@ -1,6 +1,6 @@
 import {rpUserContext} from './RPUser';
 import {RPUser} from '@instinct-plugin/roleplay-types';
-import {rpSessionService} from '../../services/session';
+import {rpSessionService} from '@instinct-plugin/roleplay-web';
 import React, {useContext, useEffect, useState} from 'react';
 import {ContextProvidersProps, sessionContext} from '@instinct-web/core';
 

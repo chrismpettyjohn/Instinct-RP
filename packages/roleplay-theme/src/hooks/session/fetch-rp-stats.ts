@@ -1,6 +1,6 @@
 import {UserRPStats} from '@instinct-plugin/roleplay-types';
 import {createFetchHook} from '@instinct-web/core';
-import {rpSessionService} from '../../services/session';
+import {rpSessionService} from '@instinct-plugin/roleplay-web';
 
 export const useFetchRPStats = () =>
   createFetchHook<UserRPStats>(async () => {

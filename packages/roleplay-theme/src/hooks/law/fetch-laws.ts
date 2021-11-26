@@ -1,4 +1,4 @@
-import {lawService} from '../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {createFetchHook} from '@instinct-web/core';
 import {Law} from '@instinct-plugin/roleplay-types';
 

@@ -3,7 +3,7 @@ import {toast} from 'react-toastify';
 import {Link, useLocation} from 'wouter';
 import {EditLaw} from './edt-law/EditLaw';
 import {setURL} from '@instinct-web/core';
-import {lawService} from '../../../services/law';
+import {lawService} from '@instinct-plugin/roleplay-web';
 import {LawDTO} from '@instinct-plugin/roleplay-types';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';

@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {foodService} from '../../services/food';
+import {foodService} from '@instinct-plugin/roleplay-web';
 import {Food} from '@instinct-plugin/roleplay-types';
 
 export function useFetchFoodByID(foodID: string): Food | undefined {

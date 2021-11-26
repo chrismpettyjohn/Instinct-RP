@@ -8,6 +8,7 @@ import {AdminLayout} from '../components/admin-layout/AdminLayout';
 import {DeleteCrimeModal} from './delete-crime-modal/DeleteCrimeModal';
 import {EditCrimeModal} from './edit-crime-modal/EditCrimeModal';
 import {useFilter} from '../../../hooks/filter/use-filter';
+import {RPPermissionGuard} from '../../../components/templates/permission-guard';
 
 setURL('rp-admin/crimes', <ListCrime />);
 
@@ -29,15 +30,12 @@ export function ListCrime() {
 
   function getHeader() {
     return (
-      <div className="row">
-        <div className="col-6">Crimes</div>
-        <div className="col-6">
-          <Input
-            value={filter}
-            onChange={setFilter}
-            placeholder="Search crimes..."
-          />
-        </div>
+      <div className="p-2 mb-3">
+        <Input
+          value={filter}
+          onChange={setFilter}
+          placeholder="Search crimes..."
+        />
       </div>
     );
   }

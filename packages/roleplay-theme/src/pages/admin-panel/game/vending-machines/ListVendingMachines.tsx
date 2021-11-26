@@ -28,7 +28,7 @@ export function ListVendingMachines() {
         permission="websiteManageVendingMachines"
         redirect={false}
       >
-        <div className="p-2">
+        <div className="p-2 mb-3">
           <Input
             value={filter}
             onChange={setFilter}

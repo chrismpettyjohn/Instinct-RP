@@ -1,7 +1,14 @@
 import {GamblingMachineService} from './GamblingMachine.types';
-import {exampleGamblingMachine} from '@instinct-plugin/roleplay-types';
+import {
+  exampleGamblingMachine,
+  GamblingMachineDTO,
+} from '@instinct-plugin/roleplay-types';
 
 export class GamblingMachineServiceMock implements GamblingMachineService {
+  async create(gamblingMachineDTO: GamblingMachineDTO) {
+    return exampleGamblingMachine;
+  }
+
   async getAll() {
     return [exampleGamblingMachine];
   }
@@ -9,4 +16,8 @@ export class GamblingMachineServiceMock implements GamblingMachineService {
   async getByID(foodID: string) {
     return exampleGamblingMachine;
   }
+
+  async updateByID(foodID: string, gamblingMachineDTO: GamblingMachineDTO) {}
+
+  async deleteByID(foodID: string) {}
 }

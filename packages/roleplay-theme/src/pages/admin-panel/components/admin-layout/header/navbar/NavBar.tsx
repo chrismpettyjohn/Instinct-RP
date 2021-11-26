@@ -21,7 +21,8 @@ export function NavBar() {
         <NavBarLink to="/rp-admin">Dashboard</NavBarLink>
         <RPPermissionGuard permission="websiteManageRP" redirect={false}>
           <NavBarLink to="/rp-admin/game/food">Game</NavBarLink>
-          <NavBarLink to="/rp-admin/crime/laws">Crime</NavBarLink>
+          <NavBarLink to="/rp-admin/laws">Laws</NavBarLink>
+          <NavBarLink to="/rp-admin/rooms">Rooms</NavBarLink>
         </RPPermissionGuard>
         <li className="navigation-item navigation-right-side-item has-items">
           <UserDropdown />

@@ -23,6 +23,7 @@ export function NavBar() {
           <NavBarLink to="/rp-admin/game/food">Game</NavBarLink>
           <NavBarLink to="/rp-admin/laws">Laws</NavBarLink>
           <NavBarLink to="/rp-admin/rooms">Rooms</NavBarLink>
+          <NavBarLink to="/rp-admin/users">Users</NavBarLink>
         </RPPermissionGuard>
         <li className="navigation-item navigation-right-side-item has-items">
           <UserDropdown />

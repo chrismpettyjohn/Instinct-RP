@@ -23,17 +23,6 @@ export function UserDropdown() {
         </span>
       </Link>
       <ul className="navigation-submenu">
-        {user.rank?.permissions.websiteShowAdminPanel && (
-          <li className="navigation-subitem">
-            <Link to="/admin">Admin Panel</Link>
-          </li>
-        )}
-        <li className="navigation-subitem">
-          <Link to="/preferences">Account Settings</Link>
-        </li>
-        <li className="navigation-subitem">
-          <Link to={`/profile/${user.username}`}>My Profile</Link>
-        </li>
         <li className="navigation-subitem">
           <Link to="logout">Logout</Link>
         </li>

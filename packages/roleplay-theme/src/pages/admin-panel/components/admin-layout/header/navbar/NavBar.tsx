@@ -18,7 +18,7 @@ export function NavBar() {
         style={{width: '100%', maxWidth: 1055, margin: '0 auto'}}
       >
         <NavBarLink to="/me">Back to Site</NavBarLink>
-        <NavBarLink to="/admin">Dashboard</NavBarLink>
+        <NavBarLink to="/rp-admin">Dashboard</NavBarLink>
         <RPPermissionGuard permission="websiteManageRP" redirect={false}>
           <NavBarLink to="/rp-admin/game/food">Game</NavBarLink>
           <NavBarLink to="/rp-admin/crime/laws">Crime</NavBarLink>

@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import {useLocation} from 'wouter';
-import {rpUserContext} from '../../../context/rp-user/RPUser';
+import {rpUserContext} from '@instinct-plugin/roleplay-web';
 import {RPPermissionGuardProps} from './PermissionGuard.types';
 
 export function RPPermissionGuard({

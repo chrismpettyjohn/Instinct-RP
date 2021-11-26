@@ -1,7 +1,7 @@
 import React from 'react';
-import {WebSocketContextProvider} from './context/web-socket';
+import {WebSocketContextProvider} from '@instinct-plugin/roleplay-web';
 import {Bootstrap, ContextProviders} from '@instinct-web/core';
-import {RPUserContextProvider} from './context/rp-user/RPUser.provider';
+import {RPUserContextProvider} from '@instinct-plugin/roleplay-web';
 
 export function RoleplayTheme() {
   return (

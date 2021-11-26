@@ -1,6 +1,6 @@
 import Draggable from 'react-draggable';
 import React, {useContext, useState} from 'react';
-import {webSocketContext} from '../../context/web-socket';
+import {webSocketContext} from '@instinct-plugin/roleplay-web';
 import {useWebSocketEventListener} from '@instinct-plugin/roleplay-web';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {WebSocketIncomingGangInviteReceivedEvent} from '@instinct-plugin/roleplay-types';

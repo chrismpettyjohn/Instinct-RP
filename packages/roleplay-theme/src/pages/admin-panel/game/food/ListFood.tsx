@@ -25,7 +25,9 @@ export function ListFood() {
             <th scope="row">1</th>
             <td>bleach</td>
             <td>drink</td>
-            <td>$5</td>
+            <td>
+              -<Icon className="text-success" type="dollar-sign" />5
+            </td>
             <td>
               +5 <Icon className="text-danger" type="heart" />
             </td>

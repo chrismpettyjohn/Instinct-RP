@@ -23,7 +23,9 @@ export function ListVendingMachines() {
           <tr>
             <th scope="row">1</th>
             <td>Bag of Cheetos</td>
-            <td>$3</td>
+            <td>
+              -<Icon className="text-success" type="dollar-sign" />5
+            </td>
             <td>
               +5 <Icon type="drumstick" />
             </td>

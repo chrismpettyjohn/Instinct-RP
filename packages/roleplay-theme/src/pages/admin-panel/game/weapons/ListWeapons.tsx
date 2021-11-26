@@ -24,7 +24,10 @@ export function ListWeapons() {
           <tr>
             <th scope="row">1</th>
             <td>Combat Pistol</td>
-            <td>$5,000</td>
+            <td>
+              -<Icon className="text-success" type="dollar-sign" />
+              5,000
+            </td>
             <td>
               -5 <Icon className="text-danger" type="heart" />
             </td>

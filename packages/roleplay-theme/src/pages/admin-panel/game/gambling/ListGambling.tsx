@@ -24,8 +24,13 @@ export function ListGambling() {
             <th scope="row">1</th>
             <td>Slots</td>
             <td>slots</td>
-            <td>$5</td>
-            <td>$100</td>
+            <td>
+              <Icon className="text-success" type="dollar-sign" />5
+            </td>
+            <td>
+              <Icon className="text-success" type="dollar-sign" />
+              100
+            </td>
             <td>0</td>
             <td>
               <button className="btn btn-outline-primary mr-2">

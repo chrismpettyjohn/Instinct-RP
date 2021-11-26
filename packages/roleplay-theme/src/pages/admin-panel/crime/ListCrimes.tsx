@@ -12,7 +12,7 @@ export function ListCrime() {
   const crimes = useFetchAllCrimes();
 
   return (
-    <AdminLayout permission="websiteManageRP">
+    <AdminLayout permission="websiteManageCrimes">
       <Jumbotron style={{background: '#263238'}} title="Manage Crimes">
         Here you can update various crimes in-game
       </Jumbotron>

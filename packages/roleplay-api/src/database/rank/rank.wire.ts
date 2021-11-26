@@ -40,6 +40,8 @@ export function rpRankWire(
         entity.websiteManageGambling === PermissionStatus.Enabled,
       websiteManageWeapons:
         entity.websiteManageWeapons === PermissionStatus.Enabled,
+      websiteManageCrimes:
+        entity.websiteManageCrimes === PermissionStatus.Enabled,
     },
   };
 }

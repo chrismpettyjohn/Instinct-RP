@@ -4,7 +4,7 @@ import {Badges} from './badges';
 import {useRoute} from 'wouter';
 import {Guestbook} from './guestbook';
 import {UserContainer} from './user-container';
-import {useFetchRPStatsByUsername} from '../../../hooks/user';
+import {useFetchRPStatsByUsername} from '@instinct-plugin/roleplay-web';
 import {UserLayout} from '../../../components/layout/user/UserLayout';
 import {Container} from '../../../components/generic/container/Container';
 import {Jumbotron} from '../../../components/generic/jumbotron/Jumbotron';

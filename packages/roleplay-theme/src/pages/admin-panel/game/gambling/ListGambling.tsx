@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
-import {useFetchAllGamblingMachines} from '../../../../hooks/gambling-machine/fetch-all';
+import {
+  useFetchAllGamblingMachines,
+  useFilter,
+} from '@instinct-plugin/roleplay-web';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteGamblingMachine} from './delete-gambling-machine-modal/DeleteGamblingMachine';
 import {EditGamblingModal} from './edit-gambling-modal/EditGamblingModal';
-import {useFilter} from '../../../../hooks/filter/use-filter';
 import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/gambling', <ListGambling />);

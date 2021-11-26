@@ -1,8 +1,8 @@
 import './UserStatus.scss';
-import {useFetchRPStats} from '../../../hooks/session';
+import {useFetchRPStats} from '@instinct-plugin/roleplay-web';
 import React, {useContext, useEffect, useState} from 'react';
 import {Avatar, Icon, sessionContext} from '@instinct-web/core';
-import {useWebSocketEventListener} from '../../../hooks/web-socket';
+import {useWebSocketEventListener} from '@instinct-plugin/roleplay-web';
 import {WebSocketIncomingUpdateProgressBarsEvent} from '@instinct-plugin/roleplay-types';
 
 export function UserStatusWidget() {

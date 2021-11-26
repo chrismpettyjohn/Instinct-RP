@@ -8,7 +8,7 @@ import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
 import {UserContainer} from '../../../components/templates/user-container/UserContainer';
 import {Container} from '../../../components/generic/container/Container';
-import {useFetchPoliticalPartyByID} from '../../../hooks/political-party/fetch-political-party-by-id';
+import {useFetchPoliticalPartyByID} from '@instinct-plugin/roleplay-web';
 import {capitalize} from '@material-ui/core';
 import {PartyActions} from './party-actions/PartyActions';
 

@@ -7,7 +7,7 @@ import {Row} from '../../../components/generic/row/Row';
 import {Icon} from '../../../components/generic/icon/Icon';
 import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
-import {useFetchLawByID} from '../../../hooks/law/fetch-law-by-id';
+import {useFetchLawByID} from '@instinct-plugin/roleplay-web';
 import {Container} from '../../../components/generic/container/Container';
 import {LawVoteStatus} from '@instinct-plugin/roleplay-types';
 import {LawActions} from './law-actions/LawActions';

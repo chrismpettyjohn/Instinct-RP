@@ -1,7 +1,7 @@
 import './JobOffer.scss';
 import React, {useState} from 'react';
 import Draggable from 'react-draggable';
-import {useWebSocketEventListener} from '../../hooks/web-socket';
+import {useWebSocketEventListener} from '@instinct-plugin/roleplay-web';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {WebSocketIncomingJobOfferEvent} from '@instinct-plugin/roleplay-types';
 

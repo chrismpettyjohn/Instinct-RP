@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
-import {useFetchAllVendingMachines} from '../../../../hooks/vending-machine';
+import {
+  useFetchAllVendingMachines,
+  useFilter,
+} from '@instinct-plugin/roleplay-web';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteVendingMachineModal} from './delete-vending-machine-modal/DeleteVendingMachineModal';
 import {EditVendingMachineModal} from './edit-vending-machine-modal/EditVendingMachineModal';
-import {useFilter} from '../../../../hooks/filter/use-filter';
 import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/vending-machines', <ListVendingMachines />);

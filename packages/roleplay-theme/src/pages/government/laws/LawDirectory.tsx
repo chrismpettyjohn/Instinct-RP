@@ -6,7 +6,7 @@ import {Law} from '@instinct-plugin/roleplay-types';
 import {Row} from '../../../components/generic/row/Row';
 import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
-import {useFetchLaws} from '../../../hooks/law/fetch-laws';
+import {useFetchLaws} from '@instinct-plugin/roleplay-web';
 import {
   Icon,
   Input,

@@ -3,12 +3,10 @@ import {Col, Input} from 'reactstrap';
 import {Card} from '../components/card/Card';
 import {setURL, Icon} from '@instinct-web/core';
 import {Jumbotron} from '../components/jumbotron/Jumbotron';
-import {useFetchAllCrimes} from '../../../hooks/crime/fetch-all';
+import {useFetchAllCrimes, useFilter} from '@instinct-plugin/roleplay-web';
 import {AdminLayout} from '../components/admin-layout/AdminLayout';
 import {DeleteCrimeModal} from './delete-crime-modal/DeleteCrimeModal';
 import {EditCrimeModal} from './edit-crime-modal/EditCrimeModal';
-import {useFilter} from '../../../hooks/filter/use-filter';
-import {RPPermissionGuard} from '../../../components/templates/permission-guard';
 
 setURL('rp-admin/crimes', <ListCrime />);
 

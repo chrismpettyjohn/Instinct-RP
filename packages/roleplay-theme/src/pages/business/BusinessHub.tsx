@@ -4,7 +4,7 @@ import React, {useContext, useState} from 'react';
 import {Row} from '../../components/generic/row/Row';
 import {Card} from '../../components/generic/card/Card';
 import {UserLayout} from '../../components/layout/user';
-import {useFetchAllBusinesses} from '../../hooks/business';
+import {useFetchAllBusinesses} from '@instinct-plugin/roleplay-web';
 import {BusinessCard} from '../../components/templates/business-card';
 import {Container} from '../../components/generic/container/Container';
 import {RPPermissionGuard} from '../../components/templates/permission-guard';

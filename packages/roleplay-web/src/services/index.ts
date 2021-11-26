@@ -5,6 +5,7 @@ export * from './gambling-machine';
 export * from './gang';
 export * from './government';
 export * from './guide';
+export * from './law';
 export * from './political-party';
 export * from './session';
 export * from './user';

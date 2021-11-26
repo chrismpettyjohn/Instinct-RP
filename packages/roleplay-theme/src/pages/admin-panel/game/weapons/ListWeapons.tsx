@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
-import {useFetchAllWeapons} from '../../../../hooks/weapon';
+import {useFetchAllWeapons, useFilter} from '@instinct-plugin/roleplay-web';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteWeaponModal} from './delete-weapon-modal/DeleteWeaponModal';
 import {EditWeaponModal} from './edit-weapon-modal/EditWeaponModal';
-import {useFilter} from '../../../../hooks/filter/use-filter';
 import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/weapons', <ListWeapons />);

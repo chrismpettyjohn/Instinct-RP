@@ -8,7 +8,7 @@ import {Card} from '../../components/generic/card/Card';
 import {UserLayout} from '../../components/layout/user';
 import {Avatar, Icon, sessionContext, setURL} from '@instinct-web/core';
 import {GuideReaction} from '@instinct-plugin/roleplay-types';
-import {useFetchGuideByID} from '../../hooks/guide/fetch-guide-by-id';
+import {useFetchGuideByID} from '@instinct-plugin/roleplay-web';
 import {Container} from '../../components/generic/container/Container';
 import {MiniJumbotron} from '../../components/generic/mini-jumbotron/MiniJumbotron';
 

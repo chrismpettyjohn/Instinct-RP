@@ -1,6 +1,6 @@
 import {Link} from 'wouter';
 import React, {useState} from 'react';
-import {useFetchAllGangs} from '../../hooks/gang';
+import {useFetchAllGangs} from '@instinct-plugin/roleplay-web';
 import {Row} from '../../components/generic/row/Row';
 import {UserLayout} from '../../components/layout/user';
 import {Card} from '../../components/generic/card/Card';

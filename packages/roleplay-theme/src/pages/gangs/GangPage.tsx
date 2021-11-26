@@ -14,7 +14,7 @@ import {
   setURL,
   Skeleton,
 } from '@instinct-web/core';
-import {useFetchGangByID} from '../../hooks/gang';
+import {useFetchGangByID} from '@instinct-plugin/roleplay-web';
 
 setURL('gangs/view/:gangID', <GangPage />);
 

@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
-import {useFetchAllFood} from '../../../../hooks/food/fetch-all';
+import {useFetchAllFood, useFilter} from '@instinct-plugin/roleplay-web';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteFoodModal} from './delete-food-modal/DeleteFoodModal';
 import {EditFoodModal} from './edit-food-modal/EditFoodModal';
-import {useFilter} from '../../../../hooks/filter/use-filter';
 import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/food', <ListFood />);

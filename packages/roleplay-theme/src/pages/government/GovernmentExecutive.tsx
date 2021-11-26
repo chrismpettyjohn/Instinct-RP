@@ -4,7 +4,7 @@ import {Row} from '../../components/generic/row/Row';
 import {UserLayout} from '../../components/layout/user';
 import {Card} from '../../components/generic/card/Card';
 import {Container} from '../../components/generic/container/Container';
-import {useFetchGovPositions} from '../../hooks/government/fetch-gov-positions';
+import {useFetchGovPositions} from '@instinct-plugin/roleplay-web';
 import {MiniJumbotron} from '../../components/generic/mini-jumbotron/MiniJumbotron';
 import {UserContainer} from '../../components/templates/user-container/UserContainer';
 import {

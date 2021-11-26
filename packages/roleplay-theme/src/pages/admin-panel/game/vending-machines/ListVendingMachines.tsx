@@ -4,6 +4,7 @@ import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllVendingMachines} from '../../../../hooks/vending-machine';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteVendingMachineModal} from './delete-vending-machine-modal/DeleteVendingMachineModal';
+import {EditVendingMachineModal} from './edit-vending-machine-modal/EditVendingMachineModal';
 
 setURL('rp-admin/game/vending-machines', <ListVendingMachines />);
 
@@ -59,10 +60,10 @@ export function ListVendingMachines() {
                     </span>
                   </td>
                   <td>
-                    <button className="btn btn-outline-primary mr-2">
-                      <Icon type="pencil" />
-                      Edit
-                    </button>
+                    <EditVendingMachineModal
+                      vendingMachine={_}
+                      onChange={onChange}
+                    />
                     <DeleteVendingMachineModal
                       vendingMachine={_}
                       onDelete={onChange}

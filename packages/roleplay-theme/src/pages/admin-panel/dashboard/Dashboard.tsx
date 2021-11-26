@@ -20,7 +20,7 @@ export function Dashboard() {
               <iframe
                 width="100%"
                 height={315}
-                src="https://www.youtube-nocookie.com/embed/_5lUSTmkM_0?controls=0&amp;"
+                src="https://www.youtube-nocookie.com/embed/Hy8kmNEo1i8?controls=0&amp;"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

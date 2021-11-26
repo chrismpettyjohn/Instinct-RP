@@ -4,6 +4,7 @@ import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllWeapons} from '../../../../hooks/weapon';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteWeaponModal} from './delete-weapon-modal/DeleteWeaponModal';
+import {EditWeaponModal} from './edit-weapon-modal/EditWeaponModal';
 
 setURL('rp-admin/game/weapons', <ListWeapons />);
 
@@ -65,10 +66,7 @@ export function ListWeapons() {
                     </span>
                   </td>
                   <td>
-                    <button className="btn btn-outline-primary mr-2">
-                      <Icon type="pencil" />
-                      Edit
-                    </button>
+                    <EditWeaponModal weapon={_} onChange={onChange} />
                     <DeleteWeaponModal weapon={_} onDelete={onChange} />
                   </td>
                 </tr>

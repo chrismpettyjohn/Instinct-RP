@@ -28,11 +28,15 @@ export function DeleteModal({header, children, onDelete}: DeleteModalProps) {
         <ModalFooter>
           <span onClick={toggleModal}>Cancel</span>
           <button
-            className="btn btn-outline-success ml-2"
+            className="btn btn-outline-danger ml-2"
             disabled={spinner}
             onClick={onConfirm}
           >
-            {spinner ? <Icon className="fa-spin" type="spinner" /> : 'Confirm'}
+            {spinner ? (
+              <Icon className="fa-spin" type="spinner" />
+            ) : (
+              'Confirm Deletion'
+            )}
           </button>
         </ModalFooter>
       </Modal>

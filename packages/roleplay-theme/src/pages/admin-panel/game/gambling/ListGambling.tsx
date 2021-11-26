@@ -5,21 +5,33 @@ import {useFetchAllGamblingMachines} from '../../../../hooks/gambling-machine/fe
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteGamblingMachine} from './delete-gambling-machine-modal/DeleteGamblingMachine';
 import {EditGamblingModal} from './edit-gambling-modal/EditGamblingModal';
+import {useFilter} from '../../../../hooks/filter/use-filter';
+import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/gambling', <ListGambling />);
 
 export function ListGambling() {
+  const [filter, setFilter] = useFilter();
   const [refresh, setRefresh] = useState(0);
+  const gamblingMachines = useFetchAllGamblingMachines(refresh);
+
+  const filteredGamblingMachines =
+    gamblingMachines?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
 
   function onChange() {
     setRefresh(_ => _ + 1);
   }
 
-  const gamblingMachines = useFetchAllGamblingMachines(refresh);
-
   return (
     <GameLayout>
       <RPPermissionGuard permission="websiteManageGambling" redirect={false}>
+        <div className="p-2">
+          <Input
+            value={filter}
+            onChange={setFilter}
+            placeholder="Search gambling machines..."
+          />
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -35,7 +47,7 @@ export function ListGambling() {
           {gamblingMachines === undefined && <Icon type="spinner fa-spin" />}
           {gamblingMachines && (
             <tbody>
-              {gamblingMachines.map(_ => (
+              {filteredGamblingMachines.map(_ => (
                 <tr key={`gambling_machine_${_.id}`}>
                   <th scope="row">{_.id}</th>
                   <td>{_.name}</td>

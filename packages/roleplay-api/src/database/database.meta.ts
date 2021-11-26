@@ -38,6 +38,8 @@ import {FoodEntity} from './food/food.entity';
 import {FoodRepository} from './food/food.repository';
 import {GamblingMachineEntity} from './gambling-machine/gambling.entity';
 import {GamblingMachineRepository} from './gambling-machine/gambling.repository';
+import {WeaponEntity} from './weapon/weapon.entity';
+import {WeaponRepository} from './weapon/weapon.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -58,6 +60,7 @@ export const rpDatabaseEntities: Function[] = [
   GamblingMachineEntity,
   PoliticalPartyMemberEntity,
   FoodEntity,
+  WeaponEntity,
 ];
 
 export const rpDatabaseProviders: Provider[] = [
@@ -75,6 +78,7 @@ export const rpDatabaseProviders: Provider[] = [
   BusinessPositionRepository,
   PoliticalPartyRepository,
   FoodRepository,
+  WeaponRepository,
   PoliticalPartyMemberRepository,
   RPUserRepository, // Ensure rp services can be type protected
   RPRankRepository, // Ensure rp services can be type protected

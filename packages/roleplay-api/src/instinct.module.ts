@@ -9,6 +9,7 @@ import {GovernmentModule} from './government/government.module';
 import {GuideModule} from './guide/guide.module';
 import {FoodModule} from './food/food.module';
 import {GamblingMachineModule} from './gambling-machine/gambling-machine.module';
+import {WeaponModule} from './weapon/weapon.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import {GamblingMachineModule} from './gambling-machine/gambling-machine.module'
     FoodModule,
     GovernmentModule,
     GamblingMachineModule,
+    WeaponModule,
   ],
   exports: [
     DatabaseModule,
@@ -34,6 +36,7 @@ import {GamblingMachineModule} from './gambling-machine/gambling-machine.module'
     FoodModule,
     GovernmentModule,
     GamblingMachineModule,
+    WeaponModule,
   ],
 })
 export class InstinctRPModule {}

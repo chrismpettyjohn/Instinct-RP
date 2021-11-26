@@ -4,6 +4,7 @@ import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllGamblingMachines} from '../../../../hooks/gambling-machine/fetch-all';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteGamblingMachine} from './delete-gambling-machine-modal/DeleteGamblingMachine';
+import {EditGamblingModal} from './edit-gambling-modal/EditGamblingModal';
 
 setURL('rp-admin/game/gambling', <ListGambling />);
 
@@ -38,7 +39,7 @@ export function ListGambling() {
                 <tr key={`gambling_machine_${_.id}`}>
                   <th scope="row">{_.id}</th>
                   <td>{_.name}</td>
-                  <td>{_.tyoe}</td>
+                  <td>{_.type}</td>
                   <td>
                     <Icon className="text-success" type="dollar-sign" />
                     {_.minimumBet}
@@ -49,10 +50,10 @@ export function ListGambling() {
                   </td>
                   <td>{_.multiplier}</td>
                   <td>
-                    <button className="btn btn-outline-primary mr-2">
-                      <Icon type="pencil" />
-                      Edit
-                    </button>
+                    <EditGamblingModal
+                      gamblingMachine={_}
+                      onChange={onChange}
+                    />
                     <DeleteGamblingMachine
                       gamblingMachine={_}
                       onDelete={onChange}

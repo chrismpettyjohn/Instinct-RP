@@ -21,7 +21,7 @@ export function NavBar() {
         <NavBarLink to="/rp-admin">Dashboard</NavBarLink>
         <RPPermissionGuard permission="websiteManageRP" redirect={false}>
           <NavBarLink to="/rp-admin/game/food">Game</NavBarLink>
-          <NavBarLink to="/rp-admin/laws">Laws</NavBarLink>
+          <NavBarLink to="/rp-admin/crimes">Crimes</NavBarLink>
           <NavBarLink to="/rp-admin/rooms">Rooms</NavBarLink>
           <NavBarLink to="/rp-admin/users">Users</NavBarLink>
         </RPPermissionGuard>

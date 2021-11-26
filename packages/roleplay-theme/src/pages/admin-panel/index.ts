@@ -1,5 +1,5 @@
 import './dashboard';
 import './game';
-import './laws';
+import './crime';
 import './rooms';
 import './users';

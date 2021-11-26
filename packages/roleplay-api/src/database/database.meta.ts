@@ -42,6 +42,8 @@ import {WeaponEntity} from './weapon/weapon.entity';
 import {WeaponRepository} from './weapon/weapon.repository';
 import {VendingMachineEntity} from './vending-machine/vending-machine.entity';
 import {VendingMachineRepository} from './vending-machine/vending-machine.repository';
+import {CrimeEntity} from './crime/crime.entity';
+import {CrimeRepository} from './crime/crime.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -64,6 +66,7 @@ export const rpDatabaseEntities: Function[] = [
   FoodEntity,
   WeaponEntity,
   VendingMachineEntity,
+  CrimeEntity,
 ];
 
 export const rpDatabaseProviders: Provider[] = [
@@ -80,6 +83,7 @@ export const rpDatabaseProviders: Provider[] = [
   GamblingMachineRepository,
   BusinessPositionRepository,
   PoliticalPartyRepository,
+  CrimeRepository,
   FoodRepository,
   VendingMachineRepository,
   WeaponRepository,

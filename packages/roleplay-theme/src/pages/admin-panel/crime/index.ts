@@ -1,2 +1,1 @@
-import './laws';
-import './bounties';
+import './ListCrimes';

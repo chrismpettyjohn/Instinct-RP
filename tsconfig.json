@@ -5,7 +5,8 @@
     "paths": {
       "@instinct-theme/roleplay": ["packages/roleplay-theme/src"],
       "@instinct-plugin/roleplay-api":  ["packages/roleplay-api/src"],
-      "@instinct-plugin/roleplay-types":  ["packages/roleplay-types/src"]
+      "@instinct-plugin/roleplay-types":  ["packages/roleplay-types/src"],
+      "@instinct-plugin/roleplay-web": ["packages/roleplay-web/src"]
     },
     "noEmit": true
   },

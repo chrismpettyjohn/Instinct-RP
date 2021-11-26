@@ -27,6 +27,17 @@ export function Dashboard() {
               />
             </Card>
           </Col>
+          <Col xs={6}>
+            <Card>
+              <img src="https://news.cgtn.com/news/2020-07-14/Sauron-5G-and-the-Five-Black-Eyes-S7i9xRgjgA/img/6e8874393dd546f5a50c8f4f3aa727d9/6e8874393dd546f5a50c8f4f3aa727d9.png" width="100%" height={300} />
+              <p>We are always watching</p>
+              <p style={{marginTop: -20}}>
+                <small style={{fontSize: '.75rem'}}>
+                  <span style={{textDecoration: 'line-through'}}>even</span> <b>especially</b> when you are sleeping
+                </small>
+              </p>
+            </Card>
+          </Col>
         </div>
       </div>
     </AdminLayout>

@@ -51,7 +51,6 @@ export function ListCrime() {
                         <td>
                           {_.ticketable ? (
                             <>
-                              Yes{' '}
                               <Icon
                                 className="text-success"
                                 type="dollar-sign"

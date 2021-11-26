@@ -5,24 +5,34 @@ import {useFetchAllVendingMachines} from '../../../../hooks/vending-machine';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteVendingMachineModal} from './delete-vending-machine-modal/DeleteVendingMachineModal';
 import {EditVendingMachineModal} from './edit-vending-machine-modal/EditVendingMachineModal';
+import {useFilter} from '../../../../hooks/filter/use-filter';
+import {Input} from 'reactstrap';
 
 setURL('rp-admin/game/vending-machines', <ListVendingMachines />);
 
 export function ListVendingMachines() {
+  const [filter, setFilter] = useFilter();
   const [refresh, setRefresh] = useState(0);
+  const vendingMachines = useFetchAllVendingMachines(refresh);
+
+  const filteredVendingMachines = vendingMachines?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
 
   function onChange() {
     setRefresh(_ => _ + 1);
   }
-
-  const vendingMachines = useFetchAllVendingMachines(refresh);
-
+  
   return (
     <GameLayout>
       <RPPermissionGuard
         permission="websiteManageVendingMachines"
         redirect={false}
       >
+        <div className="p-2">
+          <Input
+            value={filter}
+            onChange={setFilter}
+            placeholder="Search gambling machines..."
+          />
         <table className="table">
           <thead>
             <tr>
@@ -38,7 +48,7 @@ export function ListVendingMachines() {
           {vendingMachines === undefined && <Icon type="spinner fa-spin" />}
           {vendingMachines && (
             <tbody>
-              {vendingMachines.map(_ => (
+              {filteredVendingMachines.map(_ => (
                 <tr key={`vending_machine_${_.id}`}>
                   <th scope="row">{_.id}</th>
                   <td>{_.name}</td>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {toast} from 'react-toastify';
+import {Icon} from '@instinct-web/core';
 import {DeleteWeaponModalProps} from './DeleteWeaponModal.types';
 import {DeleteModal} from '../../../components/delete-modal/DeleteModal';
 
@@ -13,7 +14,8 @@ export function DeleteWeaponModal({weapon, onDelete}: DeleteWeaponModalProps) {
     <DeleteModal
       header={
         <>
-          Deleting <b>{weapon.name}</b>
+          <Icon type="axe" />
+          Deleting Weapon: <b>{weapon.name}</b>
         </>
       }
       onDelete={onConfirmDelete}

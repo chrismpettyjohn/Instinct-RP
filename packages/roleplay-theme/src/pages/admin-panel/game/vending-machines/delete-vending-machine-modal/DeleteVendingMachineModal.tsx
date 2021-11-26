@@ -1,5 +1,6 @@
 import React from 'react';
 import {toast} from 'react-toastify';
+import {Icon} from '@instinct-web/core';
 import {DeleteModal} from '../../../components/delete-modal/DeleteModal';
 import {DeleteVendingMachineModalProps} from './DeleteVendingMachineModal.types';
 
@@ -16,7 +17,8 @@ export function DeleteVendingMachineModal({
     <DeleteModal
       header={
         <>
-          Deleting <b>{vendingMachine.name}</b>
+          <Icon type="coin" />
+          Deleting Vending Machine: <b>{vendingMachine.name}</b>
         </>
       }
       onDelete={onConfirmDelete}

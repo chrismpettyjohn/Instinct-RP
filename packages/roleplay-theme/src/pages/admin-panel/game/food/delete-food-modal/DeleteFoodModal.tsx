@@ -1,5 +1,6 @@
 import React from 'react';
 import {toast} from 'react-toastify';
+import {Icon} from '@instinct-web/core';
 import {DeleteFoodModalProps} from './DeleteFoodModal.types';
 import {DeleteModal} from '../../../components/delete-modal/DeleteModal';
 
@@ -13,7 +14,8 @@ export function DeleteFoodModal({food, onDelete}: DeleteFoodModalProps) {
     <DeleteModal
       header={
         <>
-          Deleting <b>{food.name}</b>
+          <Icon type="drumstick" />
+          Deleting Food: <b>{food.name}</b>
         </>
       }
       onDelete={onConfirmDelete}

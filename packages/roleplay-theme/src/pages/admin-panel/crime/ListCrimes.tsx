@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col} from 'reactstrap';
 import {Card} from '../components/card/Card';
 import {setURL, Icon} from '@instinct-web/core';
 import {Jumbotron} from '../components/jumbotron/Jumbotron';
 import {useFetchAllCrimes} from '../../../hooks/crime/fetch-all';
 import {AdminLayout} from '../components/admin-layout/AdminLayout';
+import {DeleteCrimeModal} from './delete-crime-modal/DeleteCrimeModal';
+import {EditCrimeModal} from './edit-crime-modal/EditCrimeModal';
 
 setURL('rp-admin/crimes', <ListCrime />);
 
 export function ListCrime() {
-  const crimes = useFetchAllCrimes();
+  const [refresh, setRefresh] = useState(0);
+
+  function onChange() {
+    setRefresh(_ => _ + 1);
+  }
+
+  const crimes = useFetchAllCrimes(refresh);
 
   return (
     <AdminLayout permission="websiteManageCrimes">
@@ -57,14 +65,8 @@ export function ListCrime() {
                         <td>{_.jailTimeInMinutes.toLocaleString()}min</td>
                         <td>{_.stackable ? 'Yes' : 'No'}</td>
                         <td>
-                          <button className="btn btn-outline-primary mr-2">
-                            <Icon type="pencil" />
-                            Edit
-                          </button>
-                          <button className="btn btn-outline-danger">
-                            <Icon type="trash" />
-                            Delete
-                          </button>
+                          <EditCrimeModal crime={_} onChange={onChange} />
+                          <DeleteCrimeModal crime={_} onDelete={onChange} />
                         </td>
                       </tr>
                     ))}

@@ -26,7 +26,11 @@ export class WeaponController {
   async createWeapon(
     @Body() weaponDTO: WeaponDTOImplementation
   ): Promise<Weapon> {
-    const newWeapon = await this.weaponRepo.create(weaponDTO);
+    const newWeapon = await this.weaponRepo.create({
+      ...weaponDTO,
+      damage: `${weaponDTO.minDamage};${weaponDTO.maxDamage}`,
+      cooldown: weaponDTO.cooldownTime,
+    });
     return weaponWire(newWeapon);
   }
 
@@ -49,7 +53,14 @@ export class WeaponController {
     @Param('weaponID', WeaponPipe) weapon: WeaponEntity,
     @Body() weaponDTO: WeaponDTOImplementation
   ) {
-    await this.weaponRepo.update({id: weapon.id!}, weaponDTO);
+    await this.weaponRepo.update(
+      {id: weapon.id!},
+      {
+        ...weaponDTO,
+        damage: `${weaponDTO.minDamage};${weaponDTO.maxDamage}`,
+        cooldown: weaponDTO.cooldownTime,
+      }
+    );
   }
 
   @Delete(':weaponID')

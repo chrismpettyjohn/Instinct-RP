@@ -16,7 +16,7 @@ import {
   Post,
 } from '@nestjs/common';
 
-@Controller('weapon')
+@Controller('weapons')
 @HasSession()
 export class WeaponController {
   constructor(private readonly weaponRepo: WeaponRepository) {}

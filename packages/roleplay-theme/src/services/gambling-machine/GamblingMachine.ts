@@ -2,7 +2,6 @@ import {AxiosResponse} from 'axios';
 import {backendAPI} from '@instinct-web/core';
 import {GamblingMachineService} from './GamblingMachine.types';
 import {
-  FoodDTO,
   GamblingMachine,
   GamblingMachineDTO,
 } from '@instinct-plugin/roleplay-types';
@@ -10,11 +9,9 @@ import {
 export class GamblingMachineServiceImplementation
   implements GamblingMachineService
 {
-  async create(foodDTO: FoodDTO) {
-    const newGamblingMachine: AxiosResponse<Food> = await backendAPI.post(
-      'gambling-machines',
-      foodDTO
-    );
+  async create(gamblingMachineDTO: GamblingMachineDTO) {
+    const newGamblingMachine: AxiosResponse<GamblingMachine> =
+      await backendAPI.post('gambling-machines', gamblingMachineDTO);
     return newGamblingMachine.data;
   }
 

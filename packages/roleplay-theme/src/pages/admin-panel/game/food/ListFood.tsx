@@ -4,6 +4,7 @@ import {setURL, Icon} from '@instinct-web/core';
 import {useFetchAllFood} from '../../../../hooks/food/fetch-all';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
 import {DeleteFoodModal} from './delete-food-modal/DeleteFoodModal';
+import {EditFoodModal} from './edit-food-modal/EditFoodModal';
 
 setURL('rp-admin/game/food', <ListFood />);
 
@@ -58,10 +59,7 @@ export function ListFood() {
                     +{_.hungerRestored} <Icon type="drumstick" />
                   </td>
                   <td>
-                    <button className="btn btn-outline-primary mr-2">
-                      <Icon type="pencil" />
-                      Edit
-                    </button>
+                    <EditFoodModal food={_} onChange={onChange} />
                     <DeleteFoodModal food={_} onDelete={onChange} />
                   </td>
                 </tr>

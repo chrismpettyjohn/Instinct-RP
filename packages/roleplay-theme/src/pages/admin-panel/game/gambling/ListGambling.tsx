@@ -1,10 +1,13 @@
 import React from 'react';
 import {GameLayout} from '../Game';
 import {setURL, Icon} from '@instinct-web/core';
+import {useFetchAllGamblingMachines} from '../../../../hooks/gambling-machine/fetch-all';
 
 setURL('rp-admin/game/gambling', <ListGambling />);
 
 export function ListGambling() {
+  const gamblingMachines = useFetchAllGamblingMachines();
+
   return (
     <GameLayout>
       <table className="table">
@@ -19,31 +22,37 @@ export function ListGambling() {
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Slots</td>
-            <td>slots</td>
-            <td>
-              <Icon className="text-success" type="dollar-sign" />5
-            </td>
-            <td>
-              <Icon className="text-success" type="dollar-sign" />
-              100
-            </td>
-            <td>0</td>
-            <td>
-              <button className="btn btn-outline-primary mr-2">
-                <Icon type="pencil" />
-                Edit
-              </button>
-              <button className="btn btn-outline-danger">
-                <Icon type="trash" />
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
+        {gamblingMachines === undefined && <Icon type="spinner fa-spin" />}
+        {gamblingMachines && (
+          <tbody>
+            {gamblingMachines.map(_ => (
+              <tr key={`gambling_machine_${_.id}`}>
+                <th scope="row">{_.id}</th>
+                <td>{_.name}</td>
+                <td>{_.tyoe}</td>
+                <td>
+                  <Icon className="text-success" type="dollar-sign" />
+                  {_.minimumBet}
+                </td>
+                <td>
+                  <Icon className="text-success" type="dollar-sign" />
+                  {_.maximumBet}
+                </td>
+                <td>{_.multiplier}</td>
+                <td>
+                  <button className="btn btn-outline-primary mr-2">
+                    <Icon type="pencil" />
+                    Edit
+                  </button>
+                  <button className="btn btn-outline-danger">
+                    <Icon type="trash" />
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
       </table>
       <div className="text-right">
         <button className="btn btn-outline-success mr-2">

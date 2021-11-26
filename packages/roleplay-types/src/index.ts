@@ -1,5 +1,6 @@
 export * from './business';
 export * from './food';
+export * from './gambling';
 export * from './law';
 export * from './political-party';
 export * from './gang';

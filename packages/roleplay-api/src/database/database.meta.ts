@@ -36,6 +36,8 @@ import {GuideCategoryRepository} from './guide/guide-category.repository';
 import {GuideReactionRepository} from './guide/guide-reaction.repository';
 import {FoodEntity} from './food/food.entity';
 import {FoodRepository} from './food/food.repository';
+import {GamblingMachineEntity} from './gambling-machine/gambling.entity';
+import {GamblingMachineRepository} from './gambling-machine/gambling.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -53,6 +55,7 @@ export const rpDatabaseEntities: Function[] = [
   GuideReactionEntity,
   LawCommentEntity,
   PoliticalPartyEntity,
+  GamblingMachineEntity,
   PoliticalPartyMemberEntity,
   FoodEntity,
 ];
@@ -68,6 +71,7 @@ export const rpDatabaseProviders: Provider[] = [
   GangRankRepository,
   BusinessRepository,
   UserRPStatRepository,
+  GamblingMachineRepository,
   BusinessPositionRepository,
   PoliticalPartyRepository,
   FoodRepository,

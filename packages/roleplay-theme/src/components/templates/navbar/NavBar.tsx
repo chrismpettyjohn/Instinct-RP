@@ -43,6 +43,10 @@ export function NavBar() {
                 Political Parties
               </NavBarChildLink>
             </NavBarDropdown>
+            <NavBarDropdown text="Crime" to="/crimes">
+              <NavBarChildLink to="/crimes">Crimes</NavBarChildLink>
+              <NavBarChildLink to="/crimes/bounties">Bounties</NavBarChildLink>
+            </NavBarDropdown>
             <NavBarLink to="/businesses">Business</NavBarLink>
             <NavBarLink to="/gangs">Gangs</NavBarLink>
             <li className="navigation-item navigation-right-side-item has-items">

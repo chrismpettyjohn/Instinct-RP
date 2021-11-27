@@ -3,6 +3,7 @@ import './admin-panel';
 import './auth';
 import './business';
 import './community';
+import './crime';
 import './error';
 import './gangs';
 import './government';

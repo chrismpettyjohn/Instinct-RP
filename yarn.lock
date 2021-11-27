@@ -1541,10 +1541,10 @@
     passport "^0.4.1"
     passport-jwt "^4.0.0"
 
-"@instinct-api/users@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@instinct-api/users/-/users-3.0.1.tgz#ca83a2d95b93271da4c89e6f977e888444b64808"
-  integrity sha512-bVe+zo2eSb9Ra7J9vrofkM7C8pLA7YEYuxj/4Y+kjOpJPflQUkcWQoDqnzIZmNraiPcHKho1x8LNdR9JngGjPg==
+"@instinct-api/users@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@instinct-api/users/-/users-3.0.2.tgz#167d43a9e65639837295c58951bab697af1b37a7"
+  integrity sha512-eIt0sKE3Y7hN+gbP/HQCqOtJrpa6XtBMXN+tbdiknAhZeAZAf+FAigxYu8uVEwlnXkAV2C8PfqEHvjj+fMejmQ==
 
 "@instinct-api/validator@^3.0.1":
   version "3.0.1"

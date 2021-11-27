@@ -21,7 +21,7 @@
     "@instinct-api/ranks": "^3.0.1",
     "@instinct-api/rooms": "^4.0.1",
     "@instinct-api/session": "^4.0.1",
-    "@instinct-api/users": "^3.0.1",
+    "@instinct-api/users": "^3.0.2",
     "@instinct-plugin/findretros-api": "^3.0.1",
     "@instinct-plugin/forgot-password-api": "^3.0.1",
     "@instinct-plugin/manage-users-api": "^3.0.1",

@@ -1,7 +1,7 @@
 import {orderBy} from 'lodash';
 import React, {useContext} from 'react';
 import {Icon} from '@instinct-web/core';
-import {businessEditorContext} from '@instinct-plugin/roleplay-web';
+import {businessEditorContext} from '../../context/BusinessEditor';
 import {EditPositionModal} from '../edit-position-modal/EditPositionModal';
 
 export function JobPositionsTable() {

@@ -1529,18 +1529,6 @@
   resolved "https://registry.yarnpkg.com/@instinct-api/rooms/-/rooms-4.0.1.tgz#81ac7aa5076e1248766b76817fed244678322cdd"
   integrity sha512-vp7odvC0DCo1I55788k1nv5H0S2iMTtR/eUvNlC9/iqAjDw6mF0uGo6XSpsBF1p4zS2kivjvBx+CqNv2BlMkIA==
 
-"@instinct-api/session@^2.4.6":
-  version "2.4.7"
-  resolved "https://registry.yarnpkg.com/@instinct-api/session/-/session-2.4.7.tgz#1855099fbef7e907d52432d390aae08b97b7e99f"
-  integrity sha512-c14qn4SUxfW70cgYxMMKYFfrJYL+0a4d4C3jJvs6TZed1cvogYzQJnUMrYf3BYi+jJHxOvfq/E9febOG5TBaDg==
-  dependencies:
-    "@nestjs/jwt" "^7.2.0"
-    "@nestjs/passport" "^7.1.5"
-    jsonwebtoken "^8.5.1"
-    node-cache "^5.1.2"
-    passport "^0.4.1"
-    passport-jwt "^4.0.0"
-
 "@instinct-api/session@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@instinct-api/session/-/session-4.0.1.tgz#394ce95a68302d7d43677f036190323b03dbf1da"

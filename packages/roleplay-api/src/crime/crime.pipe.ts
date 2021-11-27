@@ -10,7 +10,6 @@ export class CrimePipe implements PipeTransform {
     try {
       return await this.crimeRepo.findOneOrFail({id: crimeID});
     } catch (e) {
-      console.log(e);
       throw new NotFoundException('Crime does not exist');
     }
   }

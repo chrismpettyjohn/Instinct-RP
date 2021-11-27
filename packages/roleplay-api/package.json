@@ -22,7 +22,7 @@
     "@types/passport-jwt": "^3.0.6",
     "@instinct-api/ranks": "^3.0.1",
     "@instinct-api/rooms": "^2.4.6",
-    "@instinct-api/session": "^2.4.6",
+    "@instinct-api/session": "^4.0.1",
     "@instinct-api/users": "^3.0.1",
     "@instinct-plugin/roleplay-types": "^1.0.0",
     "@instinct-prj/interface": "^3.0.1",

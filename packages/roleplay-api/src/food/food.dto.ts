@@ -26,7 +26,7 @@ export class FoodDTOImplementation implements FoodDTO {
   @IsNumber()
   hungerRestored!: number;
 
-  @IsNumber()
+  @IsString()
   serveText!: string;
 
   @IsString()

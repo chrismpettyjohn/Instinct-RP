@@ -1580,10 +1580,32 @@
   resolved "https://registry.yarnpkg.com/@instinct-prj/interface/-/interface-3.0.1.tgz#74cee2272f8ac58b629b3c566d50aeb8a464d258"
   integrity sha512-PePunCL10jQpHXW2RONa8gvsn7GN0UCVFznAn2lqDs/8e1uoXwM9zHp2vRhrmLKVY1sWiTMh53BVq4xW3jYIRg==
 
-"@instinct-web/admin@^3.0.1", "@instinct-web/admin@^3.0.4":
+"@instinct-web/admin@^3.0.1":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@instinct-web/admin/-/admin-3.0.4.tgz#459916e7f9cbe8fb73708aeea1e382cc929cbe40"
   integrity sha512-8CGA1+owoKlloa9iUp+zH3Snq6ls/QB/Zz/cyry8VsXinX83Fi1NLZBE7CAduTvwVVZNbiapHdEzhJg8fJXXqA==
+  dependencies:
+    "@instinct-prj/interface" "^3.0.1"
+    "@instinct-web/core" "^3.0.4"
+    "@uiw/react-md-editor" "^3.3.7"
+    axios "^0.21.1"
+    lodash "^4.17.21"
+    moment "^2.29.1"
+    npm "^7.18.1"
+    react-color "^2.19.3"
+    react-datepicker "^4.1.1"
+    react-google-recaptcha "^2.1.0"
+    react-loading-skeleton "^2.2.0"
+    react-toastify "^7.0.4"
+    react-toggle "^4.1.2"
+    styled-components "^5.3.0"
+    tslib "^2.3.0"
+    wouter "^2.7.4"
+
+"@instinct-web/admin@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@instinct-web/admin/-/admin-3.0.5.tgz#104a4fdab4779e6a3c03e3f7a0d59a50aa5c4059"
+  integrity sha512-MTnjgAvm/BBdPldL/Vj/bgP+phpRdiaHqR7i/xGUfh3mvAzwhFcHaSIS8aDjauqIiN/G9ajzZNaiFASgfPrFpg==
   dependencies:
     "@instinct-prj/interface" "^3.0.1"
     "@instinct-web/core" "^3.0.4"

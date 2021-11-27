@@ -1,30 +1,48 @@
-import React from 'react';
 import {random} from 'lodash';
 import {Col} from 'reactstrap';
+import React, {useState} from 'react';
+import {Icon} from '@instinct-web/core';
 import {Card} from '../../components/card/Card';
 
+const YOUTUBE_IDS = [
+  'DVQsKYPm7mA',
+  '_ieCjpmliSg',
+  '47ZSI7nPAqo',
+  'wEpJU3xqeSE',
+  'xu6y_i8LWss',
+  '35BE84yRadU',
+];
+
 export function GlobCard() {
-  const youtubeVideoIDs = [
-    'DVQsKYPm7mA',
-    '_ieCjpmliSg',
-    '47ZSI7nPAqo',
-    'wEpJU3xqeSE',
-    'xu6y_i8LWss',
-    '35BE84yRadU',
-  ];
+  const [randomVideo, setRandomVideo] = useState(YOUTUBE_IDS[0]);
 
-  const randomIndex = random(0, youtubeVideoIDs.length);
+  function changeVideo() {
+    const randomIndex = random(0, YOUTUBE_IDS.length);
+    const randomYoutubeVideo = YOUTUBE_IDS[randomIndex];
+    setRandomVideo(randomYoutubeVideo);
+  }
 
-  const randomYoutubeVideo = youtubeVideoIDs[randomIndex];
+  function getHeader() {
+    return (
+      <div className="row">
+        <div className="col-6">Sponsored Video</div>
+        <div className="col-6 text-right">
+          <div style={{cursor: 'pointer'}} onClick={changeVideo}>
+            <Icon type="sync" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="row">
       <Col xs={8}>
-        <Card style={{height: '100%'}} header="Sponsored Video">
+        <Card style={{height: '100%'}} header={getHeader()}>
           <iframe
             width="100%"
             height={500}
-            src={`https://www.youtube-nocookie.com/embed/${randomYoutubeVideo}?controls=0&autoplay=1`}
+            src={`https://www.youtube-nocookie.com/embed/${randomVideo}?controls=0&autoplay=1`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

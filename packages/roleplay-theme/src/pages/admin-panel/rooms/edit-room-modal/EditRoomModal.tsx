@@ -33,7 +33,7 @@ export function EditRoomModal({rpRoom, onChange}: EditRoomModalProps) {
     <EditModal
       header={
         <>
-          <Icon type="badge-sheriff" />
+          <Icon type="map-marker" />
           Editing Room: <b>{rpRoom.roomName}</b>
         </>
       }

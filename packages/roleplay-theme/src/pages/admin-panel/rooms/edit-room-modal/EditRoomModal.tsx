@@ -54,7 +54,10 @@ export function EditRoomModal({rpRoom, onChange}: EditRoomModalProps) {
         <h4>Abilities</h4>
         <div className="row">
           {Object.keys(roomPermissionToLabel).map(_ => (
-            <div className="col-4" key={`permission_modal_${_}`}>
+            <div
+              className="col-4"
+              key={`room_${rpRoom.id}_permission_modal_${_}`}
+            >
               <FormGroup>
                 <Label>{roomPermissionToLabel[_]}</Label>
                 <br />

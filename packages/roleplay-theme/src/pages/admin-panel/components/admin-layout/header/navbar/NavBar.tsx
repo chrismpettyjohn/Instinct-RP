@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {NavBarLink} from './navbar-link/NavBarLink';
-import {sessionContext} from '@instinct-web/core';
 import {UserDropdown} from './user-dropdown/UserDropdown';
+import {sessionContext, PermissionGuard} from '@instinct-web/core';
 import {RPPermissionGuard} from '../../../../../../components/templates/permission-guard';
 
 export function NavBar() {
@@ -23,8 +23,12 @@ export function NavBar() {
         <RPPermissionGuard permission="websiteManageCrimes" redirect={false}>
           <NavBarLink to="/rp-admin/crimes">Crimes</NavBarLink>
         </RPPermissionGuard>
-        <NavBarLink to="/rp-admin/rooms">Rooms</NavBarLink>
-        <NavBarLink to="/rp-admin/users">Users</NavBarLink>
+        <RPPermissionGuard permission="websiteManageRooms" redirect={false}>
+          <NavBarLink to="/rp-admin/rooms">Rooms</NavBarLink>
+        </RPPermissionGuard>
+        <PermissionGuard permission="websiteManageUsers" redirect={false}>
+          <NavBarLink to="/rp-admin/users">Users</NavBarLink>
+        </PermissionGuard>
         <li className="navigation-item navigation-right-side-item has-items">
           <UserDropdown />
         </li>

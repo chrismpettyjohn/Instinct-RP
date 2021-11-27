@@ -12,6 +12,7 @@ import {GamblingMachineModule} from './gambling-machine/gambling-machine.module'
 import {WeaponModule} from './weapon/weapon.module';
 import {VendingMachineModule} from './vending-machine/vending-machine.module';
 import {CrimeModule} from './crime/crime.module';
+import {RPRoomModule} from './rp-room/rp-room.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import {CrimeModule} from './crime/crime.module';
     GovernmentModule,
     GamblingMachineModule,
     WeaponModule,
+    RPRoomModule,
     VendingMachineModule,
     CrimeModule,
   ],
@@ -38,6 +40,7 @@ import {CrimeModule} from './crime/crime.module';
     FeatureModule,
     RPUserModule,
     FoodModule,
+    RPRoomModule,
     GovernmentModule,
     GamblingMachineModule,
     WeaponModule,

@@ -8,6 +8,7 @@ export * from './government';
 export * from './guide';
 export * from './law';
 export * from './political-party';
+export * from './rp-room';
 export * from './session';
 export * from './user';
 export * from './vending-machine';

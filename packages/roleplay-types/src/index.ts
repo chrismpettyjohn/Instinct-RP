@@ -7,6 +7,7 @@ export * from './political-party';
 export * from './gang';
 export * from './guide';
 export * from './rank';
+export * from './room';
 export * from './user';
 export * from './vending-machine';
 export * from './weapon';

@@ -15448,13 +15448,6 @@ react-toastify@^7.0.4:
   dependencies:
     clsx "^1.1.1"
 
-react-toastify@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-8.1.0.tgz#acaca4e8c4415c8474562dd84a14e6f390ed7f17"
-  integrity sha512-M+Q3rTmEw/53Csr7NsV/YnldJe4c7uERcY7Tma9mvLU98QT2VhIkKwjBzzxZkJRk/oBKyUAtkyMjMgO00hx6gQ==
-  dependencies:
-    clsx "^1.1.1"
-
 react-toggle@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-4.1.2.tgz#b00500832f925ad524356d909821821ae39f6c52"

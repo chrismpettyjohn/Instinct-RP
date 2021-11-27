@@ -44,6 +44,8 @@ import {VendingMachineEntity} from './vending-machine/vending-machine.entity';
 import {VendingMachineRepository} from './vending-machine/vending-machine.repository';
 import {CrimeEntity} from './crime/crime.entity';
 import {CrimeRepository} from './crime/crime.repository';
+import {RPRoomEntity} from './room/rp-room.entity';
+import {RPRoomRepository} from './room/rp-room.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -59,6 +61,7 @@ export const rpDatabaseEntities: Function[] = [
   GuideEntity,
   GuideCategoryEntity,
   GuideReactionEntity,
+  RPRoomEntity,
   LawCommentEntity,
   PoliticalPartyEntity,
   GamblingMachineEntity,
@@ -75,6 +78,7 @@ export const rpDatabaseProviders: Provider[] = [
   LawRepository,
   GangRepository,
   GuideRepository,
+  RPRoomRepository,
   GuideCategoryRepository,
   GuideReactionRepository,
   GangRankRepository,

@@ -9,7 +9,7 @@
     "@instinct-api/beta-codes": "^4.0.1",
     "@instinct-api/common": "^3.0.1",
     "@instinct-api/config": "^4.0.1",
-    "@instinct-api/database": "^4.0.1",
+    "@instinct-api/database": "^4.0.2",
     "@instinct-api/database-migrations": "^4.0.1",
     "@instinct-api/emails": "^4.0.1",
     "@instinct-api/emulator": "^4.0.1",

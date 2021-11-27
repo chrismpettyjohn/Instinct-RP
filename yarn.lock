@@ -1477,6 +1477,17 @@
     randomstring "^1.2.1"
     typeorm "0.2.31"
 
+"@instinct-api/database@^4.0.2":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@instinct-api/database/-/database-4.0.3.tgz#f5bc58eb20054acbee25779f6fa519a7cdb3bd2d"
+  integrity sha512-g/9C1g3zobSCX/CBMh4wzwUnyzHrUL90nc9OM9sJ1L/M0I57X5lul2u9wzPCeYE9RcHo9Id2bjx5e15Q1u9yNg==
+  dependencies:
+    eventemitter3 "^4.0.7"
+    mysql2 "^2.2.5"
+    node-cache "^5.1.2"
+    randomstring "^1.2.1"
+    typeorm "0.2.31"
+
 "@instinct-api/emails@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@instinct-api/emails/-/emails-4.0.1.tgz#3ea01c8ae48507f45e325b56a993d5ce5b9d89af"

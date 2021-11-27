@@ -213,3 +213,7 @@ input {
 .bg-dark {
   background: $backgroundTwo !important;
 }
+
+.modal-header button {
+  display: none;
+}

@@ -27,7 +27,10 @@ export function ListCrimes() {
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>Crimes</h1>
+              <h1>
+                <Icon type="badge-sheriff" />
+                Crimes
+              </h1>
               <p>
                 The following are crimes and are punishable to the fullest
                 extent of the law

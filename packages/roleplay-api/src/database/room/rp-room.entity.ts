@@ -45,7 +45,7 @@ export class RPRoomEntity {
   @Column({name: 'rob_enabled', type: 'enum'})
   robEnabled!: RPRoomFeature;
 
-  @Column({name: 'daylight_enabled', type: 'enum'})
+  @Column({name: 'daynight_enabled', type: 'enum'})
   daylightEnabled!: RPRoomFeature;
 
   @Column({name: 'turf_enabled', type: 'enum'})

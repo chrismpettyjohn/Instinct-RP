@@ -10,13 +10,13 @@ setURL('rp-admin/users', <ListUsers />);
 export function ListUsers() {
   return (
     <AdminLayout permission="websiteShowAdminPanel">
-      <Jumbotron style={{background: '#263238'}} title="Manage Rooms">
-        Here you can update various RP settings for rooms in-game
+      <Jumbotron style={{background: '#263238'}} title="Manage Users">
+        Here you can update various RP stats for users in-game
       </Jumbotron>
       <div className="page-content">
         <div className="row">
           <Col xs={12}>
-            <Card header="Rooms">
+            <Card>
               <table className="table">
                 <thead>
                   <tr>

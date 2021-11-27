@@ -2,10 +2,12 @@ import {Col, Input} from 'reactstrap';
 import React, {useState} from 'react';
 import {Card} from '../components/card/Card';
 import {setURL, Icon} from '@instinct-web/core';
+import {roomPermissionToLabel} from './rooms.const';
 import {RPRoom} from '@instinct-plugin/roleplay-types';
 import {Jumbotron} from '../components/jumbotron/Jumbotron';
 import {AdminLayout} from '../components/admin-layout/AdminLayout';
 import {useFetchAllRPRooms, useFilter} from '@instinct-plugin/roleplay-web';
+import {EditRoomModal} from './edit-room-modal/EditRoomModal';
 
 setURL('rp-admin/rooms', <ListRooms />);
 
@@ -22,36 +24,19 @@ export function ListRooms() {
   }
 
   function getBadges(room: RPRoom) {
-    const permissionToBadge: Record<string, string> = {
-      bankEnabled: 'Bank',
-      casinoEnabled: 'Casino',
-      meleeEnabled: 'Can Melee',
-      shootEnabled: 'Can Shoot',
-      bombEnabled: 'Can Bomb',
-      hitEnabled: 'Can Hit',
-      magicEnabled: 'Can Use Magic',
-      robEnabled: 'Can Rob',
-      daylightEnabled: 'Daylight System',
-      turfEnabled: 'Gang Turf',
-      hospitalEnabled: 'Hospital',
-      safezoneEnabled: 'Safezone!',
-      mwEnabled: 'MW',
-      gymEnabled: 'Gym',
-      taxiToEnabled: 'Can Taxi To',
-      taxiFromEnabled: 'Can Taxi From',
-    };
-
-    // @ts-ignore
-    return Object.keys(permissionToBadge)
-      .filter(_ => room[_])
-      .map(_ => (
-        <div
-          className="badge badge-pill badge-dark"
-          key={`room_${room.id}_${_}`}
-        >
-          {permissionToBadge[_]}
-        </div>
-      ));
+    return (
+      Object.keys(roomPermissionToLabel)
+        // @ts-ignore
+        .filter(_ => room[_])
+        .map(_ => (
+          <div
+            className="badge badge-pill badge-dark"
+            key={`room_${room.id}_${_}`}
+          >
+            {roomPermissionToLabel[_]}
+          </div>
+        ))
+    );
   }
 
   return (
@@ -67,7 +52,7 @@ export function ListRooms() {
                 <Input
                   value={filter}
                   onChange={setFilter}
-                  placeholder="Search crimes..."
+                  placeholder="Search rooms..."
                 />
               </div>
               <table className="table">
@@ -85,7 +70,12 @@ export function ListRooms() {
                     <tr key={`room_${_.id}`}>
                       <th scope="row">{_.id}</th>
                       <td>{_.roomName}</td>
-                      <td style={{overflow: 'hidden'}}>{getBadges(_)}</td>
+                      <td style={{overflow: 'hidden', maxWidth: 400}}>
+                        {getBadges(_)}
+                      </td>
+                      <td>
+                        <EditRoomModal rpRoom={_} onChange={onChange} />
+                      </td>
                     </tr>
                   </tbody>
                 ))}

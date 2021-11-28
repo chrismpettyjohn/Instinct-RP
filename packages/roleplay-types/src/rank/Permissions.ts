@@ -19,6 +19,7 @@ export interface RPPermissions
   websiteManageVendingMachines: boolean;
   websiteManageCrimes: boolean;
   websiteManageRooms: boolean;
+  websiteManageBounties: boolean;
 }
 
 export const exampleRPPermissions: RPPermissions = {
@@ -40,4 +41,5 @@ export const exampleRPPermissions: RPPermissions = {
   websiteManageVendingMachines: false,
   websiteManageCrimes: false,
   websiteManageRooms: false,
+  websiteManageBounties: false,
 };

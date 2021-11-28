@@ -1,3 +1,4 @@
+export * from './bounty';
 export * from './business';
 export * from './crime';
 export * from './filter';

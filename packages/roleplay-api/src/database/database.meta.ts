@@ -46,6 +46,8 @@ import {CrimeEntity} from './crime/crime.entity';
 import {CrimeRepository} from './crime/crime.repository';
 import {RPRoomEntity} from './room/rp-room.entity';
 import {RPRoomRepository} from './room/rp-room.repository';
+import {BountyEntity} from './bounty/bounty.entity';
+import {BountyRepository} from './bounty/bounty.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -58,6 +60,7 @@ export const rpDatabaseEntities: Function[] = [
   LawEntity,
   LawEventEntity,
   LawVoteEntity,
+  BountyEntity,
   GuideEntity,
   GuideCategoryEntity,
   GuideReactionEntity,
@@ -90,6 +93,7 @@ export const rpDatabaseProviders: Provider[] = [
   CrimeRepository,
   FoodRepository,
   VendingMachineRepository,
+  BountyRepository,
   WeaponRepository,
   PoliticalPartyMemberRepository,
   RPUserRepository, // Ensure rp services can be type protected

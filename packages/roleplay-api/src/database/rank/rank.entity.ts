@@ -55,6 +55,9 @@ export class RPRankEntity extends RankEntity implements RPRankEntityStruct {
   @Column({name: 'website_manage_rooms', type: 'enum', default: '0'})
   websiteManageRooms!: PermissionStatus;
 
+  @Column({name: 'website_manage_bounties', type: 'enum', default: '0'})
+  websiteManageBounties!: PermissionStatus;
+
   @Column({
     name: 'website_register_political_party',
     type: 'enum',

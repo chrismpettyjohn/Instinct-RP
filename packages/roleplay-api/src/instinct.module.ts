@@ -13,6 +13,7 @@ import {WeaponModule} from './weapon/weapon.module';
 import {VendingMachineModule} from './vending-machine/vending-machine.module';
 import {CrimeModule} from './crime/crime.module';
 import {RPRoomModule} from './rp-room/rp-room.module';
+import {BountyModule} from './bounty/bounty.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import {RPRoomModule} from './rp-room/rp-room.module';
     RPRoomModule,
     VendingMachineModule,
     CrimeModule,
+    BountyModule,
   ],
   exports: [
     DatabaseModule,
@@ -46,6 +48,7 @@ import {RPRoomModule} from './rp-room/rp-room.module';
     WeaponModule,
     VendingMachineModule,
     CrimeModule,
+    BountyModule,
   ],
 })
 export class InstinctRPModule {}

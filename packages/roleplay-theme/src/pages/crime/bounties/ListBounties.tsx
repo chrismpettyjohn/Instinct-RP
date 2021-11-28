@@ -1,24 +1,25 @@
 import React from 'react';
+import Moment from 'moment';
 import {Input} from 'reactstrap';
-import {setURL, Icon} from '@instinct-web/core';
+import {Avatar, setURL, Icon} from '@instinct-web/core';
 import {Row} from '../../../components/generic/row/Row';
 import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
-import {useFetchAllCrimes, useFilter} from '@instinct-plugin/roleplay-web';
+import {useFetchAllBounties, useFilter} from '@instinct-plugin/roleplay-web';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 
 setURL('crimes/bounties', <ListBounties />);
 
 export function ListBounties() {
-  const crimes = useFetchAllCrimes();
+  const bounties = useFetchAllBounties();
   const [filter, setFilter] = useFilter();
 
-  const filteredCrimes =
-    crimes?.filter(
+  const filteredBounties =
+    bounties?.filter(
       _ =>
-        _.name?.toLowerCase()?.includes(filter) ||
-        _.aliases?.toLowerCase()?.includes(filter)
+        _.target.username.toLowerCase()?.includes(filter) ||
+        _.addedBy.username.toLowerCase()?.includes(filter)
     ) ?? [];
 
   return (
@@ -27,11 +28,11 @@ export function ListBounties() {
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>Crimes</h1>
-              <p>
-                The following are crimes and are punishable to the fullest
-                extent of the law
-              </p>
+              <h1>
+                <Icon type="skull-crossbones" />
+                Bounties
+              </h1>
+              <p>Users on this page have open bounties on their head</p>
             </MiniJumbotron>
           </div>
         </Row>
@@ -42,37 +43,42 @@ export function ListBounties() {
                 <Input
                   value={filter}
                   onChange={setFilter}
-                  placeholder="Search crimes..."
+                  placeholder="Search bounties..."
                 />
               </div>
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Ticket</th>
-                    <th scope="col">Jail Time</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Reward</th>
+                    <th scope="col">Added By</th>
+                    <th scope="col">Expires At</th>
                   </tr>
                 </thead>
-                {crimes === undefined && <Icon type="spinner fa-spin" />}
-                {crimes && (
+                {bounties === undefined && <Icon type="spinner fa-spin" />}
+                {bounties && (
                   <tbody>
-                    {filteredCrimes.map(_ => (
-                      <tr key={`crime_${_.id}`}>
-                        <td>{_.name}</td>
+                    {filteredBounties.map(_ => (
+                      <tr key={`bounty${_.id}`} style={{height: 55}}>
                         <td>
-                          {_.ticketable ? (
-                            <>
-                              <Icon
-                                className="text-success"
-                                type="dollar-sign"
-                              />
-                              {_.ticketCost}
-                            </>
-                          ) : (
-                            'No'
-                          )}
+                          <div className="d-flex" style={{marginTop: -15}}>
+                            <Avatar look={_.target.figure} headOnly />
+                            <h4 style={{marginTop: 20}}>{_.target.username}</h4>
+                          </div>
                         </td>
-                        <td>{_.jailTimeInMinutes.toLocaleString()}min</td>
+                        <td>
+                          <Icon className="text-success" type="dollar-sign" />
+                          {_.reward.toLocaleString()}
+                        </td>
+                        <td>
+                          <div className="d-flex" style={{marginTop: -15}}>
+                            <Avatar look={_.addedBy.figure} headOnly />
+                            <h4 style={{marginTop: 20}}>
+                              {_.addedBy.username}
+                            </h4>
+                          </div>
+                        </td>
+                        <td>{Moment.unix(_.expiresAt).format('MM/DD/YYYY')}</td>
                       </tr>
                     ))}
                   </tbody>

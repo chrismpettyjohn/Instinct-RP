@@ -29,6 +29,11 @@ export function NavBar() {
                 Online Users
               </NavBarChildLink>
             </NavBarDropdown>
+            <NavBarDropdown text="High Scores" to="/high-scores/users">
+              <NavBarChildLink to="/high-scores/users">Users</NavBarChildLink>
+              <NavBarChildLink to="/high-scores/gangs">Gangs</NavBarChildLink>
+              <NavBarChildLink to="/high-scores/jobs">Jobs</NavBarChildLink>
+            </NavBarDropdown>
             <NavBarDropdown text="Government" to="/government/executive">
               <NavBarChildLink to="/government/executive">
                 Executive Cabinet

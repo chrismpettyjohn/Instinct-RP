@@ -8,5 +8,6 @@ import './error';
 import './gangs';
 import './government';
 import './guides';
+import './high-scores';
 import './home';
 import './properties';

@@ -7,6 +7,7 @@ import {Container} from '../../components/generic/container/Container';
 import {MiniJumbotron} from '../../components/generic/mini-jumbotron/MiniJumbotron';
 import {BuyPropertyModal} from './buy-property-modal/BuyPropertyModal';
 import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
+import {SellPropertyModal} from './sell-property-modal/SellPropertyModal';
 
 setURL('properties', <ListProperties />);
 
@@ -26,10 +27,7 @@ export function ListProperties() {
                   <p>Check out some of these hot deals on the market</p>
                 </div>
                 <div className="col-6 text-right">
-                  <button className="btn btn-success btn-lg">
-                    <Icon type="plus-circle" />
-                    Sell Property
-                  </button>
+                  <SellPropertyModal onChange={() => {}} />
                 </div>
               </div>
             </MiniJumbotron>

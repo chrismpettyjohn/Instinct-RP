@@ -1,9 +1,19 @@
+import Toggle from 'react-toggle';
 import React, {useState} from 'react';
 import {Icon} from '@instinct-web/core';
-import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
-import {MakeOfferOnPropertyModalProps} from './MakeOfferOnPropertyModal.types';
+import {SellPropertyModalProps} from './SellPropertyModal.types';
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+} from 'reactstrap';
 
-export function MakeOfferOnPropertyModal({}: MakeOfferOnPropertyModalProps) {
+export function SellPropertyModal({}: SellPropertyModalProps) {
   const [spinner, setSpinner] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,13 +29,17 @@ export function MakeOfferOnPropertyModal({}: MakeOfferOnPropertyModalProps) {
     }
   }
 
+  async function onSubmit(event: any) {
+    event.preventDefault();
+  }
+
   return (
     <>
       {isOpen && (
         <Modal isOpen={isOpen} size="lg" toggle={toggleModal}>
           <ModalHeader toggle={toggleModal}>
-            <Icon type="handshake" />
-            Bidding on Property: <b>Warehouse #4</b>
+            <Icon type="plus-circle" />
+            Sell Property
           </ModalHeader>
           <ModalBody>
             <div className="row">
@@ -38,47 +52,51 @@ export function MakeOfferOnPropertyModal({}: MakeOfferOnPropertyModalProps) {
                 />
               </div>
               <div className="col-7">
-                <b>Are you sure?</b>
-                <p>
-                  Once you confirm, your bid will be sent to the owner of the
-                  property for review.
-                </p>
-                <p>
-                  Once submitted, all bids are final and cannot be cancelled.
-                </p>
-                <h4>
-                  Total Cost:
-                  <b className="ml-2">
-                    <Icon className="text-success" type="dollar-sign" />
-                    5,550
-                  </b>
-                </h4>
+                <Form submit={onSubmit}>
+                  <FormGroup>
+                    <Label>Property</Label>
+                    <Input />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>Property Photo</Label>
+                    <Input />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>Buy Now Price</Label>
+                    <Input type="number" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>Allow Bidding</Label>
+                    <br />
+                    <Toggle />
+                  </FormGroup>
+                </Form>
               </div>
             </div>
           </ModalBody>
           <ModalFooter>
             <span onClick={toggleModal}>Cancel</span>
             <button
-              className="btn btn-outline-info ml-2"
+              className="btn btn-outline-primary ml-2"
               disabled={spinner}
               onClick={onConfirm}
             >
               {spinner ? (
                 <Icon className="fa-spin" type="spinner" />
               ) : (
-                <>Confirm $5,500 Bid</>
+                <>Save Changes</>
               )}
             </button>
           </ModalFooter>
         </Modal>
       )}
       <button
-        className="btn btn-outline-info"
+        className="btn btn-outline-success"
         onClick={toggleModal}
         disabled={spinner}
       >
-        <Icon type="handshake" />
-        Make Offer
+        <Icon type="plus-circle" />
+        Sell Property
       </button>
     </>
   );

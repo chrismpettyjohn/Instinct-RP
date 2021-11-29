@@ -1,4 +1,3 @@
-import './Games.scss';
 import React from 'react';
 import {setURL} from '@instinct-web/core';
 import {MostKillsCard} from './widgets/MostKills';
@@ -12,16 +11,16 @@ import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 
-setURL('high-scores/users', <Games />);
+setURL('high-scores/users', <UserHighScores />);
 
-export function Games() {
+export function UserHighScores() {
   return (
     <UserLayout section="games_ranking">
       <Container>
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>High Scores</h1>
+              <h1>Top Users</h1>
               <p>Can you make it to the top?</p>
             </MiniJumbotron>
           </div>

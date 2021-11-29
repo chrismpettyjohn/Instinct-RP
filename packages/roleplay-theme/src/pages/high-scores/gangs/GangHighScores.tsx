@@ -1,7 +1,12 @@
 import React from 'react';
-import {setURL, Icon} from '@instinct-web/core';
+import {setURL} from '@instinct-web/core';
+import {MostKillsCard} from '../users/widgets/MostKills';
+import {MostDeathsCard} from '../users/widgets/MostDeaths';
+import {MostDamageCard} from '../users/widgets/MostDamage';
+import {MostActiveCard} from '../users/widgets/MostActive';
+import {MostArrestsCard} from '../users/widgets/MostArrests';
 import {Row} from '../../../components/generic/row/Row';
-import {Card} from '../../../components/generic/card/Card';
+import {MostJailTimeCard} from '../users/widgets/MostJailTime';
 import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
@@ -10,37 +15,37 @@ setURL('high-scores/gangs', <GangHighScores />);
 
 export function GangHighScores() {
   return (
-    <UserLayout>
+    <UserLayout section="games_ranking">
       <Container>
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>
-                <Icon type="trophy" />
-                High Score - Gangs
-              </h1>
-              <p>Check out some of these hot deals on the market</p>
+              <h1>Top Gangs</h1>
+              <p>Can you make it to the top?</p>
             </MiniJumbotron>
           </div>
         </Row>
         <Row>
           <div className="col-4">
-            <h3 className="text-white text-uppercase">
-              <Icon type="skull-crossbones" /> Kills
-            </h3>
-            <Card className="mb-2 mt-0">Hello</Card>
+            <MostKillsCard />
           </div>
           <div className="col-4">
-            <h3 className="text-white text-uppercase">
-              <Icon type="tombstone-alt" /> Deaths
-            </h3>
-            <Card className="mb-2 mt-0">Hello</Card>
+            <MostDeathsCard />
           </div>
           <div className="col-4">
-            <h3 className="text-white text-uppercase">
-              <Icon type="user" /> Turfs
-            </h3>
-            <Card className="mb-2 mt-0">Hello</Card>
+            <MostDamageCard />
+          </div>
+        </Row>
+        <br />
+        <Row>
+          <div className="col-4">
+            <MostArrestsCard />
+          </div>
+          <div className="col-4">
+            <MostJailTimeCard />
+          </div>
+          <div className="col-4">
+            <MostActiveCard />
           </div>
         </Row>
       </Container>

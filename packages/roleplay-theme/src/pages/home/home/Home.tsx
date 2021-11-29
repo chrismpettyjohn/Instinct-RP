@@ -19,11 +19,11 @@ export function Home() {
     <UserLayout>
       <Container>
         <div className="row">
-          <div className="col-6">
+          <div className="col-8">
             <MyProfile />
             {rpUser && <MyEmploymentCard user={rpUser} />}
           </div>
-          <div className="col-6">
+          <div className="col-4">
             <RecentNews />
             <BetaNoticeCard />
             <GetInTouchCard />

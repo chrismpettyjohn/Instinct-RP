@@ -1,2 +1,3 @@
-import './gangs/GangHighScores';
+import './HighScores.scss';
+import './gangs';
 import './users';

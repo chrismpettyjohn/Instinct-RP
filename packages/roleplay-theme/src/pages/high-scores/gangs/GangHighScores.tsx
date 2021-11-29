@@ -24,8 +24,23 @@ export function GangHighScores() {
           </div>
         </Row>
         <Row>
-          <div className="col-12">
-            <Card>Hello</Card>
+          <div className="col-4">
+            <h3 className="text-white text-uppercase">
+              <Icon type="skull-crossbones" /> Kills
+            </h3>
+            <Card className="mb-2 mt-0">Hello</Card>
+          </div>
+          <div className="col-4">
+            <h3 className="text-white text-uppercase">
+              <Icon type="tombstone-alt" /> Deaths
+            </h3>
+            <Card className="mb-2 mt-0">Hello</Card>
+          </div>
+          <div className="col-4">
+            <h3 className="text-white text-uppercase">
+              <Icon type="user" /> Turfs
+            </h3>
+            <Card className="mb-2 mt-0">Hello</Card>
           </div>
         </Row>
       </Container>

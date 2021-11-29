@@ -12,7 +12,7 @@ import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 
-setURL('community/games', <Games />);
+setURL('high-scores/users', <Games />);
 
 export function Games() {
   return (

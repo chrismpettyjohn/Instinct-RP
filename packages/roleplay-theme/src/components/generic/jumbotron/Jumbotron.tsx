@@ -13,7 +13,7 @@ export function Jumbotron({
       className={`page-header flex-container flex-vertical-center ${className}`}
       style={style}
     >
-      <div className="container" style={{maxWidth: 1055}}>
+      <div className="container" style={{maxWidth: 1200}}>
         <div className="page-header-content">
           {title && <h1>{title}</h1>}
           {children}

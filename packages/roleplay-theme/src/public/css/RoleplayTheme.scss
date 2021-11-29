@@ -83,9 +83,13 @@ body {
   }
 }
 
+.page-container .page-content {
+  max-width: 1200px !important;
+}
+
 .page-container .page-content article.default-section, .page-container .page-content aside.default-section {
-  background: $backgroundTwo;
-  color: $primaryFontColor;
+    background: $backgroundTwo;
+    color: $primaryFontColor;
 }
 
 .table {

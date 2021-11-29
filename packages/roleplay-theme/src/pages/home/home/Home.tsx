@@ -18,15 +18,17 @@ export function Home() {
   return (
     <UserLayout>
       <Container>
-        <Column side="left">
-          <MyProfile />
-          {rpUser && <MyEmploymentCard user={rpUser} />}
-        </Column>
-        <Column side="right">
-          <RecentNews />
-          <BetaNoticeCard />
-          <GetInTouchCard />
-        </Column>
+        <div className="row">
+          <div className="col-6">
+            <MyProfile />
+            {rpUser && <MyEmploymentCard user={rpUser} />}
+          </div>
+          <div className="col-6">
+            <RecentNews />
+            <BetaNoticeCard />
+            <GetInTouchCard />
+          </div>
+        </div>
       </Container>
     </UserLayout>
   );

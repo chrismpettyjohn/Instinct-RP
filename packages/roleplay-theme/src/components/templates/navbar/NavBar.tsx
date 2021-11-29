@@ -15,7 +15,7 @@ export function NavBar() {
     <nav className="navigation-container">
       <ul
         className="navigation-menu flex-container"
-        style={{width: '100%', maxWidth: 1055, margin: '0 auto'}}
+        style={{width: '100%', maxWidth: 1200, margin: '0 auto'}}
       >
         {!!user && (
           <>
@@ -32,7 +32,6 @@ export function NavBar() {
             <NavBarDropdown text="High Scores" to="/high-scores/users">
               <NavBarChildLink to="/high-scores/users">Users</NavBarChildLink>
               <NavBarChildLink to="/high-scores/gangs">Gangs</NavBarChildLink>
-              <NavBarChildLink to="/high-scores/jobs">Jobs</NavBarChildLink>
             </NavBarDropdown>
             <NavBarDropdown text="Government" to="/government/executive">
               <NavBarChildLink to="/government/executive">

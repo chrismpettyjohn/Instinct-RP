@@ -9,3 +9,4 @@ import './gangs';
 import './government';
 import './guides';
 import './home';
+import './properties';

@@ -1,13 +1,14 @@
 import React from 'react';
-import {setURL, Avatar, Icon} from '@instinct-web/core';
+import {Link} from 'wouter';
 import {Row} from '../../components/generic/row/Row';
+import {setURL, Avatar, Icon} from '@instinct-web/core';
 import {Card} from '../../components/generic/card/Card';
 import {UserLayout} from '../../components/layout/user';
 import {Container} from '../../components/generic/container/Container';
-import {MiniJumbotron} from '../../components/generic/mini-jumbotron/MiniJumbotron';
 import {BuyPropertyModal} from './buy-property-modal/BuyPropertyModal';
-import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
 import {SellPropertyModal} from './sell-property-modal/SellPropertyModal';
+import {MiniJumbotron} from '../../components/generic/mini-jumbotron/MiniJumbotron';
+import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
 
 setURL('properties', <ListProperties />);
 
@@ -43,7 +44,7 @@ export function ListProperties() {
                   height={300}
                   style={{border: '2px solid white', borderRadius: 4}}
                 />
-                <div className="ml-4 text-uppercase">
+                <div className="ml-4 text-uppercase w-100">
                   <div className="row">
                     <div className="col-6">
                       <h2>Warehouse #4</h2>
@@ -75,16 +76,23 @@ export function ListProperties() {
                     warehouse space!
                   </p>
                   <h3>Listed By</h3>
-                  <div
-                    className="d-flex"
-                    style={{background: '#124B77', padding: 2, borderRadius: 4}}
-                  >
-                    <Avatar
-                      look="ea-1403-63.ch-3077-1325-110.hr-125-61.lg-285-89.fa-1201-0.sh-3027-110-1408.hd-3103-1.he-8394-110.wa-2009-1325"
-                      headOnly
-                    />
-                    <h4 className="ml-2 mt-4">Chris</h4>
-                  </div>
+                  <Link to="/profile/Chris">
+                    <div
+                      className="d-flex"
+                      style={{
+                        background: '#124B77',
+                        cursor: 'pointer',
+                        padding: 2,
+                        borderRadius: 4,
+                      }}
+                    >
+                      <Avatar
+                        look="ea-1403-63.ch-3077-1325-110.hr-125-61.lg-285-89.fa-1201-0.sh-3027-110-1408.hd-3103-1.he-8394-110.wa-2009-1325"
+                        headOnly
+                      />
+                      <h4 className="ml-2 mt-4">Chris</h4>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </Card>

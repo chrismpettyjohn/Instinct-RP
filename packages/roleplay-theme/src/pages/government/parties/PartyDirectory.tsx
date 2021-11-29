@@ -2,7 +2,7 @@ import {Link} from 'wouter';
 import React, {useContext, useState} from 'react';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';
-import {Icon, Input, Select, sessionContext, setURL} from '@instinct-web/core';
+import {Icon, Input, sessionContext, setURL} from '@instinct-web/core';
 import {Container} from '../../../components/generic/container/Container';
 import {RPPermissionGuard} from '../../../components/templates/permission-guard';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
@@ -33,7 +33,10 @@ export function PartyDirectory() {
             <MiniJumbotron>
               <Row>
                 <div className="col-6">
-                  <h1>Political Parties</h1>
+                  <h1>
+                    <Icon type="certificate" />
+                    Political Parties
+                  </h1>
                   <p>Check out all these cults</p>
                 </div>
                 <div className="col-6 text-right">

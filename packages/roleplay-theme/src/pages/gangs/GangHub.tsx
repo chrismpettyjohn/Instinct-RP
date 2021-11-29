@@ -26,7 +26,10 @@ export function GangHub() {
             <MiniJumbotron>
               <div className="row">
                 <div className="col-6">
-                  <h1>Gangs</h1>
+                  <h1>
+                    <Icon type="skull-crossbones" />
+                    Gangs
+                  </h1>
                   <p>Can you survive the criminal underworld?</p>
                 </div>
                 <div className="col-6 text-right">

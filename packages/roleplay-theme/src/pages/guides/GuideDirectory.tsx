@@ -29,7 +29,10 @@ export function GuideDirectory() {
             <MiniJumbotron>
               <Row>
                 <div className="col-6">
-                  <h1>{config.siteName} Guides</h1>
+                  <h1>
+                    <Icon type="info-circle" />
+                    {config.siteName} Guides
+                  </h1>
                   <p>Read guides posted by other users like yourself!</p>
                 </div>
                 <div className="col-6 text-right">

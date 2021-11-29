@@ -57,7 +57,10 @@ export function LawDirectory() {
             <MiniJumbotron>
               <div className="row">
                 <div className="col-6">
-                  <h1>Laws of {config.siteName}</h1>
+                  <h1>
+                    <Icon type="certificate" />
+                    Laws of {config.siteName}
+                  </h1>
                   <p>
                     The following are bills submitted to the National Assembly
                   </p>

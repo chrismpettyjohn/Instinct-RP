@@ -1,5 +1,5 @@
 import React from 'react';
-import {setURL} from '@instinct-web/core';
+import {setURL, Icon} from '@instinct-web/core';
 import {Row} from '../../components/generic/row/Row';
 import {Card} from '../../components/generic/card/Card';
 import {UserLayout} from '../../components/layout/user';
@@ -43,7 +43,10 @@ export function GovernmentAssembly() {
             <MiniJumbotron>
               <Row>
                 <div className="col-12">
-                  <h1>House Speakers</h1>
+                  <h1>
+                    <Icon type="certificate" />
+                    House Speakers
+                  </h1>
                   <p>
                     The Speaker is the political and parliamentary leader of the
                     House of Representatives

@@ -29,7 +29,7 @@ export function ListBounties() {
           <div className="col-12">
             <MiniJumbotron>
               <h1>
-                <Icon type="skull-crossbones" />
+                <Icon type="sack-dollar" />
                 Bounties
               </h1>
               <p>Users on this page have open bounties on their head</p>

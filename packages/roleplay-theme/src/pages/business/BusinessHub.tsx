@@ -39,7 +39,10 @@ export function BusinessHub() {
             <MiniJumbotron>
               <div className="row">
                 <div className="col-6">
-                  <h1>Business Hub</h1>
+                  <h1>
+                    <Icon type="building" />
+                    Business Hub
+                  </h1>
                   <p>Elevate your career to the next level</p>
                 </div>
                 <div className="col-6 text-right">

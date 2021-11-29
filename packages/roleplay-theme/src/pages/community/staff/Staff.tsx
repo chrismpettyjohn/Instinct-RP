@@ -5,7 +5,7 @@ import {Card} from '../../../components/generic/card/Card';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 import {UserContainer} from '../../../components/templates/user-container/UserContainer';
-import {setURL, Skeleton, useFetchStaffTeam} from '@instinct-web/core';
+import {setURL, Skeleton, useFetchStaffTeam, Icon} from '@instinct-web/core';
 
 setURL('community/staff', <Staff />);
 
@@ -20,7 +20,10 @@ export function Staff() {
             <MiniJumbotron>
               <div className="row">
                 <div className="col-8">
-                  <h1>Staff Team</h1>
+                  <h1>
+                    <Icon type="clipboard-user" />
+                    Staff Team
+                  </h1>
                   <p>
                     Our staff team works day and night to keep our users safe{' '}
                     <br />

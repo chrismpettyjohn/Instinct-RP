@@ -48,9 +48,12 @@ export function NavBar() {
               <NavBarChildLink to="/crimes/bounties">Bounties</NavBarChildLink>
               <NavBarChildLink to="/gangs">Gangs</NavBarChildLink>
             </NavBarDropdown>
-            <NavBarDropdown text="Life" to="/businesses">
-              <NavBarChildLink to="/businesses">Business</NavBarChildLink>
-              <NavBarChildLink to="/properties">Property</NavBarChildLink>
+            <NavBarDropdown text="Life" to="/businesses/jobs">
+              <NavBarChildLink to="/businesses/jobs">
+                Job Market
+              </NavBarChildLink>
+              <NavBarChildLink to="/businesses">Businesses</NavBarChildLink>
+              <NavBarChildLink to="/properties">Real Estate</NavBarChildLink>
             </NavBarDropdown>
             <li className="navigation-item navigation-right-side-item has-items">
               <UserDropdown />

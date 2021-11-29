@@ -63,7 +63,10 @@ export function ListArticles() {
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>{config.siteName} News</h1>
+              <h1>
+                <Icon type="newspaper" />
+                {config.siteName} News
+              </h1>
               <p>Check out the latest updates, events and announcements.</p>
             </MiniJumbotron>
           </div>

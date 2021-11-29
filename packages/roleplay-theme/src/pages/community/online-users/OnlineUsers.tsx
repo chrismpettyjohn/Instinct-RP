@@ -27,7 +27,10 @@ export function OnlineUsers() {
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>Online Users</h1>
+              <h1>
+                <Icon type="users" />
+                Online Users
+              </h1>
               {onlineUsers?.length === 0 && (
                 <div>
                   <h4 className="text-white text-uppercase">

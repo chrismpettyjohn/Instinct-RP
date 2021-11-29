@@ -1,5 +1,5 @@
 import {Photo} from '@instinct-prj/interface';
-import {photoService} from '@instinct-web/core';
+import {photoService, Icon} from '@instinct-web/core';
 import React, {useEffect, useState} from 'react';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';
@@ -35,7 +35,10 @@ export function Photos() {
         <Row>
           <div className="col-12">
             <MiniJumbotron>
-              <h1>Photos</h1>
+              <h1>
+                <Icon type="camera" />
+                Photos
+              </h1>
               <p>Pictures captured by our users around the world</p>
             </MiniJumbotron>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {setURL} from '@instinct-web/core';
+import {setURL, Icon} from '@instinct-web/core';
 import {Row} from '../../components/generic/row/Row';
 import {UserLayout} from '../../components/layout/user';
 import {Card} from '../../components/generic/card/Card';
@@ -38,7 +38,10 @@ export function GovernmentExecutive() {
             <MiniJumbotron>
               <Row>
                 <div className="col-12">
-                  <h1>Executive Office</h1>
+                  <h1>
+                    <Icon type="certificate" />
+                    Executive Office
+                  </h1>
                   <p>
                     The EOP, overseen by the White House Chief of Staff, has
                     traditionally been home to many of the President’s closest

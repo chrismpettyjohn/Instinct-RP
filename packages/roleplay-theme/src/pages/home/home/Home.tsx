@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Column, setURL} from '@instinct-web/core';
+import {setURL} from '@instinct-web/core';
 import {UserLayout} from '../../../components/layout/user';
 import {rpUserContext} from '@instinct-plugin/roleplay-web';
 import {BetaNoticeCard} from './beta-notice-card/BetaNoticeCard';

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {configContext} from '@instinct-web/core';
 import {AboutModalProps} from './AboutModal.types';
 import {Modal, ModalBody, ModalHeader} from 'reactstrap';
 
 export function AboutModal({isOpen, onToggle}: AboutModalProps) {
+  const {config} = useContext(configContext);
+
   return (
     <Modal isOpen={isOpen} toggle={onToggle}>
       <ModalHeader>
@@ -12,16 +15,12 @@ export function AboutModal({isOpen, onToggle}: AboutModalProps) {
       <ModalBody>
         <h5>About</h5>
         <p>
-          Instinct Roleplay Edition is the next generation of content management
-          systems.
+          Instinct is a CMS built with the latest technology give you an
+          experience that's out of this world.
         </p>
         <p>
-          It's state of the art architecture has been designed from the ground
-          up to mold the fastest, most secure, feature rich RP CMS to date.
-        </p>
-        <p>
-          That's not all. Instinct is still being worked on and receiving
-          constant updates to ensure a seamless experience for everybody.
+          From the ground up, all of Instinct is built from scratch using a
+          combination of technology, including Typescript, Node and React.
         </p>
         <h5>Who Made Instinct?</h5>
         <p>

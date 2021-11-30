@@ -1,13 +1,10 @@
 import '../public/css/RoleplayTheme.scss';
 import './admin-panel';
 import './auth';
-import './business';
 import './community';
 import './crime';
 import './error';
-import './gangs';
 import './government';
-import './guides';
 import './high-scores';
 import './home';
-import './properties';
+import './life';

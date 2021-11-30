@@ -1,4 +1,3 @@
-import {Redirect} from 'wouter';
 import React, {useContext} from 'react';
 import {BusinessEditorProps} from './BusinessEditor.types';
 import {businessEditorContext, BusinessEditorProvider} from './context';
@@ -9,25 +8,12 @@ import {
   EmployeesStep,
   ReviewStep,
 } from './steps';
-import {sessionContext} from '@instinct-web/core';
-import {businessRegistrationFee} from '../Business.const';
-import {toast} from 'react-toastify';
 
 export function BusinessEditorComponent({
   onSubmit,
   editorOnly,
 }: BusinessEditorProps) {
-  const {user} = useContext(sessionContext);
   const {business} = useContext(businessEditorContext);
-
-  if ((user?.credits ?? 0) < businessRegistrationFee && !editorOnly) {
-    toast.error(
-      `You must have $${Number(
-        businessRegistrationFee
-      ).toLocaleString()} to register a busienss`
-    );
-    return <Redirect to="/businesses" />;
-  }
 
   function onSubmitForm() {
     onSubmit(business);
@@ -55,6 +41,7 @@ export function BusinessEditorComponent({
           },
         ]}
         onSubmit={onSubmitForm}
+        skippable={editorOnly}
       />
     </>
   );

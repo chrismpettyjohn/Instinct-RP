@@ -17,6 +17,7 @@ import {
   sessionContext,
   setURL,
 } from '@instinct-web/core';
+import {businessRegistrationFee} from './Business.const';
 
 setURL('businesses', <BusinessHub />);
 
@@ -46,17 +47,19 @@ export function BusinessHub() {
                   <p>Elevate your career to the next level</p>
                 </div>
                 <div className="col-6 text-right">
-                  <RPPermissionGuard
-                    permission="websiteCreateBusiness"
-                    redirect={false}
-                  >
-                    <Link to="/business/creator">
-                      <button className="btn btn-success btn-lg">
-                        <Icon type="plus-circle" />
-                        Create A Business
-                      </button>
-                    </Link>
-                  </RPPermissionGuard>
+                  {user!.credits >= businessRegistrationFee && (
+                    <RPPermissionGuard
+                      permission="websiteCreateBusiness"
+                      redirect={false}
+                    >
+                      <Link to="/business/creator">
+                        <button className="btn btn-success btn-lg">
+                          <Icon type="plus-circle" />
+                          Create A Business
+                        </button>
+                      </Link>
+                    </RPPermissionGuard>
+                  )}
                 </div>
               </div>
             </MiniJumbotron>

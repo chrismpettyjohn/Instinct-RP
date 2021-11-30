@@ -9,4 +9,5 @@ export interface WizardCardProps {
   steps: WizardStep[];
   header?: Children;
   onSubmit(): void;
+  skippable?: boolean;
 }

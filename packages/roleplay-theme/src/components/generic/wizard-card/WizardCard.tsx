@@ -3,7 +3,12 @@ import {FormGroup} from 'reactstrap';
 import React, {useEffect, useState} from 'react';
 import {WizardCardProps} from './WizardCard.types';
 
-export function WizardCard({steps, header, onSubmit}: WizardCardProps) {
+export function WizardCard({
+  steps,
+  header,
+  onSubmit,
+  skippable = false,
+}: WizardCardProps) {
   const [active, setActive] = useState(0);
   const [completedSteps, setCompleted] = useState<number[]>([]);
 
@@ -16,8 +21,12 @@ export function WizardCard({steps, header, onSubmit}: WizardCardProps) {
     }
   }, [active, completedSteps]);
 
-  const canGoBack = active > 0;
-  const canGoForward = active < steps.length - 1;
+  console.log(skippable);
+
+  const canGoBack = skippable || active > 0;
+  const canGoForward = skippable || active < steps.length - 1;
+
+  console.log(canGoBack, canGoForward);
 
   function goBack() {
     if (canGoBack) {
@@ -32,7 +41,7 @@ export function WizardCard({steps, header, onSubmit}: WizardCardProps) {
   }
 
   function goToStep(step: number) {
-    if (completedSteps.includes(step)) {
+    if (skippable || completedSteps.includes(step)) {
       setActive(step);
     }
   }
@@ -45,8 +54,12 @@ export function WizardCard({steps, header, onSubmit}: WizardCardProps) {
             <a
               className={`nav-link ${active === i ? 'active' : ''}`}
               style={{
-                background: completedSteps.includes(i) ? '#33691E' : '',
-                cursor: completedSteps.includes(i) ? 'pointer' : 'not-allowed',
+                background:
+                  skippable || completedSteps.includes(i) ? '#33691E' : '',
+                cursor:
+                  skippable || completedSteps.includes(i)
+                    ? 'pointer'
+                    : 'not-allowed',
               }}
               onClick={() => goToStep(i)}
             >

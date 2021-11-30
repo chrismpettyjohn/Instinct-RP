@@ -8,6 +8,7 @@ import {Container} from '../../../components/generic/container/Container';
 import {MyProfile} from '../../../components/templates/my-profile/MyProfile';
 import {RecentNews} from '../../../components/templates/recent-news/RecentNews';
 import {MyEmploymentCard} from '../../../components/templates/my-employment-card/MyEmploymentCard';
+import {HotRoomsCard} from './hot-rooms/HotRooms';
 
 setURL('me', <Home />);
 setURL('home', <Home />);
@@ -22,6 +23,7 @@ export function Home() {
           <div className="col-8">
             <MyProfile />
             {rpUser && <MyEmploymentCard user={rpUser} />}
+            <HotRoomsCard />
           </div>
           <div className="col-4">
             <RecentNews />

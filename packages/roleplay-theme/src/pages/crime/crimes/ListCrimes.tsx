@@ -1,4 +1,5 @@
 import React from 'react';
+import {orderBy} from 'lodash';
 import {Input} from 'reactstrap';
 import {setURL, Icon} from '@instinct-web/core';
 import {Row} from '../../../components/generic/row/Row';
@@ -59,25 +60,27 @@ export function ListCrimes() {
                 {crimes === undefined && <Icon type="spinner fa-spin" />}
                 {crimes && (
                   <tbody>
-                    {filteredCrimes.map(_ => (
-                      <tr key={`crime_${_.id}`}>
-                        <td>{_.name}</td>
-                        <td>
-                          {_.ticketable ? (
-                            <>
-                              <Icon
-                                className="text-success"
-                                type="dollar-sign"
-                              />
-                              {_.ticketCost}
-                            </>
-                          ) : (
-                            'No'
-                          )}
-                        </td>
-                        <td>{_.jailTimeInMinutes.toLocaleString()}min</td>
-                      </tr>
-                    ))}
+                    {orderBy(filteredCrimes, _ => _.jailTimeInMinutes).map(
+                      _ => (
+                        <tr key={`crime_${_.id}`}>
+                          <td>{_.name}</td>
+                          <td>
+                            {_.ticketable ? (
+                              <>
+                                <Icon
+                                  className="text-success"
+                                  type="dollar-sign"
+                                />
+                                {_.ticketCost}
+                              </>
+                            ) : (
+                              'No'
+                            )}
+                          </td>
+                          <td>{_.jailTimeInMinutes.toLocaleString()}min</td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 )}
               </table>

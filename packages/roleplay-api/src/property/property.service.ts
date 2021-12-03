@@ -10,6 +10,7 @@ import {propertyWire} from '../database/property/properties/property.wire';
 import {PropertyEntity} from '../database/property/properties/property.entity';
 import {PropertyRepository} from '../database/property/properties/property.repository';
 import {PropertyBidsRepository} from '../database/property/property-bids/property-bids.repository';
+import {PropertyPhotosRepository} from '../database/property/property-photos/property-photos.repository';
 
 @Injectable()
 export class PropertyService {
@@ -17,7 +18,8 @@ export class PropertyService {
     private readonly rpUserService: RPUserService,
     private readonly propertyRepo: PropertyRepository,
     private readonly propertyBidRepo: PropertyBidsRepository,
-    private readonly userRepo: RPUserRepository
+    private readonly userRepo: RPUserRepository,
+    private readonly propertyPhotoRepo: PropertyPhotosRepository
   ) {}
 
   async getWireForProperty(property: PropertyEntity): Promise<Property> {
@@ -68,6 +70,34 @@ export class PropertyService {
     await this.userRepo.update(
       {id: user.id!},
       {credits: Number(user.credits + bidAmount)}
+    );
+  }
+
+  async setPhotos(propertyID: number, photoIDs: number[]) {
+    const currentPhotos = await this.propertyPhotoRepo.find({
+      propertyID,
+    });
+
+    const photosToRemove = currentPhotos.filter(
+      _ => !photoIDs.includes(_.photoID!)
+    );
+
+    await Promise.all(
+      photosToRemove.map(_ => this.propertyPhotoRepo.delete({id: _.id!}))
+    );
+
+    const photosToAdd = photoIDs.filter(
+      _ => !currentPhotos.find(cur => cur.photoID === _)
+    );
+
+    await Promise.all(
+      photosToAdd.map((_, index) =>
+        this.propertyPhotoRepo.create({
+          propertyID,
+          photoID: _,
+          isPrimary: index === 0 ? 1 : 0,
+        })
+      )
     );
   }
 }

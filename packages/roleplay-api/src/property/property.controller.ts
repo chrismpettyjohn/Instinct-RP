@@ -39,6 +39,8 @@ export class PropertyController {
       listedAt: Moment().unix(),
     });
 
+    await this.propertyService.setPhotos(newProperty.id!, propertyDTO.photoIDs);
+
     return this.propertyService.getWireForProperty(newProperty);
   }
 
@@ -64,6 +66,7 @@ export class PropertyController {
     @Body() propertyDTO: PropertyDTOImplementation
   ) {
     await this.propertyRepo.update({id: property.id!}, propertyDTO);
+    await this.propertyService.setPhotos(property.id!, propertyDTO.photoIDs);
   }
 
   @Delete(':propertyID')

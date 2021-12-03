@@ -1,3 +1,4 @@
+import {orderBy} from 'lodash';
 import {PropertyEntity} from './property.entity';
 import {rpRoomWire} from '../../room/rp-room.wire';
 import {Property, RPUser} from '@instinct-plugin/roleplay-types';
@@ -16,6 +17,6 @@ export function propertyWire(
     bids: entity.bids!.map(bid =>
       propertyBidWire(bid, users.find(_ => _.id === bid.userID)!)
     ),
-    photos: entity.photos!.map(propertyPhotoWire),
+    photos: orderBy(entity.photos!.map(propertyPhotoWire), 'isPrimary'),
   };
 }

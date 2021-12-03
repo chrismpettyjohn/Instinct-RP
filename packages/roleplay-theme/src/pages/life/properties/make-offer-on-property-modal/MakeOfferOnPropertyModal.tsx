@@ -15,10 +15,12 @@ export function MakeOfferOnPropertyModal({
   property,
   onChange,
 }: MakeOfferOnPropertyModalProps) {
-  const {user} = useContext(sessionContext);
+  const {user, setUser} = useContext(sessionContext);
   const [isOpen, setIsOpen] = useState(false);
   const [spinner, setSpinner] = useState(false);
-  const [propertyOffer, setPropertyOffer] = useState(0);
+  const [propertyOffer, setPropertyOffer] = useState(
+    (property.bids?.[0]?.offer ?? 0) + 1
+  );
 
   function toggleModal(): void {
     setIsOpen(_ => !_);
@@ -35,6 +37,7 @@ export function MakeOfferOnPropertyModal({
           property.room.roomName
         } for $${propertyOffer.toLocaleString()}`
       );
+      setUser({credits: Number(user!.credits - propertyOffer)});
       onChange();
       setIsOpen(false);
     } finally {
@@ -46,6 +49,10 @@ export function MakeOfferOnPropertyModal({
     (property.bids?.[0]?.offer ?? 0) + 1,
     user!.credits,
   ];
+
+  if (user!.credits < minBid) {
+    return null;
+  }
 
   return (
     <>

@@ -2,6 +2,7 @@ import Moment from 'moment';
 import {uniqBy} from 'lodash';
 import {RPUserService} from '../user/user.service';
 import {rpUserWire} from '../database/user/user.wire';
+import {RoomRepository} from '@instinct-api/database';
 import {Property} from '@instinct-plugin/roleplay-types';
 import {RPUserEntityStruct} from '../database/user/user.types';
 import {Injectable, BadRequestException} from '@nestjs/common';
@@ -15,6 +16,7 @@ import {PropertyPhotosRepository} from '../database/property/property-photos/pro
 @Injectable()
 export class PropertyService {
   constructor(
+    private readonly roomRepo: RoomRepository,
     private readonly rpUserService: RPUserService,
     private readonly propertyRepo: PropertyRepository,
     private readonly propertyBidRepo: PropertyBidsRepository,
@@ -59,6 +61,8 @@ export class PropertyService {
         customerID: user.id!,
       }
     );
+
+    await this.roomRepo.update({id: property.roomID}, {ownerID: user.id!});
 
     for (const bid of property.bids!) {
       await this.propertyBidRepo.update({id: bid.id!}, {accepted: 0});

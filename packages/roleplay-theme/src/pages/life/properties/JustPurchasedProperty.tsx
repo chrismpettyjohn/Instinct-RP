@@ -46,6 +46,18 @@ export function JustPurchasedProperty() {
                 You are now the lucky owner of{' '}
                 <b>{property?.room?.roomName ?? ''}</b>
               </h3>
+              <div
+                style={{
+                  backgroundImage: `url(${property?.photos?.[0]?.photoURL})`,
+                  backgroundSize: 'cover',
+                  border: '2px solid white',
+                  borderRadius: 4,
+                  cursor: 'pointer',
+                  height: 400,
+                  width: 400,
+                  margin: '0 auto',
+                }}
+              />
             </div>
           </Row>
         </Container>

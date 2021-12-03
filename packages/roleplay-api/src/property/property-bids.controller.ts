@@ -40,7 +40,11 @@ export class PropertyBidsController {
       throw new BadRequestException("You don't have enough money");
     }
 
-    await this.propertyService.buyProperty(user, property);
+    await this.propertyService.buyProperty(
+      user,
+      property,
+      property.buyNowPrice
+    );
   }
 
   @Post()

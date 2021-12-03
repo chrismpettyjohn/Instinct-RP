@@ -14,10 +14,16 @@ export function propertyWire(
     room: rpRoomWire(entity.room!),
     user: users.find(_ => _.id === entity.userID)!,
     buyNowPrice: entity.buyNowPrice,
-    bids: entity.bids!.map(bid =>
-      propertyBidWire(bid, users.find(_ => _.id === bid.userID)!)
+    bids: orderBy(
+      entity.bids!.map(bid =>
+        propertyBidWire(bid, users.find(_ => _.id === bid.userID)!)
+      ),
+      _ => _.offer
+    ).reverse(),
+    photos: orderBy(
+      entity.photos!.map(propertyPhotoWire),
+      _ => _.isPrimaryPhoto
     ),
-    photos: orderBy(entity.photos!.map(propertyPhotoWire), 'isPrimary'),
     listedAt: entity.listedAt,
   };
 }

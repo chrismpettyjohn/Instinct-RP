@@ -41,7 +41,7 @@ export function ListProperties() {
               <Link to="/properties/1">
                 <img
                   className="mr-2"
-                  src="https://game.bobba.ca/clips/10.png"
+                  src="https://game.bobba.ca/clips/11.png"
                   width={80}
                   height={80}
                   style={{border: '2px solid white', borderRadius: '100%'}}
@@ -74,8 +74,12 @@ export function ListProperties() {
                       </Link>
                     </div>
                     <div className="col-6 text-right">
-                      <BuyPropertyModal onChange={() => {}} />
-                      <MakeOfferOnPropertyModal onChange={() => {}} />
+                      <Link to={'/properties/1'}>
+                        <button className="btn btn-outline-info">
+                          View More
+                          <Icon className="ml-2" type="angle-right" />
+                        </button>
+                      </Link>
                     </div>
                   </div>
                   <div className="d-flex">

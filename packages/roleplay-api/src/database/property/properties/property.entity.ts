@@ -47,6 +47,9 @@ export class PropertyEntity {
   @Column({name: 'sold_at', type: 'int', nullable: true})
   soldAt?: number;
 
+  @Column({name: 'sold_for', type: 'int', nullable: true})
+  soldFor?: number;
+
   @OneToMany(() => PropertyBidsEntity, propertyBids => propertyBids.property)
   bids?: PropertyBidsEntity[];
 

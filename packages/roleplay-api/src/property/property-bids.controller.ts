@@ -16,14 +16,32 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import {RPUserRepository} from '../database/user/user.repository';
+import {PropertyService} from './property.service';
 
 @Controller('properties/:propertyID/bids')
 @HasSession()
 export class PropertyBidsController {
   constructor(
     private readonly propertyBidRepo: PropertyBidsRepository,
-    private readonly userRepo: RPUserRepository
+    private readonly userRepo: RPUserRepository,
+    private readonly propertyService: PropertyService
   ) {}
+
+  @Post('buy-now')
+  async buyPropertyNow(
+    @Param('propertyID', PropertyPipe) property: PropertyEntity,
+    @GetSession() user: RPUserEntityStruct
+  ): Promise<void> {
+    if (property.userID === user.id!) {
+      throw new BadRequestException('You already own this property!');
+    }
+
+    if (user.credits < property.buyNowPrice) {
+      throw new BadRequestException("You don't have enough money");
+    }
+
+    await this.propertyService.buyProperty(user, property);
+  }
 
   @Post()
   async createPropertyBid(
@@ -56,14 +74,23 @@ export class PropertyBidsController {
   @UseGuards(PropertyOwnerGuard)
   async respondToPropertyBid(
     @Param('bidID') bidID: number,
+    @Param('propertyID', PropertyPipe) property: PropertyEntity,
     @Body() responseDTO: RespondOnPropertyBidDTOImplementation
   ) {
     const propertyBid = await this.propertyBidRepo.findOneOrFail({id: bidID});
 
+    if (responseDTO.accepted) {
+      await this.propertyService.buyProperty(
+        propertyBid.user!,
+        property,
+        propertyBid.offer
+      );
+    }
+
     if (!responseDTO.accepted) {
-      await this.userRepo.update(
-        {id: propertyBid.userID},
-        {credits: Number(propertyBid.user!.credits + propertyBid.offer)}
+      await this.propertyService.refundBid(
+        propertyBid.user!,
+        propertyBid.offer
       );
     }
 

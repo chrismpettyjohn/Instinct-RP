@@ -1,12 +1,17 @@
 import {useLocation} from 'wouter';
 import {toast} from 'react-toastify';
-import React, {useState} from 'react';
-import {Icon} from '@instinct-web/core';
 import {Photo} from '@instinct-prj/interface';
-import {propertyService} from '@instinct-plugin/roleplay-web';
+import React, {useContext, useState} from 'react';
+import {Icon, sessionContext} from '@instinct-web/core';
 import {PropertyDTO, RPRoom} from '@instinct-plugin/roleplay-types';
-import {PhotoSelector} from '../../../../components/templates/photo-selector/PhotoSelector';
 import {RoomSelector} from '../../../../components/templates/room-selector/RoomSelector';
+import {
+  propertyService,
+  useFetchPhotosByUsername,
+  useFetchPropertiesByUsername,
+  useFetchRPRoomsByUsername,
+} from '@instinct-plugin/roleplay-web';
+import {PhotoSelector} from '../../../../components/templates/photo-selector/PhotoSelector';
 import {
   Modal,
   ModalBody,
@@ -19,9 +24,13 @@ import {
 } from 'reactstrap';
 
 export function SellPropertyModal() {
+  const {user} = useContext(sessionContext);
   const [location, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [spinner, setSpinner] = useState(false);
+  const photos = useFetchPhotosByUsername(user!.username);
+  const rooms = useFetchRPRoomsByUsername(user!.username);
+  const existingProperties = useFetchPropertiesByUsername(user!.username);
   const [propertyDTO, setPropertyDTO] = useState<Partial<PropertyDTO>>({
     roomID: undefined,
     photoIDs: undefined,
@@ -34,6 +43,10 @@ export function SellPropertyModal() {
 
   const canBeSaved =
     propertyDTO.roomID && propertyDTO.photoIDs && propertyDTO.buyNowPrice;
+
+  const roomsNotListed = rooms?.filter(room =>
+    existingProperties?.find(_ => _.room.id !== room.id)
+  );
 
   function toggleModal(): void {
     setIsOpen(_ => !_);
@@ -108,6 +121,7 @@ export function SellPropertyModal() {
                     <Label>Property</Label>
                     <RoomSelector
                       onChange={onRoomChange}
+                      rooms={roomsNotListed ?? []}
                       roomID={propertyDTO.roomID}
                     />
                   </FormGroup>
@@ -115,6 +129,7 @@ export function SellPropertyModal() {
                     <Label>Property Photo</Label>
                     <PhotoSelector
                       onChange={onPhotoChange}
+                      photos={photos ?? []}
                       photoID={propertyDTO.photoIDs?.[0]}
                     />
                   </FormGroup>

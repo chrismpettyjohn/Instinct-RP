@@ -19,6 +19,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import {PropertyByUsernamePipe} from './property-by-username.pipe';
 
 @Controller('properties')
 @HasSession()
@@ -47,6 +48,15 @@ export class PropertyController {
   @Get()
   async getProperties(): Promise<Property[]> {
     const properties = await this.propertyRepo.find();
+    return Promise.all(
+      properties.map(_ => this.propertyService.getWireForProperty(_))
+    );
+  }
+
+  @Get('by-user/:username')
+  async getPropertiesByUsername(
+    @Param('username', PropertyByUsernamePipe) properties: PropertyEntity[]
+  ): Promise<Property[]> {
     return Promise.all(
       properties.map(_ => this.propertyService.getWireForProperty(_))
     );

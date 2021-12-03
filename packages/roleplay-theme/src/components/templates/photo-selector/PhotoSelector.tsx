@@ -1,15 +1,11 @@
 import Moment from 'moment';
-import React, {useContext} from 'react';
+import React from 'react';
 import {OnChangeValue} from 'react-select';
 import {Photo} from '@instinct-prj/interface';
-import {sessionContext, Select} from '@instinct-web/core';
+import {Select} from '@instinct-web/core';
 import {PhotoSelectorProps} from './PhotoSelector.types';
-import {useFetchPhotosByUsername} from '@instinct-plugin/roleplay-web';
 
-export function PhotoSelector({photoID, onChange}: PhotoSelectorProps) {
-  const {user} = useContext(sessionContext);
-  const photos = useFetchPhotosByUsername(user!.username);
-
+export function PhotoSelector({photos, photoID, onChange}: PhotoSelectorProps) {
   function onNewPhoto(event: OnChangeValue<Photo, any>) {
     onChange(event as any);
   }

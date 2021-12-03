@@ -10,6 +10,7 @@ export interface PropertyService {
   create(propertyDTO: PropertyDTO): Promise<Property>;
   getAll(): Promise<Property[]>;
   getByID(propertyID: string): Promise<Property>;
+  getByUsername(username: string): Promise<Property[]>;
   updateByID(propertyID: string, propertyDTO: PropertyDTO): Promise<void>;
   deleteByID(propertyID: string): Promise<void>;
   bidOnByID(

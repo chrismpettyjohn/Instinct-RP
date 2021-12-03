@@ -6,9 +6,9 @@ import {RPRoomEntity} from '../database/room/rp-room.entity';
 export class RPRoomPipe implements PipeTransform {
   constructor(private readonly rpRoomRepo: RPRoomRepository) {}
 
-  async transform(foodID: number): Promise<RPRoomEntity> {
+  async transform(roomID: number): Promise<RPRoomEntity> {
     try {
-      return await this.rpRoomRepo.findOneOrFail({id: foodID});
+      return await this.rpRoomRepo.findOneOrFail({id: roomID});
     } catch (e) {
       throw new NotFoundException('RP room does not exist');
     }

@@ -20,6 +20,10 @@ export class PropertyServiceMock implements PropertyService {
     return exampleProperty;
   }
 
+  async getByUsername(username: string) {
+    return [exampleProperty];
+  }
+
   async updateByID(propertyID: string, propertyDTO: PropertyDTO) {}
 
   async deleteByID(propertyID: string) {}

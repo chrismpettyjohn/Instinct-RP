@@ -1,14 +1,10 @@
-import React, {useContext} from 'react';
-import {sessionContext, Select} from '@instinct-web/core';
+import React from 'react';
+import {Select} from '@instinct-web/core';
 import {OnChangeValue} from 'react-select';
 import {RoomSelectorProps} from './RoomSelector.types';
 import {RPRoom} from '@instinct-plugin/roleplay-types';
-import {useFetchRPRoomsByUsername} from '@instinct-plugin/roleplay-web';
 
-export function RoomSelector({roomID, onChange}: RoomSelectorProps) {
-  const {user} = useContext(sessionContext);
-  const rooms = useFetchRPRoomsByUsername(user!.username);
-
+export function RoomSelector({rooms, roomID, onChange}: RoomSelectorProps) {
   function onNewRoom(event: OnChangeValue<RPRoom, any>) {
     onChange(event as any);
   }

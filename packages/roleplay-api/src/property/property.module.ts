@@ -7,6 +7,7 @@ import {PropertyController} from './property.controller';
 import {PropertyOwnerGuard} from './property-owner.guard';
 import {DatabaseModule} from '../database/database.module';
 import {PropertyBidsController} from './property-bids.controller';
+import {PropertyByUsernamePipe} from './property-by-username.pipe';
 import {PropertyPhotosController} from './property-photos.controller';
 
 @Module({
@@ -16,7 +17,17 @@ import {PropertyPhotosController} from './property-photos.controller';
     PropertyBidsController,
     PropertyPhotosController,
   ],
-  providers: [PropertyPipe, PropertyService, PropertyOwnerGuard],
-  exports: [PropertyPipe, PropertyService, PropertyOwnerGuard],
+  providers: [
+    PropertyPipe,
+    PropertyService,
+    PropertyOwnerGuard,
+    PropertyByUsernamePipe,
+  ],
+  exports: [
+    PropertyPipe,
+    PropertyService,
+    PropertyOwnerGuard,
+    PropertyByUsernamePipe,
+  ],
 })
 export class PropertyModule {}

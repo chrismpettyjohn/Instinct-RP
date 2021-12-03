@@ -32,6 +32,13 @@ export class PropertyServiceImplementation implements PropertyService {
     return property.data;
   }
 
+  async getByUsername(username: string) {
+    const properties: AxiosResponse<Property[]> = await backendAPI.get(
+      `properties/by-user/${username}`
+    );
+    return properties.data;
+  }
+
   async updateByID(propertyID: string, propertyDTO: PropertyDTO) {
     await backendAPI.patch(`properties/${propertyID}`, propertyDTO);
   }

@@ -44,6 +44,10 @@ export class PropertyServiceImplementation implements PropertyService {
     await backendAPI.post(`properties/${propertyID}/bids`, propertyBidDTO);
   }
 
+  async buyNowByID(propertyID: string) {
+    await backendAPI.post(`properties/${propertyID}/bids/buy-now`);
+  }
+
   async respondToBidByID(
     propertyID: string,
     propertyBidID: string,

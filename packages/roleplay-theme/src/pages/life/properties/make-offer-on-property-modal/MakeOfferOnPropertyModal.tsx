@@ -40,6 +40,10 @@ export function MakeOfferOnPropertyModal({
       setUser({credits: Number(user!.credits - propertyOffer)});
       onChange();
       setIsOpen(false);
+    } catch {
+      toast.error(
+        `There was a problem when trying to bid on ${property.room.roomName}`
+      );
     } finally {
       setSpinner(false);
     }

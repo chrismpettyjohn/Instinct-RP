@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
-import {Icon} from '@instinct-web/core';
+import {useLocation} from 'wouter';
+import {toast} from 'react-toastify';
+import React, {useContext, useState} from 'react';
+import {Icon, sessionContext} from '@instinct-web/core';
+import {propertyService} from '@instinct-plugin/roleplay-web';
 import {BuyPropertyModalProps} from './BuyPropertyModal.types';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-export function BuyPropertyModal({}: BuyPropertyModalProps) {
+export function BuyPropertyModal({property, onChange}: BuyPropertyModalProps) {
+  const [location, setLocation] = useLocation();
+  const {user, setUser} = useContext(sessionContext);
   const [spinner, setSpinner] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,9 +19,24 @@ export function BuyPropertyModal({}: BuyPropertyModalProps) {
   async function onConfirm() {
     try {
       setSpinner(true);
+      await propertyService.buyNowByID(property.id.toString());
+      setUser({credits: Number(user!.credits - property.buyNowPrice)});
+      toast.success(
+        `Congratulations!  You are now the proud owner of ${property.room.roomName}`
+      );
+      setLocation(`/properties/${property.id}/congratulations`);
+      onChange();
+    } catch {
+      toast.error(
+        `There was a problem when trying to purchase ${property.room.roomName}`
+      );
     } finally {
       setSpinner(false);
     }
+  }
+
+  if (user!.credits < property.buyNowPrice) {
+    return null;
   }
 
   return (
@@ -25,16 +45,25 @@ export function BuyPropertyModal({}: BuyPropertyModalProps) {
         <Modal isOpen={isOpen} size="lg" toggle={toggleModal}>
           <ModalHeader toggle={toggleModal}>
             <Icon type="dollar-sign" />
-            Buying Property: <b>Warehouse #4</b>
+            Buying Property: <b>{property.room.roomName}</b>
           </ModalHeader>
           <ModalBody>
             <div className="row">
               <div className="col-5">
-                <img
-                  src="https://game.bobba.ca/clips/10.png"
-                  width={300}
-                  height={300}
-                  style={{border: '2px solid white', borderRadius: 4}}
+                <div
+                  style={{
+                    display: 'block',
+                    backgroundImage: `url(${
+                      property.photos[0]?.photoURL ??
+                      'https://i.imgur.com/RJnrGFD.png'
+                    })`,
+                    backgroundSize: 'cover',
+                    border: '2px solid white',
+                    borderRadius: 4,
+                    cursor: 'pointer',
+                    height: 300,
+                    width: 300,
+                  }}
                 />
               </div>
               <div className="col-7">
@@ -47,7 +76,7 @@ export function BuyPropertyModal({}: BuyPropertyModalProps) {
                   Total Cost:
                   <b className="ml-2">
                     <Icon className="text-success" type="dollar-sign" />
-                    5,550
+                    {property.buyNowPrice}
                   </b>
                 </h4>
               </div>
@@ -63,7 +92,7 @@ export function BuyPropertyModal({}: BuyPropertyModalProps) {
               {spinner ? (
                 <Icon className="fa-spin" type="spinner" />
               ) : (
-                <>Buy for $550</>
+                <>Buy for ${property.buyNowPrice}</>
               )}
             </button>
           </ModalFooter>

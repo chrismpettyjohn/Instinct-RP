@@ -30,5 +30,6 @@ export interface PropertyService {
     photoID: string,
     propertyPhotoDTO: PropertyPhotoDTO
   ): Promise<void>;
+  buyNowByID(propertyID: string): Promise<void>;
   deletePhotoByID(propertyID: string, photoID: string): Promise<void>;
 }

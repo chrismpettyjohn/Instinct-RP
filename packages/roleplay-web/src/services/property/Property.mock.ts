@@ -26,6 +26,8 @@ export class PropertyServiceMock implements PropertyService {
 
   async bidOnByID(propertyID: string, propertyBidDTO: BidOnPropertyDTO) {}
 
+  async buyNowByID(propertyID: string) {}
+
   async respondToBidByID(
     propertyID: string,
     propertyBidID: string,

@@ -48,6 +48,12 @@ import {RPRoomEntity} from './room/rp-room.entity';
 import {RPRoomRepository} from './room/rp-room.repository';
 import {BountyEntity} from './bounty/bounty.entity';
 import {BountyRepository} from './bounty/bounty.repository';
+import {PropertyEntity} from './property/properties/property.entity';
+import {PropertyPhotoEntity} from './property/property-photos/property-photo.entity';
+import {PropertyBidsEntity} from './property/property-bids/property-bids.entity';
+import {PropertyPhotosRepository} from './property/property-photos/property-photos.repository';
+import {PropertyBidsRepository} from './property/property-bids/property-bids.repository';
+import {PropertyRepository} from './property/properties/property.repository';
 
 export const rpDatabaseEntities: Function[] = [
   GangEntity,
@@ -73,6 +79,9 @@ export const rpDatabaseEntities: Function[] = [
   WeaponEntity,
   VendingMachineEntity,
   CrimeEntity,
+  PropertyEntity,
+  PropertyBidsEntity,
+  PropertyPhotoEntity,
 ];
 
 export const rpDatabaseProviders: Provider[] = [
@@ -106,4 +115,7 @@ export const rpDatabaseProviders: Provider[] = [
     provide: RankRepository,
     useClass: RPRankRepository, // Ensure core services provide rp data
   },
+  PropertyPhotosRepository,
+  PropertyBidsRepository,
+  PropertyRepository,
 ];

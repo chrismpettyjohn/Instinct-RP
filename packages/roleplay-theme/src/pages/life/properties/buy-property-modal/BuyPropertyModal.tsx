@@ -39,6 +39,10 @@ export function BuyPropertyModal({property, onChange}: BuyPropertyModalProps) {
     return null;
   }
 
+  if (user!.id === property.user.id) {
+    return null;
+  }
+
   return (
     <>
       {isOpen && (

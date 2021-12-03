@@ -58,6 +58,10 @@ export function MakeOfferOnPropertyModal({
     return null;
   }
 
+  if (user!.id === property.user.id) {
+    return null;
+  }
+
   return (
     <>
       {isOpen && (

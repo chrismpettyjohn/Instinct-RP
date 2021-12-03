@@ -11,6 +11,7 @@ export class PropertyRepository extends BaseRepository<PropertyEntity> {
   ) {
     super(propertyRepo, [
       'room',
+      'room.room',
       'user',
       'user.rank',
       'user.rpStats',
@@ -19,6 +20,7 @@ export class PropertyRepository extends BaseRepository<PropertyEntity> {
       'bids.user.rank',
       'bids.user.rpStats',
       'photos',
+      'photos.photo',
     ]);
   }
 }

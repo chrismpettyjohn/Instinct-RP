@@ -42,20 +42,33 @@ export function ListProperties() {
           <div className="col-12">
             <MiniJumbotron>
               <h3>My Properties</h3>
-              {ownedProperties?.map(_ => (
-                <Link key={`owned_property_${_.id}`} to={`/properties/${_.id}`}>
-                  <img
-                    className="mr-2"
-                    src={_.photos[0]?.photoURL}
-                    width={80}
-                    height={80}
-                    style={{border: '2px solid white', borderRadius: '100%'}}
-                  />
-                </Link>
-              ))}
-              {ownedProperties?.length === 0 && (
-                <p>You don't have any properties listed for sale</p>
-              )}
+              <div className="d-flex">
+                {ownedProperties?.map(_ => (
+                  <Link
+                    key={`owned_property_${_.id}`}
+                    to={`/properties/${_.id}`}
+                  >
+                    <div
+                      className="mr-4"
+                      style={{
+                        border: '2px solid white',
+                        borderRadius: '100%',
+                        backgroundImage: `url(${
+                          _.photos[0]?.photoURL ??
+                          'https://i.imgur.com/RJnrGFD.png'
+                        })`,
+                        backgroundSize: 'cover',
+                        cursor: 'pointer',
+                        width: 80,
+                        height: 80,
+                      }}
+                    />
+                  </Link>
+                ))}
+                {ownedProperties?.length === 0 && (
+                  <p>You don't have any properties listed for sale</p>
+                )}
+              </div>
             </MiniJumbotron>
           </div>
         </Row>
@@ -77,18 +90,23 @@ export function ListProperties() {
             </div>
           )}
           {properties?.map(_ => (
-            <div className="col-12" key={`property_${_.id}`}>
+            <div className="col-12 mb-4" key={`property_${_.id}`}>
               <Card>
                 <div className="d-flex">
                   <Link to={`/properties/${_.id}`}>
-                    <img
-                      src={_.photos[0]?.photoURL}
-                      width={300}
-                      height={300}
+                    <div
                       style={{
+                        display: 'block',
+                        backgroundImage: `url(${
+                          _.photos[0]?.photoURL ??
+                          'https://i.imgur.com/RJnrGFD.png'
+                        })`,
+                        backgroundSize: 'cover',
                         border: '2px solid white',
                         borderRadius: 4,
                         cursor: 'pointer',
+                        height: 300,
+                        width: 300,
                       }}
                     />
                   </Link>
@@ -100,7 +118,7 @@ export function ListProperties() {
                         </Link>
                       </div>
                       <div className="col-6 text-right">
-                        <Link to={'/properties/1'}>
+                        <Link to={`/properties/${_.id}`}>
                           <button className="btn btn-outline-info">
                             View More
                             <Icon className="ml-2" type="angle-right" />

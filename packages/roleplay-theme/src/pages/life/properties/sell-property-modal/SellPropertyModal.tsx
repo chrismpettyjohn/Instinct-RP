@@ -44,8 +44,8 @@ export function SellPropertyModal() {
   const canBeSaved =
     propertyDTO.roomID && propertyDTO.photoIDs && propertyDTO.buyNowPrice;
 
-  const roomsNotListed = rooms?.filter(room =>
-    existingProperties?.find(_ => _.room.id !== room.id)
+  const roomsNotListed = rooms?.filter(
+    room => !existingProperties?.find(_ => _.room.id !== room.id)
   );
 
   function toggleModal(): void {

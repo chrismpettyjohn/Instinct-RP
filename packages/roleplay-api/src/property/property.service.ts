@@ -94,6 +94,8 @@ export class PropertyService {
       _ => !currentPhotos.find(cur => cur.photoID === _)
     );
 
+    console.log(photosToAdd);
+
     await Promise.all(
       photosToAdd.map((_, index) =>
         this.propertyPhotoRepo.create({

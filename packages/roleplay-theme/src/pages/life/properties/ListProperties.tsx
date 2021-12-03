@@ -1,21 +1,27 @@
 import {Link} from 'wouter';
+import {Input} from 'reactstrap';
 import React, {useContext} from 'react';
 import {Row} from '../../../components/generic/row/Row';
 import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
-import {useFetchAllProperties} from '@instinct-plugin/roleplay-web';
 import {setURL, Avatar, Icon, sessionContext} from '@instinct-web/core';
 import {Container} from '../../../components/generic/container/Container';
 import {SellPropertyModal} from './sell-property-modal/SellPropertyModal';
+import {useFetchAllProperties, useFilter} from '@instinct-plugin/roleplay-web';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 
 setURL('properties', <ListProperties />);
 
 export function ListProperties() {
+  const [filter, setFilter] = useFilter();
   const {user} = useContext(sessionContext);
   const properties = useFetchAllProperties();
 
   const ownedProperties = properties?.filter(_ => _.user.id === user?.id);
+
+  const filteredProperties =
+    properties?.filter(_ => _.room.roomName.toLowerCase().includes(filter)) ??
+    [];
 
   return (
     <UserLayout>
@@ -72,10 +78,19 @@ export function ListProperties() {
             </MiniJumbotron>
           </div>
         </Row>
-        <Row>
-          <div className="col-12">
-            <h3 className="text-white">Properies For Sale</h3>
+        <Row className="mb-4">
+          <div className="col-6">
+            <h3 className="text-white">Properties For Sale</h3>
           </div>
+          <div className="col-6">
+            <Input
+              value={filter}
+              onChange={setFilter}
+              placeholder="Search properties..."
+            />
+          </div>
+        </Row>
+        <Row>
           {properties === undefined && (
             <div className="col-12 text-center text-white">
               <h3>
@@ -89,7 +104,7 @@ export function ListProperties() {
               <p>There are no properties for sale</p>
             </div>
           )}
-          {properties?.map(_ => (
+          {filteredProperties?.map(_ => (
             <div className="col-12 mb-4" key={`property_${_.id}`}>
               <Card>
                 <div className="d-flex">

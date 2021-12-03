@@ -97,8 +97,14 @@ export function ViewProperty() {
                 </div>
                 <div className="col-4 mb-4">
                   <h4>Latest Bid:</h4>
-                  <Icon className="text-success" type="dollar-sign" />
-                  {property?.bids?.[0]?.offer ?? 'N/A'}
+                  {property?.bids?.[0] ? (
+                    <>
+                      <Icon className="text-success" type="dollar-sign" />
+                      {property.bids[0].offer.toLocaleString()}
+                    </>
+                  ) : (
+                    'N/A'
+                  )}
                 </div>
               </div>
             </Card>

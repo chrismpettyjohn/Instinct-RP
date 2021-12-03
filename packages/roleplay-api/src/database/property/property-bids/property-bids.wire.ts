@@ -9,6 +9,6 @@ export function propertyBidWire(
     user,
     id: entity.id!,
     offer: entity.offer,
+    approved: entity ? entity.accepted === 1 : undefined,
   };
-  approved: entity ? entity.accepted === 1 : undefined,,
 }

@@ -20,7 +20,7 @@ export class RPRoomController {
     return rpRooms.map(rpRoomWire);
   }
 
-  @Get('by-username/:username')
+  @Get('by-user/:username')
   getRoomsByUsername(
     @Param('username', RPRoomsByUsernamePipe) rooms: RPRoomEntity[]
   ): RPRoom[] {

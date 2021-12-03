@@ -10,7 +10,7 @@ export class PropertyDTOImplementation implements PropertyDTO {
   @IsNumber()
   roomID!: number;
 
-  @IsNumber()
+  @IsNumber({}, {each: true})
   photoIDs!: number[];
 
   @IsNumber()

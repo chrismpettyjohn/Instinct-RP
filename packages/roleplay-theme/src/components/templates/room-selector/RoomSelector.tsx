@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import {sessionContext} from '@instinct-web/core';
-import Select, {OnChangeValue} from 'react-select';
+import {sessionContext, Select} from '@instinct-web/core';
+import {OnChangeValue} from 'react-select';
 import {RoomSelectorProps} from './RoomSelector.types';
 import {RPRoom} from '@instinct-plugin/roleplay-types';
 import {useFetchRPRoomsByUsername} from '@instinct-plugin/roleplay-web';

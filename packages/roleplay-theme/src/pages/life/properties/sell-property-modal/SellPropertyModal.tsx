@@ -1,9 +1,12 @@
-import Toggle from 'react-toggle';
+import {useLocation} from 'wouter';
+import {toast} from 'react-toastify';
 import React, {useState} from 'react';
 import {Icon} from '@instinct-web/core';
 import {Photo} from '@instinct-prj/interface';
+import {propertyService} from '@instinct-plugin/roleplay-web';
 import {PropertyDTO, RPRoom} from '@instinct-plugin/roleplay-types';
-import {SellPropertyModalProps} from './SellPropertyModal.types';
+import {PhotoSelector} from '../../../../components/templates/photo-selector/PhotoSelector';
+import {RoomSelector} from '../../../../components/templates/room-selector/RoomSelector';
 import {
   Modal,
   ModalBody,
@@ -14,10 +17,9 @@ import {
   Input,
   Label,
 } from 'reactstrap';
-import {PhotoSelector} from '../../../../components/templates/photo-selector/PhotoSelector';
-import {RoomSelector} from '../../../../components/templates/room-selector/RoomSelector';
 
-export function SellPropertyModal({onChange}: SellPropertyModalProps) {
+export function SellPropertyModal() {
+  const [location, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const [propertyDTO, setPropertyDTO] = useState<Partial<PropertyDTO>>({
@@ -30,20 +32,29 @@ export function SellPropertyModal({onChange}: SellPropertyModalProps) {
     'https://i.imgur.com/RJnrGFD.png'
   );
 
+  const canBeSaved =
+    propertyDTO.roomID && propertyDTO.photoIDs && propertyDTO.buyNowPrice;
+
   function toggleModal(): void {
     setIsOpen(_ => !_);
   }
 
-  async function onConfirm() {
+  async function onSubmit(event: any) {
+    event?.preventDefault();
+    if (!canBeSaved) return;
     try {
       setSpinner(true);
+      const newProperty = await propertyService.create(propertyDTO as any);
+      toast.success(
+        `You successfully listed ${newProperty.room.roomName} for sale!`
+      );
+      setLocation(`/properties/${newProperty.id}`);
+    } catch (e) {
+      console.log(e);
+      toast.error('Your property could not be listed at ths time');
     } finally {
       setSpinner(false);
     }
-  }
-
-  async function onSubmit(event: any) {
-    event.preventDefault();
   }
 
   function onPhotoChange(newPhoto: Photo) {
@@ -66,9 +77,6 @@ export function SellPropertyModal({onChange}: SellPropertyModalProps) {
       ...newValue,
     }));
   }
-
-  const canBeSaved =
-    propertyDTO.roomID && propertyDTO.photoIDs && propertyDTO.buyNowPrice;
 
   return (
     <>
@@ -129,7 +137,7 @@ export function SellPropertyModal({onChange}: SellPropertyModalProps) {
             <button
               className="btn btn-outline-primary ml-2"
               disabled={spinner || !canBeSaved}
-              onClick={onConfirm}
+              onClick={onSubmit}
             >
               {spinner ? (
                 <Icon className="fa-spin" type="spinner" />

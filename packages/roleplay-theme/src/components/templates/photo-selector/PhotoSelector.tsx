@@ -1,8 +1,8 @@
 import Moment from 'moment';
 import React, {useContext} from 'react';
+import {OnChangeValue} from 'react-select';
 import {Photo} from '@instinct-prj/interface';
-import Select, {OnChangeValue} from 'react-select';
-import {sessionContext} from '@instinct-web/core';
+import {sessionContext, Select} from '@instinct-web/core';
 import {PhotoSelectorProps} from './PhotoSelector.types';
 import {useFetchPhotosByUsername} from '@instinct-plugin/roleplay-web';
 

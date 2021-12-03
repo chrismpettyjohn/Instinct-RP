@@ -2,7 +2,10 @@ import {useEffect, useState} from 'react';
 import {propertyService} from '../../services/property';
 import {Property} from '@instinct-plugin/roleplay-types';
 
-export function useFetchPropertyByID(propertyID: string): Property | undefined {
+export function useFetchPropertyByID(
+  propertyID: string,
+  refresh = 0
+): Property | undefined {
   const [property, setProperty] = useState<Property>();
 
   useEffect(() => {
@@ -13,7 +16,7 @@ export function useFetchPropertyByID(propertyID: string): Property | undefined {
     }
 
     fetchProperty();
-  }, [propertyID]);
+  }, [propertyID, refresh]);
 
   return property;
 }

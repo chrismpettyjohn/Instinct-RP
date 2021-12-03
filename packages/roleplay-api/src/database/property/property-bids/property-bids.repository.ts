@@ -10,6 +10,6 @@ export class PropertyBidsRepository extends BaseRepository<PropertyBidsEntity> {
     @InjectRepository(PropertyBidsEntity)
     propertyBidsRepo: Repository<PropertyBidsEntity>
   ) {
-    super(propertyBidsRepo, []);
+    super(propertyBidsRepo, ['user', 'user.rank', 'user.rpStats']);
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Moment from 'moment';
 import {Link, useRoute} from 'wouter';
 import {Avatar, setURL, Icon} from '@instinct-web/core';
@@ -14,21 +14,26 @@ import {PropertyBid} from '@instinct-plugin/roleplay-types';
 setURL('properties/:propertyID', <ViewProperty />);
 
 export function ViewProperty() {
+  const [refresh, setRefresh] = useState(0);
   const [matched, params] = useRoute<{propertyID: string}>(
     '/properties/:propertyID'
   );
 
-  const property = useFetchPropertyByID(params!.propertyID);
+  const property = useFetchPropertyByID(params!.propertyID, refresh);
+
+  function reloadProperty() {
+    setRefresh(_ => _ + 1);
+  }
 
   function getBidStatus(bidStatus: PropertyBid) {
     const [color, label] =
-      bidStatus === undefined
+      bidStatus.approved === undefined
         ? ['warning', 'This bid has not been reviewed yet']
         : bidStatus.approved
         ? ['success', 'This bid has been accepted']
         : ['danger', 'This bid was rejected'];
 
-    return <span className={`alert alert-${color} text-white`}>{label}</span>;
+    return <div className={`alert alert-${color} text-white`}>{label}</div>;
   }
 
   return (
@@ -109,8 +114,20 @@ export function ViewProperty() {
               </div>
             </Card>
             <Card className="mb-4" header="Tools">
-              <BuyPropertyModal onChange={() => {}} />
-              <MakeOfferOnPropertyModal onChange={() => {}} />
+              {property ? (
+                <>
+                  <BuyPropertyModal
+                    property={property}
+                    onChange={reloadProperty}
+                  />
+                  <MakeOfferOnPropertyModal
+                    property={property}
+                    onChange={reloadProperty}
+                  />
+                </>
+              ) : (
+                <Icon className="fa-spin" type="fa-spinner" />
+              )}
             </Card>
             <Card className="mb-4" header="Bids">
               <table className="table">

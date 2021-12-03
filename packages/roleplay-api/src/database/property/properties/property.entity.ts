@@ -22,7 +22,7 @@ export class PropertyEntity {
 
   @ManyToOne(() => RPRoomEntity)
   @JoinColumn({name: 'room_id'})
-  room?: RPUserEntityStruct;
+  room?: RPRoomEntity;
 
   @Column({name: 'user_id', type: 'int'})
   userID!: number;
@@ -38,11 +38,14 @@ export class PropertyEntity {
   @JoinColumn({name: 'customer_id'})
   customer?: RPUserEntityStruct;
 
+  @Column({name: 'listing_price', type: 'int'})
+  buyNowPrice!: number;
+
   @Column({name: 'listed_at', type: 'int'})
-  listedAt!: string;
+  listedAt!: number;
 
   @Column({name: 'sold_at', type: 'int'})
-  soldAt!: string;
+  soldAt!: number;
 
   @OneToMany(() => PropertyBidsEntity, propertyBids => propertyBids.property)
   bids?: PropertyBidsEntity[];

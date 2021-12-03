@@ -5,6 +5,7 @@ export * from './food';
 export * from './gambling';
 export * from './law';
 export * from './political-party';
+export * from './property':
 export * from './gang';
 export * from './guide';
 export * from './rank';

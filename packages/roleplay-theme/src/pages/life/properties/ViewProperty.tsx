@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'wouter';
+import Moment from 'moment';
+import {Link, useRoute} from 'wouter';
 import {Avatar, setURL, Icon} from '@instinct-web/core';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';
@@ -7,10 +8,29 @@ import {Card} from '../../../components/generic/card/Card';
 import {Container} from '../../../components/generic/container/Container';
 import {BuyPropertyModal} from './buy-property-modal/BuyPropertyModal';
 import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
+import {useFetchPropertyByID} from '@instinct-plugin/roleplay-web';
+import {PropertyBid} from '@instinct-plugin/roleplay-types';
 
 setURL('properties/:propertyID', <ViewProperty />);
 
 export function ViewProperty() {
+  const [matched, params] = useRoute<{propertyID: string}>(
+    '/properties/:propertyID'
+  );
+
+  const property = useFetchPropertyByID(params!.propertyID);
+
+  function getBidStatus(bidStatus: PropertyBid) {
+    const [color, label] =
+      bidStatus === undefined
+        ? ['warning', 'This bid has not been reviewed yet']
+        : bidStatus.approved
+        ? ['success', 'This bid has been accepted']
+        : ['danger', 'This bid was rejected'];
+
+    return <span className={`alert alert-${color} text-white`}>{label}</span>;
+  }
+
   return (
     <UserLayout>
       <Container>
@@ -24,7 +44,7 @@ export function ViewProperty() {
               />
             </Link>
             <h2 className="text-white ml-4" style={{marginTop: 10}}>
-              Viewing Property: <b>Warehouse #4</b>
+              Viewing Property: <b>{property?.room?.roomName ?? ''}</b>
             </h2>
           </div>
         </Row>
@@ -34,46 +54,51 @@ export function ViewProperty() {
               <div className="row">
                 <div className="col-4 mb-4">
                   <h4>Zoning:</h4>
-                  <p>Industrial</p>
+                  <p>N/A</p>
                 </div>
                 <div className="col-4 mb-4">
                   <h4>Status:</h4>
                   <p className="text-success">For Sale</p>
                 </div>
                 <div className="col-4 mb-4">
-                  <h4>Property Built:</h4>
-                  <p>Oct 01, 2021</p>
+                  <h4>Listed At:</h4>
+                  <p>
+                    {property &&
+                      Moment.unix(property.listedAt).format('MMM DD, YYYY')}
+                  </p>
                 </div>
                 <div className="col-4 mb-4">
                   <h4>Owner</h4>
-                  <div className="d-flex mt-2">
-                    <Link to={'/profile/Chris'}>
-                      <div className="member-container">
-                        <div className="member-content">
-                          <div
-                            className="member-avatar flex-container flex-vertical-center flex-horizontal-center"
-                            style={{overflow: 'hidden'}}
-                          >
-                            <Avatar look="ea-1403-63.ch-3077-1325-110.hr-125-61.lg-285-89.fa-1201-0.sh-3027-110-1408.hd-3103-1.he-8394-110.wa-2009-1325" />
+                  {property && (
+                    <div className="d-flex mt-2">
+                      <Link to={`/profile/${property.user.username}`}>
+                        <div className="member-container">
+                          <div className="member-content">
+                            <div
+                              className="member-avatar flex-container flex-vertical-center flex-horizontal-center"
+                              style={{overflow: 'hidden'}}
+                            >
+                              <Avatar look={property.user.figure} />
+                            </div>
                           </div>
                         </div>
+                      </Link>
+                      <div className="ml-2 mt-2">
+                        <h4>{property.user.username}</h4>
+                        <p>{property.user.rank.name}</p>
                       </div>
-                    </Link>
-                    <div className="ml-2 mt-2">
-                      <h4>Chris</h4>
-                      <p>Developer</p>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className="col-4 mb-4">
                   <h4>Asking Price:</h4>
                   <Icon className="text-success" type="dollar-sign" />
-                  5,000
+                  {property?.buyNowPrice?.toLocaleString() ?? ''}
                 </div>
                 <div className="col-4 mb-4">
                   <h4>Latest Bid:</h4>
                   <Icon className="text-success" type="dollar-sign" />
-                  2,500
+                  {property?.bids?.[0]?.offer ?? 'N/A'}
                 </div>
               </div>
             </Card>
@@ -85,47 +110,55 @@ export function ViewProperty() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">User</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Accepted</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>
-                      <div
-                        className="d-flex"
-                        style={{marginTop: -20, marginLeft: -10}}
-                      >
-                        <Avatar
-                          look="ea-1403-63.ch-3077-1325-110.hr-125-61.lg-285-89.fa-1201-0.sh-3027-110-1408.hd-3103-1.he-8394-110.wa-2009-1325"
-                          headOnly
-                        />
-                        <span className="mt-4">Chris</span>
-                      </div>
-                    </td>
-                    <td>
-                      <Icon className="text-success" type="dollar-sign" />
-                      2,500
-                    </td>
-                    <td>11/29/2021</td>
-                  </tr>
+                  {property?.bids?.length === 0 && (
+                    <p className="p-2">There are no bids yet</p>
+                  )}
+                  {property?.bids?.map(bid => (
+                    <tr key={`bid_${bid.id}`}>
+                      <td>
+                        <div
+                          className="d-flex"
+                          style={{marginTop: -20, marginLeft: -10}}
+                        >
+                          <Avatar look={bid.user.figure} headOnly />
+                          <span className="mt-4">{bid.user.username}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <Icon className="text-success" type="dollar-sign" />
+                        {bid.offer.toLocaleString()}
+                      </td>
+                      <td>{getBidStatus(bid)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </Card>
             <Card className="mb-4" header="Pictures">
-              <img
-                src="https://game.bobba.ca/clips/10.png"
-                width={300}
-                height={300}
-                style={{
-                  border: '2px solid white',
-                  borderRadius: 4,
-                  cursor: 'pointer',
-                }}
-              />
+              <div className="d-flex">
+                {property?.photos?.map(_ => (
+                  <img
+                    className="mr-4"
+                    key={`photo_${_.id}`}
+                    style={{
+                      display: 'block',
+                      backgroundImage: `url(${_.photoURL})`,
+                      backgroundSize: 'cover',
+                      border: '2px solid white',
+                      borderRadius: 4,
+                      cursor: 'pointer',
+                      height: 300,
+                      width: 300,
+                    }}
+                  />
+                ))}
+              </div>
             </Card>
           </div>
         </Row>

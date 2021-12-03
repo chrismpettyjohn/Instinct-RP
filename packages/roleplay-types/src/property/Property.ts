@@ -9,11 +9,13 @@ export interface Property {
   buyNowPrice: number;
   bids: PropertyBid[];
   photos: PropertyPhoto[];
+  listedAt: number;
 }
 export interface PropertyBid {
   id: number;
   user: RPUser;
   offer: number;
+  approved?: boolean;
 }
 
 export interface PropertyPhoto {
@@ -29,4 +31,5 @@ export const exampleProperty: Property = {
   buyNowPrice: 5000,
   bids: [],
   photos: [],
+  listedAt: 0,
 };

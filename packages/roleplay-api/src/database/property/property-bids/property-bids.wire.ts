@@ -10,4 +10,5 @@ export function propertyBidWire(
     id: entity.id!,
     offer: entity.offer,
   };
+  approved: entity ? entity.accepted === 1 : undefined,,
 }

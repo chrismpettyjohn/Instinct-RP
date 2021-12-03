@@ -18,5 +18,6 @@ export function propertyWire(
       propertyBidWire(bid, users.find(_ => _.id === bid.userID)!)
     ),
     photos: orderBy(entity.photos!.map(propertyPhotoWire), 'isPrimary'),
+    listedAt: entity.listedAt,
   };
 }

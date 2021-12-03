@@ -10,6 +10,7 @@ import {MostJailTimeCard} from './widgets/MostJailTime';
 import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
+import {NotAddedNotice} from '../../../components/templates/not-added-notice/NotAddedNotice';
 
 setURL('high-scores/users', <UserHighScores />);
 
@@ -18,6 +19,9 @@ export function UserHighScores() {
     <UserLayout section="games_ranking">
       <Container>
         <Row>
+          <div className="col-12">
+            <NotAddedNotice />
+          </div>
           <div className="col-12">
             <MiniJumbotron>
               <h1>Top Users</h1>

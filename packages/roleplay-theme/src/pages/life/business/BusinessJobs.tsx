@@ -10,6 +10,7 @@ import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 
 import {Input, setURL} from '@instinct-web/core';
+import {NotAddedNotice} from '../../../components/templates/not-added-notice/NotAddedNotice';
 
 setURL('businesses/jobs', <JobMarket />);
 
@@ -24,6 +25,9 @@ export function JobMarket() {
     <UserLayout>
       <Container>
         <Row>
+          <div className="col-12">
+            <NotAddedNotice />
+          </div>
           <div className="col-12">
             <MiniJumbotron>
               <h1>

@@ -7,3 +7,12 @@ export interface PropertyDTO {
 export interface BidOnPropertyDTO {
   offer: number;
 }
+
+export interface RespondOnPropertyBidDTO {
+  accepted: boolean;
+}
+
+export interface PropertyPhotoDTO {
+  photoID: number;
+  isPrimary: boolean;
+}

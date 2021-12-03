@@ -31,8 +31,8 @@ export class PropertyEntity {
   @JoinColumn({name: 'user_id'})
   user?: RPUserEntityStruct;
 
-  @Column({name: 'customer_id', type: 'int'})
-  customerID!: number;
+  @Column({name: 'customer_id', type: 'int', nullable: true})
+  customerID?: number;
 
   @ManyToOne(() => RPUserEntity)
   @JoinColumn({name: 'customer_id'})
@@ -44,8 +44,8 @@ export class PropertyEntity {
   @Column({name: 'listed_at', type: 'int'})
   listedAt!: number;
 
-  @Column({name: 'sold_at', type: 'int'})
-  soldAt!: number;
+  @Column({name: 'sold_at', type: 'int', nullable: true})
+  soldAt?: number;
 
   @OneToMany(() => PropertyBidsEntity, propertyBids => propertyBids.property)
   bids?: PropertyBidsEntity[];

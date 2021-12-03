@@ -32,8 +32,8 @@ export class PropertyBidsEntity {
   offer!: number;
 
   @Column({name: 'created_at', type: 'int'})
-  created_at!: string;
+  created_at!: number;
 
-  @Column({type: 'tinyint'})
-  accepted!: 1 | 0;
+  @Column({type: 'tinyint', nullable: true})
+  accepted?: 1 | 0;
 }

@@ -1,22 +1,38 @@
-import {CrimeDTO} from '@instinct-plugin/roleplay-types';
-import {IsBoolean, IsString, IsNumber} from 'class-validator';
+import {IsBoolean, IsNumber} from 'class-validator';
+import {
+  PropertyDTO,
+  BidOnPropertyDTO,
+  RespondOnPropertyBidDTO,
+  PropertyPhotoDTO,
+} from '@instinct-plugin/roleplay-types';
 
-export class CrimeDTOImplementation implements CrimeDTO {
-  @IsString()
-  name!: string;
-
-  @IsString()
-  aliases!: string;
+export class PropertyDTOImplementation implements PropertyDTO {
+  @IsNumber()
+  roomID!: number;
 
   @IsNumber()
-  jailTimeInMinutes!: number;
-
-  @IsBoolean()
-  ticketable!: boolean;
+  photoIDs!: number[];
 
   @IsNumber()
-  ticketCost!: number;
+  buyNowPrice!: number;
+}
+
+export class BidOnPropertyDTOImplementation implements BidOnPropertyDTO {
+  @IsNumber()
+  offer!: number;
+}
+
+export class RespondOnPropertyBidDTOImplementation
+  implements RespondOnPropertyBidDTO
+{
+  @IsBoolean()
+  accepted!: boolean;
+}
+
+export class PropertyPhotoDTOImplementation implements PropertyPhotoDTO {
+  @IsNumber()
+  photoID!: number;
 
   @IsBoolean()
-  stackable!: boolean;
+  isPrimary!: boolean;
 }

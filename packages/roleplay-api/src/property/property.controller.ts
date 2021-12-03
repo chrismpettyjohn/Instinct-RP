@@ -1,14 +1,14 @@
+import Moment from 'moment';
 import {PropertyPipe} from './property.pipe';
 import {PropertyModule} from './property.module';
-import {HasSession} from '@instinct-api/session';
-import {Crime} from '@instinct-plugin/roleplay-types';
-import {crimeWire} from '../database/crime/crime.wire';
-import {
-  CrimeEntity,
-  CrimeStackable,
-  CrimeTicketable,
-} from '../database/crime/crime.entity';
-import {CrimeRepository} from '../database/crime/crime.repository';
+import {PropertyService} from './property.service';
+import {Property} from '@instinct-plugin/roleplay-types';
+import {PropertyDTOImplementation} from './property.dto';
+import {PropertyOwnerGuard} from './property-owner.guard';
+import {GetSession, HasSession} from '@instinct-api/session';
+import {RPUserEntityStruct} from '../database/user/user.types';
+import {PropertyEntity} from '../database/property/properties/property.entity';
+import {PropertyRepository} from '../database/property/properties/property.repository';
 import {
   Body,
   Controller,
@@ -17,62 +17,60 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
-import {CrimeDTOImplementation} from './property.dto';
-import {HasRPScope} from '../session/permission-scope.decorator';
 
-@Controller('crimes')
+@Controller('properties')
 @HasSession()
 export class PropertyController {
-  constructor(private readonly crimeRepo: CrimeRepository) {}
+  constructor(
+    private readonly propertyRepo: PropertyRepository,
+    private propertyService: PropertyService
+  ) {}
 
   @Post()
-  @HasRPScope('websiteManageCrimes')
-  async createCrime(@Body() crimeDTO: CrimeDTOImplementation): Promise<Crime> {
-    const newCrime = await this.crimeRepo.create({
-      ...crimeDTO,
-      ticketable: crimeDTO.ticketable
-        ? CrimeTicketable.Yes
-        : CrimeTicketable.No,
-      stackable: crimeDTO.stackable ? CrimeStackable.Yes : CrimeStackable.No,
+  async createProperty(
+    @Body() propertyDTO: PropertyDTOImplementation,
+    @GetSession() user: RPUserEntityStruct
+  ): Promise<Property> {
+    const newProperty = await this.propertyRepo.create({
+      ...propertyDTO,
+      userID: user.id!,
+      listedAt: Moment().unix(),
     });
-    return crimeWire(newCrime);
+
+    return this.propertyService.getWireForProperty(newProperty);
   }
 
   @Get()
-  async getCrimes(): Promise<Crime[]> {
-    const crimes = await this.crimeRepo.find();
-    return crimes.map(crimeWire);
-  }
-
-  @Get(':crimeID')
-  async getCrimeByID(
-    @Param('crimeID', PropertyPipe) crime: CrimeEntity
-  ): Promise<PropertyModule> {
-    return crimeWire(crime);
-  }
-
-  @Patch(':crimeID')
-  @HasRPScope('websiteManageCrimes')
-  async updateCrimeByID(
-    @Param('crimeID', PropertyPipe) crime: CrimeEntity,
-    @Body() crimeDTO: CrimeDTOImplementation
-  ) {
-    await this.crimeRepo.update(
-      {id: crime.id!},
-      {
-        ...crimeDTO,
-        ticketable: crimeDTO.ticketable
-          ? CrimeTicketable.Yes
-          : CrimeTicketable.No,
-        stackable: crimeDTO.stackable ? CrimeStackable.Yes : CrimeStackable.No,
-      }
+  async getProperties(): Promise<Property[]> {
+    const properties = await this.propertyRepo.find();
+    return Promise.all(
+      properties.map(_ => this.propertyService.getWireForProperty(_))
     );
   }
 
-  @Delete(':crimeID')
-  @HasRPScope('websiteManageCrimes')
-  async deleteCrimeByID(@Param('crimeID', PropertyPipe) crime: CrimeEntity) {
-    await this.crimeRepo.delete({id: crime.id!});
+  @Get(':propertyID')
+  async getPropertyByID(
+    @Param('propertyID', PropertyPipe) property: PropertyEntity
+  ): Promise<PropertyModule> {
+    return this.propertyService.getWireForProperty(property);
+  }
+
+  @Patch(':propertyID')
+  @UseGuards(PropertyOwnerGuard)
+  async updatePropertyByID(
+    @Param('propertyID', PropertyPipe) property: PropertyEntity,
+    @Body() propertyDTO: PropertyDTOImplementation
+  ) {
+    await this.propertyRepo.update({id: property.id!}, propertyDTO);
+  }
+
+  @Delete(':propertyID')
+  @UseGuards(PropertyOwnerGuard)
+  async deletePropertyByID(
+    @Param('propertyID', PropertyPipe) property: PropertyEntity
+  ) {
+    await this.propertyRepo.delete({id: property.id!});
   }
 }

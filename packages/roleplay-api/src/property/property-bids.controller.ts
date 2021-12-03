@@ -1,78 +1,42 @@
+import Moment from 'moment';
 import {PropertyPipe} from './property.pipe';
-import {PropertyModule} from './property.module';
-import {HasSession} from '@instinct-api/session';
-import {Crime} from '@instinct-plugin/roleplay-types';
-import {crimeWire} from '../database/crime/crime.wire';
-import {
-  CrimeEntity,
-  CrimeStackable,
-  CrimeTicketable,
-} from '../database/crime/crime.entity';
-import {CrimeRepository} from '../database/crime/crime.repository';
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
-import {CrimeDTOImplementation} from './property.dto';
-import {HasRPScope} from '../session/permission-scope.decorator';
+import {PropertyOwnerGuard} from './property-owner.guard';
+import {GetSession, HasSession} from '@instinct-api/session';
+import {BidOnPropertyDTOImplementation} from './property.dto';
+import {RPUserEntityStruct} from '../database/user/user.types';
+import {RespondOnPropertyBidDTOImplementation} from './property.dto';
+import {PropertyEntity} from '../database/property/properties/property.entity';
+import {PropertyBidsRepository} from '../database/property/property-bids/property-bids.repository';
+import {Body, Controller, Param, Post, UseGuards} from '@nestjs/common';
 
-@Controller('crimes')
+@Controller('properties/:propertyID/bids')
 @HasSession()
 export class PropertyBidsController {
-  constructor(private readonly crimeRepo: CrimeRepository) {}
+  constructor(private readonly propertyBidRepo: PropertyBidsRepository) {}
 
   @Post()
-  @HasRPScope('websiteManageCrimes')
-  async createCrime(@Body() crimeDTO: CrimeDTOImplementation): Promise<Crime> {
-    const newCrime = await this.crimeRepo.create({
-      ...crimeDTO,
-      ticketable: crimeDTO.ticketable
-        ? CrimeTicketable.Yes
-        : CrimeTicketable.No,
-      stackable: crimeDTO.stackable ? CrimeStackable.Yes : CrimeStackable.No,
+  async createPropertyBid(
+    @Body() propertyDTO: BidOnPropertyDTOImplementation,
+    @Param('propertyID', PropertyPipe) property: PropertyEntity,
+    @GetSession() user: RPUserEntityStruct
+  ): Promise<void> {
+    await this.propertyBidRepo.create({
+      ...propertyDTO,
+      userID: user.id!,
+      propertyID: property.id!,
+      created_at: Moment().unix(),
     });
-    return crimeWire(newCrime);
   }
 
-  @Get()
-  async getCrimes(): Promise<Crime[]> {
-    const crimes = await this.crimeRepo.find();
-    return crimes.map(crimeWire);
-  }
-
-  @Get(':crimeID')
-  async getCrimeByID(
-    @Param('crimeID', PropertyPipe) crime: CrimeEntity
-  ): Promise<PropertyModule> {
-    return crimeWire(crime);
-  }
-
-  @Patch(':crimeID')
-  @HasRPScope('websiteManageCrimes')
-  async updateCrimeByID(
-    @Param('crimeID', PropertyPipe) crime: CrimeEntity,
-    @Body() crimeDTO: CrimeDTOImplementation
+  @Post(':bidID/response')
+  @UseGuards(PropertyOwnerGuard)
+  async respondToPropertyBid(
+    @Param('bidID') bidID: number,
+    @Body() responseDTO: RespondOnPropertyBidDTOImplementation
   ) {
-    await this.crimeRepo.update(
-      {id: crime.id!},
-      {
-        ...crimeDTO,
-        ticketable: crimeDTO.ticketable
-          ? CrimeTicketable.Yes
-          : CrimeTicketable.No,
-        stackable: crimeDTO.stackable ? CrimeStackable.Yes : CrimeStackable.No,
-      }
+    await this.propertyBidRepo.update(
+      {id: bidID},
+      {accepted: responseDTO.accepted ? 1 : 0}
     );
-  }
-
-  @Delete(':crimeID')
-  @HasRPScope('websiteManageCrimes')
-  async deleteCrimeByID(@Param('crimeID', PropertyPipe) crime: CrimeEntity) {
-    await this.crimeRepo.delete({id: crime.id!});
   }
 }

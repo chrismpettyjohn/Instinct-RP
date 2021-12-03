@@ -46,6 +46,8 @@ export function rpRankWire(
         entity.websiteManageRooms === PermissionStatus.Enabled,
       websiteManageBounties:
         entity.websiteManageBounties === PermissionStatus.Enabled,
+      websiteManageProperties:
+        entity.websiteManageProperties === PermissionStatus.Enabled,
     },
   };
 }

@@ -5,7 +5,6 @@ import {setURL, Icon} from '@instinct-web/core';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';
-import {Card} from '../../../components/generic/card/Card';
 import {useFetchPropertyByID} from '@instinct-plugin/roleplay-web';
 import {Container} from '../../../components/generic/container/Container';
 

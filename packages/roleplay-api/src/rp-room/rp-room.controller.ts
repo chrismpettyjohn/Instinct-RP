@@ -7,6 +7,7 @@ import {rpRoomWire} from '../database/room/rp-room.wire';
 import {RPRoomEntity, RPRoomFeature} from '../database/room/rp-room.entity';
 import {RPRoomPipe} from './rp-room.pipe';
 import {RPRoomDTOImplementation} from './rp-room.dto';
+import {RPRoomsByUsernamePipe} from './rp-rooms-by-username.pipe';
 
 @Controller('rp-rooms')
 @HasSession()
@@ -17,6 +18,13 @@ export class RPRoomController {
   async getRPRooms(): Promise<RPRoom[]> {
     const rpRooms = await this.rpRooms.find();
     return rpRooms.map(rpRoomWire);
+  }
+
+  @Get('by-username/:username')
+  getRoomsByUsername(
+    @Param('username', RPRoomsByUsernamePipe) rooms: RPRoomEntity[]
+  ): RPRoom[] {
+    return rooms.map(rpRoomWire);
   }
 
   @Get(':rpRoomID')

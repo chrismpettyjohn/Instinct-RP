@@ -1,6 +1,8 @@
 import Toggle from 'react-toggle';
 import React, {useState} from 'react';
 import {Icon} from '@instinct-web/core';
+import {Photo} from '@instinct-prj/interface';
+import {PropertyDTO, RPRoom} from '@instinct-plugin/roleplay-types';
 import {SellPropertyModalProps} from './SellPropertyModal.types';
 import {
   Modal,
@@ -12,10 +14,21 @@ import {
   Input,
   Label,
 } from 'reactstrap';
+import {PhotoSelector} from '../../../../components/templates/photo-selector/PhotoSelector';
+import {RoomSelector} from '../../../../components/templates/room-selector/RoomSelector';
 
-export function SellPropertyModal({}: SellPropertyModalProps) {
-  const [spinner, setSpinner] = useState(false);
+export function SellPropertyModal({onChange}: SellPropertyModalProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const [propertyDTO, setPropertyDTO] = useState<Partial<PropertyDTO>>({
+    roomID: undefined,
+    photoIDs: undefined,
+    buyNowPrice: undefined,
+  });
+
+  const [activePhoto, setActivePhoto] = useState(
+    'https://i.imgur.com/RJnrGFD.png'
+  );
 
   function toggleModal(): void {
     setIsOpen(_ => !_);
@@ -33,6 +46,30 @@ export function SellPropertyModal({}: SellPropertyModalProps) {
     event.preventDefault();
   }
 
+  function onPhotoChange(newPhoto: Photo) {
+    setActivePhoto(newPhoto.imagePath);
+    setPropertyDTO(_ => ({
+      ..._,
+      photoIDs: [newPhoto.id],
+    }));
+  }
+
+  function onRoomChange(newRoom: RPRoom) {
+    setPropertyDTO(_ => ({
+      ..._,
+      roomID: newRoom.id,
+    }));
+  }
+  function onValueChange(newValue: Partial<PropertyDTO>) {
+    setPropertyDTO(_ => ({
+      ..._,
+      ...newValue,
+    }));
+  }
+
+  const canBeSaved =
+    propertyDTO.roomID && propertyDTO.photoIDs && propertyDTO.buyNowPrice;
+
   return (
     <>
       {isOpen && (
@@ -44,31 +81,44 @@ export function SellPropertyModal({}: SellPropertyModalProps) {
           <ModalBody>
             <div className="row">
               <div className="col-5">
-                <img
-                  src="https://game.bobba.ca/clips/10.png"
-                  width={300}
-                  height={300}
-                  style={{border: '2px solid white', borderRadius: 4}}
+                <div
+                  style={{
+                    display: 'block',
+                    backgroundImage: `url(${activePhoto})`,
+                    backgroundSize: 'cover',
+                    border: '2px solid white',
+                    borderRadius: 4,
+                    cursor: 'pointer',
+                    height: 300,
+                    width: 300,
+                  }}
                 />
               </div>
               <div className="col-7">
                 <Form submit={onSubmit}>
                   <FormGroup>
                     <Label>Property</Label>
-                    <Input />
+                    <RoomSelector
+                      onChange={onRoomChange}
+                      roomID={propertyDTO.roomID}
+                    />
                   </FormGroup>
                   <FormGroup>
                     <Label>Property Photo</Label>
-                    <Input />
+                    <PhotoSelector
+                      onChange={onPhotoChange}
+                      photoID={propertyDTO.photoIDs?.[0]}
+                    />
                   </FormGroup>
                   <FormGroup>
                     <Label>Buy Now Price</Label>
-                    <Input type="number" />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label>Allow Bidding</Label>
-                    <br />
-                    <Toggle />
+                    <Input
+                      type="number"
+                      value={propertyDTO.buyNowPrice}
+                      onChange={e =>
+                        onValueChange({buyNowPrice: Number(e.target.value)})
+                      }
+                    />
                   </FormGroup>
                 </Form>
               </div>
@@ -78,7 +128,7 @@ export function SellPropertyModal({}: SellPropertyModalProps) {
             <span onClick={toggleModal}>Cancel</span>
             <button
               className="btn btn-outline-primary ml-2"
-              disabled={spinner}
+              disabled={spinner || !canBeSaved}
               onClick={onConfirm}
             >
               {spinner ? (

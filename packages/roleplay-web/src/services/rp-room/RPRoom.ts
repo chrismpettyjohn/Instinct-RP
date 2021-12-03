@@ -16,6 +16,13 @@ export class RPRoomServiceImplementation implements RPRoomService {
     return food.data;
   }
 
+  async getByUsername(username: string) {
+    const food: AxiosResponse<RPRoom[]> = await backendAPI.get(
+      `rp-rooms/by-user/${username}`
+    );
+    return food.data;
+  }
+
   async updateByID(rpRoomID: string, rpRoomDTO: RPRoomDTO) {
     await backendAPI.patch(`rp-rooms/${rpRoomID}`, rpRoomDTO);
   }

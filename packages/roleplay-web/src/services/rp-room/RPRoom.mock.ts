@@ -10,5 +10,9 @@ export class RPRoomServiceMock implements RPRoomService {
     return exampleRPRoom;
   }
 
+  async getByUsername(username: string) {
+    return [exampleRPRoom];
+  }
+
   async updateByID(rpRoomID: string, rpRoomDTO: RPRoomDTO) {}
 }

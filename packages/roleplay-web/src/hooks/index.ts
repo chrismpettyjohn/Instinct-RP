@@ -8,6 +8,7 @@ export * from './gang';
 export * from './government';
 export * from './guide';
 export * from './law';
+export * from './photo';
 export * from './political-party';
 export * from './property';
 export * from './rp-room';

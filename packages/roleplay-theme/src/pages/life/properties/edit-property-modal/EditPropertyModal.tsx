@@ -130,7 +130,7 @@ export function EditPropertyModal({
           </ModalFooter>
         </Modal>
       )}
-      <button className="btn btn-outline-primary" onClick={toggleModal}>
+      <button className="btn btn-outline-primary mr-2" onClick={toggleModal}>
         <Icon type="pencil" />
         Make Changes
       </button>

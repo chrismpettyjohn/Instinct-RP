@@ -2,7 +2,7 @@ import React from 'react';
 import {toast} from 'react-toastify';
 import {Icon} from '@instinct-web/core';
 import {DeleteCrimeModalProps} from './DeleteCrimeModal.types';
-import {DeleteModal} from '../../components/delete-modal/DeleteModal';
+import {DeleteModal} from '../../../../components/templates/delete-modal/DeleteModal';
 import {crimeService} from '@instinct-plugin/roleplay-web';
 
 export function DeleteCrimeModal({crime, onDelete}: DeleteCrimeModalProps) {

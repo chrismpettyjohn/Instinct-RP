@@ -11,6 +11,7 @@ import {Avatar, setURL, Icon, sessionContext} from '@instinct-web/core';
 import {Container} from '../../../components/generic/container/Container';
 import {EditPropertyModal} from './edit-property-modal/EditPropertyModal';
 import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
+import {DeletePropertyModal} from './delete-property-modal/DeletePropertyModal';
 
 setURL('properties/:propertyID', <ViewProperty />);
 
@@ -140,6 +141,7 @@ export function ViewProperty() {
                           property={property}
                           onChange={reloadProperty}
                         />
+                        <DeletePropertyModal property={property} />
                       </>
                     )}
                   </div>

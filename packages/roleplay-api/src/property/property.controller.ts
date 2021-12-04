@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import {IsNull} from 'typeorm';
 import {PropertyPipe} from './property.pipe';
 import {PropertyModule} from './property.module';
 import {PropertyService} from './property.service';
@@ -47,7 +48,9 @@ export class PropertyController {
 
   @Get()
   async getProperties(): Promise<Property[]> {
-    const properties = await this.propertyRepo.find();
+    const properties = await this.propertyRepo.find({
+      soldAt: IsNull(),
+    });
     return Promise.all(
       properties.map(_ => this.propertyService.getWireForProperty(_))
     );

@@ -35,5 +35,5 @@ export class PropertyBidsEntity {
   created_at!: number;
 
   @Column({type: 'tinyint', nullable: true})
-  accepted?: 1 | 0;
+  accepted?: 1 | 0 | null;
 }

@@ -64,7 +64,9 @@ export class PropertyService {
 
     await this.roomRepo.update({id: property.roomID}, {ownerID: user.id!});
 
-    for (const bid of property.bids!) {
+    const pendingBids = property.bids!.filter(_ => _.accepted === null);
+
+    for (const bid of pendingBids) {
       await this.propertyBidRepo.update({id: bid.id!}, {accepted: 0});
       await this.refundBid(bid.user!, bid.offer);
     }
@@ -93,8 +95,6 @@ export class PropertyService {
     const photosToAdd = photoIDs.filter(
       _ => !currentPhotos.find(cur => cur.photoID === _)
     );
-
-    console.log(photosToAdd);
 
     await Promise.all(
       photosToAdd.map((_, index) =>

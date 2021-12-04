@@ -75,7 +75,10 @@ export class PropertyController {
     @Param('propertyID', PropertyPipe) property: PropertyEntity,
     @Body() propertyDTO: PropertyDTOImplementation
   ) {
-    await this.propertyRepo.update({id: property.id!}, propertyDTO);
+    await this.propertyRepo.update(
+      {id: property.id!},
+      {buyNowPrice: propertyDTO.buyNowPrice}
+    );
     await this.propertyService.setPhotos(property.id!, propertyDTO.photoIDs);
   }
 

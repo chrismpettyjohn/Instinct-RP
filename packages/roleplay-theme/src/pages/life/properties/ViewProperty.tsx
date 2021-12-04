@@ -1,25 +1,29 @@
-import React, {useState} from 'react';
 import Moment from 'moment';
 import {Link, useRoute} from 'wouter';
-import {Avatar, setURL, Icon} from '@instinct-web/core';
+import React, {useContext, useState} from 'react';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';
 import {Card} from '../../../components/generic/card/Card';
-import {Container} from '../../../components/generic/container/Container';
-import {BuyPropertyModal} from './buy-property-modal/BuyPropertyModal';
-import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
-import {useFetchPropertyByID} from '@instinct-plugin/roleplay-web';
 import {PropertyBid} from '@instinct-plugin/roleplay-types';
+import {useFetchPropertyByID} from '@instinct-plugin/roleplay-web';
+import {BuyPropertyModal} from './buy-property-modal/BuyPropertyModal';
+import {Avatar, setURL, Icon, sessionContext} from '@instinct-web/core';
+import {Container} from '../../../components/generic/container/Container';
+import {EditPropertyModal} from './edit-property-modal/EditPropertyModal';
+import {MakeOfferOnPropertyModal} from './make-offer-on-property-modal/MakeOfferOnPropertyModal';
 
 setURL('properties/:propertyID', <ViewProperty />);
 
 export function ViewProperty() {
+  const {user} = useContext(sessionContext);
   const [refresh, setRefresh] = useState(0);
   const [matched, params] = useRoute<{propertyID: string}>(
     '/properties/:propertyID'
   );
 
   const property = useFetchPropertyByID(params!.propertyID, refresh);
+
+  const isPropertyOwner = user?.id === property?.user?.id;
 
   function reloadProperty() {
     setRefresh(_ => _ + 1);
@@ -115,16 +119,31 @@ export function ViewProperty() {
             </Card>
             <Card className="mb-4" header="Tools">
               {property ? (
-                <>
-                  <BuyPropertyModal
-                    property={property}
-                    onChange={reloadProperty}
-                  />
-                  <MakeOfferOnPropertyModal
-                    property={property}
-                    onChange={reloadProperty}
-                  />
-                </>
+                <div className="row">
+                  <div
+                    className="col-6"
+                    style={{borderRight: '1px solid white'}}
+                  >
+                    <BuyPropertyModal
+                      property={property}
+                      onChange={reloadProperty}
+                    />
+                    <MakeOfferOnPropertyModal
+                      property={property}
+                      onChange={reloadProperty}
+                    />
+                  </div>
+                  <div className="col-6 text-right">
+                    {isPropertyOwner && (
+                      <>
+                        <EditPropertyModal
+                          property={property}
+                          onChange={reloadProperty}
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
               ) : (
                 <Icon className="fa-spin" type="fa-spinner" />
               )}

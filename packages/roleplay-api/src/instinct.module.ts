@@ -17,9 +17,11 @@ import {RPRoomModule} from './rp-room/rp-room.module';
 import {BountyModule} from './bounty/bounty.module';
 import {PropertyModule} from './property/property.module';
 
+const FIVE_MINUTES = 60 * 5;
+
 @Module({
   imports: [
-    CacheModule.register({isGlobal: true}),
+    CacheModule.register({isGlobal: true, ttl: FIVE_MINUTES}),
     DatabaseModule,
     BusinessModule,
     GangModule,

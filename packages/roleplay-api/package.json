@@ -12,7 +12,8 @@
     "compile": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "cache-manager": "^3.6.0"
   },
   "devDependencies": {
     "@instinct-api/common": "^3.0.3",
@@ -36,7 +37,8 @@
     "passport-jwt": "^4.0.0",
     "typeorm": "0.2.31",
     "typescript": "~4.5.0",
-    "@nestjs/passport": "^7.1.5"
+    "@nestjs/passport": "^7.1.5",
+    "@types/cache-manager": "^3.4.2"
   },
   "peerDependencies": {
     "@instinct-api/common": "^3.0.3",

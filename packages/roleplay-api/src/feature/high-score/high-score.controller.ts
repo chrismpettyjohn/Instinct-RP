@@ -1,8 +1,8 @@
 import Moment from 'moment';
 import {take, orderBy} from 'lodash';
-import {Controller, Get} from '@nestjs/common';
 import {HasSession} from '@instinct-api/session';
 import {RPUserService} from '../../user/user.service';
+import {CacheTTL, Controller, Get} from '@nestjs/common';
 import {rpUserWire} from '../../database/user/user.wire';
 import {RPUserRepository} from '../../database/user/user.repository';
 import {
@@ -10,6 +10,8 @@ import {
   UserHighScores,
   UserRPStats,
 } from '@instinct-plugin/roleplay-types';
+
+const FOUR_HOURS = 3600 * 4;
 
 @Controller('high-scores')
 @HasSession()
@@ -20,6 +22,7 @@ export class HighScoreController {
   ) {}
 
   @Get('users')
+  @CacheTTL(FOUR_HOURS)
   async getUserHighScores(): Promise<UserHighScores> {
     const allUsers = await this.userRepo.getAll();
     const rpUsers = await Promise.all(

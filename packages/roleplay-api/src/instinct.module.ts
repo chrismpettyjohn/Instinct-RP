@@ -1,4 +1,5 @@
-import {Module} from '@nestjs/common';
+import {APP_INTERCEPTOR} from '@nestjs/core';
+import {CacheModule, CacheInterceptor, Module} from '@nestjs/common';
 import {GangModule} from './gang/gang.module';
 import {RPUserModule} from './user/user.module';
 import {SessionModule} from './session/session.module';
@@ -18,6 +19,7 @@ import {PropertyModule} from './property/property.module';
 
 @Module({
   imports: [
+    CacheModule.register({isGlobal: true}),
     DatabaseModule,
     BusinessModule,
     GangModule,
@@ -52,6 +54,12 @@ import {PropertyModule} from './property/property.module';
     CrimeModule,
     BountyModule,
     PropertyModule,
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
   ],
 })
 export class InstinctRPModule {}

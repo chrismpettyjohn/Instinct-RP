@@ -38,7 +38,7 @@ export function ListProperties() {
                   <p>Check out some of these hot deals on the market</p>
                 </div>
                 <div className="col-6 text-right">
-                  <SellPropertyModal onChange={() => {}} />
+                  <SellPropertyModal />
                 </div>
               </div>
             </MiniJumbotron>
@@ -128,7 +128,7 @@ export function ListProperties() {
                   <div className="ml-4 text-uppercase w-100">
                     <div className="row">
                       <div className="col-6">
-                        <Link to="/properties/1">
+                        <Link to={`/properties/${_.id}`}>
                           <h2 style={{cursor: 'pointer'}}>{_.room.roomName}</h2>
                         </Link>
                       </div>

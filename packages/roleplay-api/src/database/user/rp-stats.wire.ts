@@ -3,7 +3,16 @@ import {GangEntity, GangRankEntity} from '../gang';
 import {BusinessEntity} from '../business/business.entity';
 import {UserRPStats} from '@instinct-plugin/roleplay-types';
 import {BusinessPositionEntity} from '../business/business-position.entity';
-import {BusinessData, EnergyData, GangData, HealthData} from './rp-stats.types';
+import {
+  BusinessData,
+  DamageData,
+  DeathsData,
+  EnergyData,
+  GangData,
+  HealthData,
+  KillsData,
+  PoliceData,
+} from './rp-stats.types';
 
 export function parseHealthData(data?: string): HealthData {
   const splitData = data?.split(';');
@@ -39,6 +48,54 @@ export function parseGangData(data?: string): GangData {
     experience: Number(splitData?.[2] ?? 0),
   };
 }
+
+export function parseKillsData(data?: string): KillsData {
+  const splitData = data?.split(';');
+  const [meleeKills, gunKills, bombKills] = [
+    Number(splitData?.[0] ?? 0),
+    Number(splitData?.[1] ?? 0),
+    Number(splitData?.[2] ?? 0),
+  ];
+  return {
+    total: Number(meleeKills + gunKills + bombKills),
+    meleeKills,
+    gunKills,
+    bombKills,
+  };
+}
+
+export function parseDeathsData(data?: string): DeathsData {
+  const splitData = data?.split(';');
+  const [meleeDeaths, gunDeaths, bombDeaths] = [
+    Number(splitData?.[0] ?? 0),
+    Number(splitData?.[1] ?? 0),
+    Number(splitData?.[2] ?? 0),
+  ];
+  return {
+    total: Number(meleeDeaths + gunDeaths + bombDeaths),
+    meleeDeaths,
+    gunDeaths,
+    bombDeaths,
+  };
+}
+
+export function parsePoliceData(data?: string): PoliceData {
+  const splitData = data?.split(';');
+  return {
+    timesArrested: Number(splitData?.[0] ?? 0),
+    arrestsMade: Number(splitData?.[1] ?? 0),
+    timesEvaded: Number(splitData?.[2] ?? 0),
+  };
+}
+
+export function parseDamageData(data?: string): DamageData {
+  const splitData = data?.split(';');
+  return {
+    damageGiven: Number(splitData?.[0] ?? 0),
+    damageTaken: Number(splitData?.[1] ?? 0),
+  };
+}
+
 export function rpStatsWire(
   entity: UserRPStatEntity,
   gang?: GangEntity,
@@ -49,6 +106,10 @@ export function rpStatsWire(
   return {
     health: parseHealthData(entity.healthData),
     energy: parseEnergyData(entity.energyData),
+    kills: parseKillsData(entity.killsData),
+    deaths: parseDeathsData(entity.deathsData),
+    police: parsePoliceData(entity.policeData),
+    damage: parseDamageData(entity.damageData),
     job: job &&
       jobPosition && {
         businessID: job.id!,

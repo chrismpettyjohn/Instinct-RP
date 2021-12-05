@@ -1,9 +1,10 @@
 import {Module} from '@nestjs/common';
 import {DatabaseModule} from '../../database';
-import {UserHighScoreController} from './high-score.controller';
+import {RPUserModule} from '../../user/user.module';
+import {HighScoreController} from './high-score.controller';
 
 @Module({
-  imports: [DatabaseModule],
-  controllers: [UserHighScoreController],
+  imports: [DatabaseModule, RPUserModule],
+  controllers: [HighScoreController],
 })
 export class UserHighScoreModule {}

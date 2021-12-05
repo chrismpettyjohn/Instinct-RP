@@ -44,6 +44,27 @@ export interface UserRPStats {
     current: number;
     maximum: number;
   };
+  kills: {
+    total: number;
+    meleeKills: number;
+    gunKills: number;
+    bombKills: number;
+  };
+  deaths: {
+    total: number;
+    meleeDeaths: number;
+    gunDeaths: number;
+    bombDeaths: number;
+  };
+  police: {
+    timesArrested: number;
+    arrestsMade: number;
+    timesEvaded: number;
+  };
+  damage: {
+    damageTaken: number;
+    damageGiven: number;
+  };
   job?: UserJob;
   gang?: UserGang;
   politicalParty?: UserPoliticalParty;
@@ -57,6 +78,27 @@ export const exampleUserRPStats: UserRPStats = {
   energy: {
     current: 100,
     maximum: 100,
+  },
+  kills: {
+    total: 0,
+    meleeKills: 0,
+    gunKills: 0,
+    bombKills: 0,
+  },
+  deaths: {
+    total: 0,
+    meleeDeaths: 0,
+    gunDeaths: 0,
+    bombDeaths: 0,
+  },
+  police: {
+    timesArrested: 0,
+    arrestsMade: 0,
+    timesEvaded: 0,
+  },
+  damage: {
+    damageTaken: 0,
+    damageGiven: 0,
   },
   job: exampleUserJob,
 };

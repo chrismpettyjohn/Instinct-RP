@@ -7,6 +7,7 @@ export * from './gambling-machine';
 export * from './gang';
 export * from './government';
 export * from './guide';
+export * from './high-score';
 export * from './law';
 export * from './photo';
 export * from './political-party';

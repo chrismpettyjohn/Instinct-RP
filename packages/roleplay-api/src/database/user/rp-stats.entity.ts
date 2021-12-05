@@ -36,14 +36,20 @@ export class UserRPStatEntity {
   @Column({name: 'wanted'})
   wantedData!: string;
 
+  @Column({name: 'kills'})
+  killsData!: string;
+
   @Column({name: 'dead'})
-  deadData!: string;
+  deathsData!: string;
 
   @Column({name: 'job'})
   jobData!: string;
 
   @Column({name: 'gang'})
   gangData!: string;
+
+  @Column({name: 'police_stats'})
+  policeData!: string;
 
   @Column({name: 'damages'})
   damageData!: string;

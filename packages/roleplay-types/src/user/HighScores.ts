@@ -1,15 +1,22 @@
-import {exampleUser, User} from '@instinct-prj/interface';
+import {RPUser} from '../user/User';
+import {exampleUser} from '@instinct-prj/interface';
 
 export interface UserHighScores {
-  kills: User[];
-  deaths: User[];
-  arrests: User[];
-  jailTime: User[];
+  mostKills: RPUser[];
+  mostDeaths: RPUser[];
+  mostDamageGiven: RPUser[];
+  mostDamageReceived: RPUser[];
+  mostArrests: RPUser[];
+  mostJailTime: RPUser[];
+  timestamp: number;
 }
 
 export const exampleUserHighScores: UserHighScores = {
-  kills: [exampleUser],
-  deaths: [exampleUser],
-  arrests: [exampleUser],
-  jailTime: [exampleUser],
+  mostKills: [exampleUser] as any,
+  mostDeaths: [exampleUser] as any,
+  mostDamageGiven: [exampleUser] as any,
+  mostDamageReceived: [exampleUser] as any,
+  mostArrests: [exampleUser] as any,
+  mostJailTime: [exampleUser] as any,
+  timestamp: 0,
 };

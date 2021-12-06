@@ -10,6 +10,7 @@ export * from './high-score';
 export * from './law';
 export * from './political-party';
 export * from './property';
+export * from './rp-ranks';
 export * from './rp-room';
 export * from './session';
 export * from './user';

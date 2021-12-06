@@ -9,6 +9,7 @@ export function rpRankWire(
   const baseWire = rankWire(entity as any);
   return {
     ...baseWire,
+    desc: entity.description,
     users: users ?? [],
     permissions: {
       ...baseWire.permissions,

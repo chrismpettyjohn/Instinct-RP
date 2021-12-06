@@ -1,7 +1,13 @@
+import {uniqBy} from 'lodash';
 import {BusinessDTO} from './business.dto';
 import {BusinessPipe} from './business.pipe';
 import {GetSession, HasScope, HasSession} from '@instinct-api/session';
-import {Business, GovernmentBranch} from '@instinct-plugin/roleplay-types';
+import {
+  Business,
+  GovernmentBranch,
+  RPUser,
+  UserRPStats,
+} from '@instinct-plugin/roleplay-types';
 import {businessWire} from '../database/business/business.wire';
 import {
   BusinessEntity,
@@ -104,22 +110,23 @@ export class BusinessController {
   async getAllBusinesses(): Promise<Business[]> {
     const businesses: BusinessEntity[] = await this.businessRepo.find();
 
-    const businessOwners: RPUserEntityStruct[] = businesses
-      .map(_ => _.user! as any)
-      .flat();
-
-    const businessOwnerRPStats = await Promise.all(
-      businessOwners.map(businessOwner =>
-        this.rpUserService.getRPStatsForUser(businessOwner)
-      )
+    const businessOwners: RPUserEntityStruct[] = uniqBy(
+      businesses.map(_ => _.user! as any).flat(),
+      'id'
     );
 
-    return businesses.map((business: BusinessEntity, businessIndex: number) => {
+    const uniqBusinessOwners = uniqBy(businessOwners, 'id');
+
+    const businessOwnerWires: RPUser[] = [];
+
+    for (const businessOwner of uniqBusinessOwners) {
+      const rpStats = await this.rpUserService.getRPStatsForUser(businessOwner);
+      businessOwnerWires.push(rpUserWire(businessOwner, rpStats));
+    }
+
+    return businesses.map((business: BusinessEntity) => {
       return businessWire(business, [
-        rpUserWire(
-          businessOwners[businessIndex],
-          businessOwnerRPStats[businessIndex]
-        ),
+        businessOwnerWires.find(_ => _.id === business.userID)!,
       ]);
     });
   }

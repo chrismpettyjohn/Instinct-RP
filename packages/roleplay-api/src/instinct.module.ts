@@ -15,6 +15,7 @@ import {CrimeModule} from './crime/crime.module';
 import {RPRoomModule} from './rp-room/rp-room.module';
 import {BountyModule} from './bounty/bounty.module';
 import {PropertyModule} from './property/property.module';
+import {RankModule} from './rank/rank.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -22,6 +23,7 @@ import {PropertyModule} from './property/property.module';
     GangModule,
     GuideModule,
     SessionModule,
+    RankModule,
     FeatureModule,
     RPUserModule,
     FoodModule,
@@ -41,6 +43,7 @@ import {PropertyModule} from './property/property.module';
     GangModule,
     SessionModule,
     FeatureModule,
+    RankModule,
     RPUserModule,
     FoodModule,
     RPRoomModule,

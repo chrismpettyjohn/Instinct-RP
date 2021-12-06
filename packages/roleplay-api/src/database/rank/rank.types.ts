@@ -7,6 +7,7 @@ export type RPPermissionsStruct = Record<keyof RPPermissions, PermissionStatus>;
 export interface RPRankEntityStruct
   extends RPPermissionsStruct,
     Omit<RankEntityStruct, 'users'> {
+  description: string;
   users: RPUserEntityStruct[];
   websiteCreateBusiness: PermissionStatus;
   websiteManageBusiness: PermissionStatus;

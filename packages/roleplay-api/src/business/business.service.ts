@@ -2,9 +2,8 @@ import {uniqBy} from 'lodash';
 import {Injectable} from '@nestjs/common';
 import {RPUserService} from '../user/user.service';
 import {UserRPStatRepository} from '../database/user';
-import {RPUser} from '@instinct-plugin/roleplay-types';
 import {rpUserWire} from '../database/user/user.wire';
-import {RPUserEntityStruct} from '../database/user/user.types';
+import {RPUser} from '@instinct-plugin/roleplay-types';
 import {RPUserRepository} from '../database/user/user.repository';
 import {BusinessEntity} from '../database/business/business.entity';
 import {BusinessPositionEntity} from '../database/business/business-position.entity';
@@ -29,24 +28,16 @@ export class BusinessService {
 
     userIDs.push({id: business.userID});
 
-    const rpUsers = (await Promise.all(
-      uniqBy(
-        userIDs.map((_: {id: number}) =>
-          this.rpUserRepo.findOneOrFail({id: _.id})
-        ),
-        'id'
-      )
-    )) as any;
+    const uniqueUserIDs = uniqBy(userIDs, 'id');
 
-    const rpStats = await Promise.all(
-      rpUsers.map((_: RPUserEntityStruct) =>
-        this.rpUserService.getRPStatsForUser(_)
-      )
-    );
+    const rpUsers: RPUser[] = [];
 
-    return rpUsers.map((user: RPUserEntityStruct, index: number) =>
-      rpUserWire(user, rpStats[index] as any)
-    );
+    for (const rpUser of uniqueUserIDs) {
+      const user = await this.rpUserRepo.findOneOrFail({id: rpUser.id});
+      const stats = await this.rpUserService.getRPStatsForUser(user);
+      rpUsers.push(rpUserWire(user, stats));
+    }
+    return rpUsers;
   }
 
   async getUsersInPosition(
@@ -64,23 +55,16 @@ export class BusinessService {
       })
       .execute();
 
-    const rpUsers = (await Promise.all(
-      uniqBy(
-        userIDs.map((_: {id: number}) =>
-          this.rpUserRepo.findOneOrFail({id: _.id})
-        ),
-        'id'
-      )
-    )) as any;
+    const rpUsers: RPUser[] = [];
 
-    const rpStats = await Promise.all(
-      rpUsers.map((_: RPUserEntityStruct) =>
-        this.rpUserService.getRPStatsForUser(_)
-      )
-    );
+    const uniqueUserIDs = uniqBy(userIDs, 'id');
 
-    return rpUsers.map((user: RPUserEntityStruct, index: number) =>
-      rpUserWire(user, rpStats[index] as any)
-    );
+    for (const rpUser of uniqueUserIDs) {
+      const user = await this.rpUserRepo.findOneOrFail({id: rpUser.id!});
+      const stats = await this.rpUserService.getRPStatsForUser(user);
+      rpUsers.push(rpUserWire(user, stats));
+    }
+
+    return rpUsers;
   }
 }

@@ -39,11 +39,18 @@ export class BusinessPositionController {
     const openPositions = await this.businessPositionRepo.find({
       openPositions: MoreThan(0),
     });
-    const usersInPosition: Array<RPUser[]> = await Promise.all(
-      openPositions.map(_ => this.businessService.getUsersInPosition(_))
-    );
+
+    const rpUsers: Array<RPUser[]> = [];
+
+    for (const openPosition of openPositions) {
+      const usersInPosition = await this.businessService.getUsersInPosition(
+        openPosition
+      );
+      rpUsers.push(usersInPosition);
+    }
+
     return openPositions.map((openPosition, index) => {
-      return businessPositionWire(openPosition, usersInPosition[index]);
+      return businessPositionWire(openPosition, rpUsers[index]);
     });
   }
 

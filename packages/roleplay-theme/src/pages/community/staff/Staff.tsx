@@ -1,16 +1,17 @@
 import React from 'react';
 import {Row} from '../../../components/generic/row/Row';
+import {setURL, Skeleton, Icon} from '@instinct-web/core';
 import {UserLayout} from '../../../components/layout/user';
 import {Card} from '../../../components/generic/card/Card';
+import {useFetchRPStaff} from '@instinct-plugin/roleplay-web';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 import {UserContainer} from '../../../components/templates/user-container/UserContainer';
-import {setURL, Skeleton, useFetchStaffTeam, Icon} from '@instinct-web/core';
 
 setURL('community/staff', <Staff />);
 
 export function Staff() {
-  const staff = useFetchStaffTeam();
+  const staff = useFetchRPStaff();
 
   return (
     <UserLayout section="community_team">
@@ -45,6 +46,10 @@ export function Staff() {
             staff!.map(rank => (
               <div className="col-6" key={rank.id} style={{marginBottom: 20}}>
                 <Card key={rank.id} header={rank.name}>
+                  <b className="text-info">
+                    <Icon type="info-circle" /> What we Do:
+                  </b>
+                  <p>{(rank as any).desc}</p>
                   {rank.users!.map(user => (
                     <div key={user.id} className="mt-4">
                       <UserContainer

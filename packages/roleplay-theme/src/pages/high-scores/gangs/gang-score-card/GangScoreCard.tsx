@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Icon, configContext} from '@instinct-web/core';
-import {Card} from '../../../components/generic/card/Card';
-import {GangScoreCardProps} from './gang-score-card/GangScoreCard.types';
+import {Card} from '../../../../components/generic/card/Card';
+import {GangScoreCardProps} from './GangScoreCard.types';
 
 export function GangScoreCard({
   gangs,
@@ -26,7 +26,7 @@ export function GangScoreCard({
   return (
     <Card header={getHeader()}>
       {gangs.map(gang => (
-        <div className="top-gang-container" key={`top_gang_${gang.id}`}>
+        <div className="top-user-container" key={`top_gang_${gang.id}`}>
           <div className="row">
             <div className="col-4">
               <img

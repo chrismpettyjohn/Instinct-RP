@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'moment';
 import {setURL, Icon} from '@instinct-web/core';
-import {GangScoreCard} from './GangScoreCard';
+import {GangScoreCard} from './gang-score-card/GangScoreCard';
 import {Row} from '../../../components/generic/row/Row';
 import {UserLayout} from '../../../components/layout/user';
 import {useFetchTopGangs} from '@instinct-plugin/roleplay-web';
@@ -57,7 +57,7 @@ export function GangHighScores() {
             <div className="col-4">
               <GangScoreCard
                 header="Most Turfs"
-                headerIcon="cannabi"
+                headerIcon="exclamation-triangle"
                 gangs={gangHighScores.mostTurfs}
                 gangStat={_ => _.stats.turfs}
                 gangStatLabel="turfs"

@@ -19,6 +19,7 @@ export interface BusinessPositionDTO {
   maleUniform: string;
   femaleUniform: string;
   shiftWage: number;
+  openPositions: number;
 }
 
 export const exampleBusinessPositionDTO: BusinessPositionDTO = {
@@ -28,6 +29,7 @@ export const exampleBusinessPositionDTO: BusinessPositionDTO = {
   maleUniform: '',
   femaleUniform: '',
   shiftWage: 25,
+  openPositions: 0,
 };
 
 export const exampleBusinessDTO: BusinessDTO = {

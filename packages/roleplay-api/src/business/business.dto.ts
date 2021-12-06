@@ -59,4 +59,7 @@ class BusinessPositionDTO implements BusinessPositionDTOI {
 
   @IsNumber()
   shiftTime!: number;
+
+  @IsNumber()
+  openPositions!: number;
 }

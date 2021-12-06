@@ -34,6 +34,9 @@ export class BusinessPositionEntity {
   @Column({name: 'pay', type: 'int'})
   shiftWage!: number;
 
+  @Column({name: 'open_positions', type: 'int'})
+  openPositions!: number;
+
   @ManyToOne(() => BusinessEntity, business => business.positions)
   @JoinColumn({name: 'job'})
   business?: BusinessEntity;

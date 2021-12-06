@@ -1,33 +1,30 @@
 import {Col} from 'reactstrap';
 import React, {useState} from 'react';
-import {Icon} from '@instinct-web/core';
+import {Icon, Input, setURL} from '@instinct-web/core';
 import {Row} from '../../../components/generic/row/Row';
 import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
-import {useFetchAllBusinesses} from '@instinct-plugin/roleplay-web';
-import {BusinessCard} from '../../../components/templates/business-card';
 import {Container} from '../../../components/generic/container/Container';
+import {BusinessPositionCard} from './business-position-card/BusinessPositionCard';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
-
-import {Input, setURL} from '@instinct-web/core';
-import {NotAddedNotice} from '../../../components/templates/not-added-notice/NotAddedNotice';
+import {useFetchAllBusinesses, useFetchOpenPositions} from '@instinct-plugin/roleplay-web';
 
 setURL('businesses/jobs', <JobMarket />);
 
 export function JobMarket() {
   const businesses = useFetchAllBusinesses();
+  const positions = useFetchOpenPositions();
   const [filter, setFilter] = useState('');
 
-  const filteredBusinesses =
-    businesses?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
+  const isLoading = businesses === undefined || positions === undefined;
+
+  const filteredPositions =
+    positions?.filter(_ => _.name.toLowerCase().includes(filter)) ?? [];
 
   return (
     <UserLayout>
       <Container>
-        <Row>
-          <div className="col-12">
-            <NotAddedNotice />
-          </div>
+        <Row>>
           <div className="col-12">
             <MiniJumbotron>
               <h1>
@@ -46,33 +43,37 @@ export function JobMarket() {
             <Input
               value={filter}
               name="business_filter"
-              placeholder="Search businesses..."
+              placeholder="Search positions..."
               type="text"
               onChange={(key, value) => setFilter(value.toLowerCase())}
             />
           </div>
         </Row>
-        <Row>
-          {filteredBusinesses?.map(_ => (
-            <Col key={_.id} xs={6}>
-              <BusinessCard business={_} />
-            </Col>
-          ))}
-        </Row>
-        {(businesses?.length ?? 0) > 0 && filteredBusinesses.length === 0 && (
+        {
+          !isLoading && (
+            <Row>
+              {filteredPositions?.map(_ => (
+                <Col key={`position_${_.id}`} xs={6}>
+                  <BusinessPositionCard business={businesses.find(bus => bus.id === _.businessID)!} position={_} />
+                </Col>
+              ))}
+            </Row>
+          )
+        }
+        {(positions?.length ?? 0) > 0 && filteredPositions.length === 0 && (
           <div className="col-12">
             <Card className="text-center">
               <i className="fa fa-exclamation-circle fa-5x" />
-              <h3>No businesses match your criteria</h3>
+              <h3>No positions match your criteria</h3>
             </Card>
           </div>
         )}
-        {businesses?.length === 0 && (
+        {positions?.length === 0 && (
           <Row>
             <div className="col-12">
               <Card className="text-center">
                 <i className="fa fa-exclamation-circle fa-5x" />
-                <h3>There aren't any businesses to show at this time.</h3>
+                <h3>There aren't any open positions at this time.</h3>
               </Card>
             </div>
           </Row>

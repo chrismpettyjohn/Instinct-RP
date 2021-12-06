@@ -1,4 +1,5 @@
 import {BusinessEntity} from './business.entity';
+import {businessPositionWire} from './business-position.wire';
 import {Business, RPUser} from '@instinct-plugin/roleplay-types';
 
 export function businessWire(
@@ -14,18 +15,13 @@ export function businessWire(
     desc: entity.desc,
     badge: entity.badge,
     homeRoomID: entity.workRoom,
-    positions: entity.positions!.map(jobPosition => ({
-      id: jobPosition.jobRankID!,
-      businessID: jobPosition.jobID,
-      name: jobPosition.name,
-      employees: employees.filter(
-        jobEmployee => jobEmployee.rpStats.job!.positionID === jobPosition.id!
-      ),
-      order: jobPosition.id!,
-      governmentBranch: jobPosition.governmentBranch,
-      femaleUniform: jobPosition.femaleUniform,
-      maleUniform: jobPosition.maleUniform,
-      shiftWage: jobPosition.shiftWage,
-    })),
+    positions: entity.positions!.map(jobPosition =>
+      businessPositionWire(
+        jobPosition,
+        employees.filter(
+          jobEmployee => jobEmployee.rpStats.job!.positionID === jobPosition.id!
+        )
+      )
+    ),
   };
 }

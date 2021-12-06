@@ -45,6 +45,7 @@ export interface BusinessPosition {
   shiftWage: number;
   order: number;
   governmentBranch: GovernmentBranch;
+  openPositions: number;
 }
 
 export const exampleBusinessPosition: BusinessPosition = {
@@ -57,6 +58,7 @@ export const exampleBusinessPosition: BusinessPosition = {
   shiftWage: 20,
   order: 1,
   governmentBranch: GovernmentBranch.None,
+  openPositions: 0,
 };
 
 export const exampleBusiness: Business = {

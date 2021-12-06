@@ -2,9 +2,15 @@ import Moment from 'moment';
 import {take, orderBy} from 'lodash';
 import {HasSession} from '@instinct-api/session';
 import {RPUserService} from '../../user/user.service';
-import {CacheTTL, Controller, Get} from '@nestjs/common';
 import {rpUserWire} from '../../database/user/user.wire';
 import {RPUserRepository} from '../../database/user/user.repository';
+import {
+  CacheTTL,
+  Controller,
+  Get,
+  UseInterceptors,
+  CacheInterceptor,
+} from '@nestjs/common';
 import {
   Gang,
   GangHighScores,
@@ -22,6 +28,7 @@ const FOUR_HOURS = 3600 * 4;
 @Controller('high-scores')
 @HasSession()
 @CacheTTL(FOUR_HOURS)
+@UseInterceptors(CacheInterceptor)
 export class HighScoreController {
   constructor(
     private readonly userRepo: RPUserRepository,

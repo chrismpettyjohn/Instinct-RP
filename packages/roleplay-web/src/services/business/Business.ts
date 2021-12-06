@@ -1,7 +1,11 @@
 import {AxiosResponse} from 'axios';
 import {backendAPI} from '@instinct-web/core';
 import {BusinessService} from './Business.types';
-import {Business, BusinessDTO} from '@instinct-plugin/roleplay-types';
+import {
+  Business,
+  BusinessDTO,
+  BusinessPosition,
+} from '@instinct-plugin/roleplay-types';
 
 export class BusinessServiceImplementation implements BusinessService {
   async create(businessDTO: BusinessDTO) {
@@ -28,5 +32,11 @@ export class BusinessServiceImplementation implements BusinessService {
 
   async delete(businessID: string) {
     await backendAPI.delete(`businesses/${businessID}`);
+  }
+
+  async getOpenPositions() {
+    const openPositions: AxiosResponse<BusinessPosition[]> =
+      await backendAPI.get('business-positions');
+    return openPositions.data;
   }
 }

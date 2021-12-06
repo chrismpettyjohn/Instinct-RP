@@ -17,4 +17,8 @@ export class BusinessServiceMock implements BusinessService {
   async delete(businessID: string) {
     return;
   }
+
+  async geOpenPositions() {
+    return [];
+  }
 }

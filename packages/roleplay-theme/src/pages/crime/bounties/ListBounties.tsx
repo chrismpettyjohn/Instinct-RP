@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'wouter';
 import Moment from 'moment';
 import {Input} from 'reactstrap';
 import {Avatar, setURL, Icon} from '@instinct-web/core';
@@ -61,22 +62,28 @@ export function ListBounties() {
                     {filteredBounties.map(_ => (
                       <tr key={`bounty${_.id}`} style={{height: 55}}>
                         <td>
-                          <div className="d-flex" style={{marginTop: -15}}>
-                            <Avatar look={_.target.figure} headOnly />
-                            <h4 style={{marginTop: 20}}>{_.target.username}</h4>
-                          </div>
+                          <Link to={`/profile/${_.target.username}`}>
+                            <div className="d-flex" style={{marginTop: -15}}>
+                              <Avatar look={_.target.figure} headOnly />
+                              <h4 style={{marginTop: 20}}>
+                                {_.target.username}
+                              </h4>
+                            </div>
+                          </Link>
                         </td>
                         <td>
                           <Icon className="text-success" type="dollar-sign" />
                           {_.reward.toLocaleString()}
                         </td>
                         <td>
-                          <div className="d-flex" style={{marginTop: -15}}>
-                            <Avatar look={_.addedBy.figure} headOnly />
-                            <h4 style={{marginTop: 20}}>
-                              {_.addedBy.username}
-                            </h4>
-                          </div>
+                          <Link to={`/profile/${_.addedBy.username}`}>
+                            <div className="d-flex" style={{marginTop: -15}}>
+                              <Avatar look={_.addedBy.figure} headOnly />
+                              <h4 style={{marginTop: 20}}>
+                                {_.addedBy.username}
+                              </h4>
+                            </div>
+                          </Link>
                         </td>
                         <td>{Moment.unix(_.expiresAt).format('MM/DD/YYYY')}</td>
                       </tr>

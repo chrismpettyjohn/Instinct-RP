@@ -1,4 +1,4 @@
-import {RPUser} from '../user/User';
+import {RPUser} from './User';
 import {exampleUser} from '@instinct-prj/interface';
 
 export interface UserHighScores {

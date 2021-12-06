@@ -7,6 +7,13 @@ export interface Gang {
   badge: string;
   owner: RPUser;
   ranks: GangRank[];
+  stats: {
+    kills: number;
+    deaths: number;
+    score: number;
+    turfs: number;
+    heists: number;
+  };
 }
 
 export interface GangRank {
@@ -29,4 +36,11 @@ export const exampleGang: Gang = {
   badge: '',
   owner: exampleUser as any,
   ranks: [exampleGangRank],
+  stats: {
+    kills: 0,
+    deaths: 0,
+    score: 0,
+    turfs: 0,
+    heists: 0,
+  },
 };

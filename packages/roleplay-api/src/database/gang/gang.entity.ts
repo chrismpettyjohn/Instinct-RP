@@ -21,6 +21,9 @@ export class GangEntity {
   @Column({name: 'badge'})
   emblem!: string;
 
+  @Column({name: 'gang_stats', nullable: true})
+  stats!: string;
+
   @Column({name: 'owner_id'})
   userID!: number;
 

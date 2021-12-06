@@ -6,30 +6,36 @@ import {CacheTTL, Controller, Get} from '@nestjs/common';
 import {rpUserWire} from '../../database/user/user.wire';
 import {RPUserRepository} from '../../database/user/user.repository';
 import {
+  Gang,
+  GangHighScores,
   RPUser,
   UserHighScores,
   UserRPStats,
 } from '@instinct-plugin/roleplay-types';
+import {GangRepository} from '../../database/gang';
+import {GangService} from '../../gang/gang.service';
+
+const USERS_TO_SELECT = 10;
 
 const FOUR_HOURS = 3600 * 4;
 
 @Controller('high-scores')
 @HasSession()
+@CacheTTL(FOUR_HOURS)
 export class HighScoreController {
   constructor(
     private readonly userRepo: RPUserRepository,
-    private readonly rpUserService: RPUserService
+    private readonly rpUserService: RPUserService,
+    private readonly gangRepo: GangRepository,
+    private readonly gangService: GangService
   ) {}
 
   @Get('users')
-  @CacheTTL(FOUR_HOURS)
   async getUserHighScores(): Promise<UserHighScores> {
     const allUsers = await this.userRepo.getAll();
     const rpUsers = await Promise.all(
       allUsers.map(_ => this.rpUserService.getRPStatsForUser(_))
     );
-
-    const USERS_TO_SELECT = 10;
 
     function rpStatsToUserWire(rpStats: UserRPStats, index: number): RPUser {
       return rpUserWire(allUsers[index]!, rpStats);
@@ -81,7 +87,40 @@ export class HighScoreController {
   }
 
   @Get('gangs')
-  async getGangHighScores() {
-    return 'helloooo';
+  async getGangHighScores(): Promise<GangHighScores> {
+    const allGangs = await this.gangRepo.find();
+    const gangWires: Gang[] = await Promise.all(
+      allGangs.map(this.gangService.getWire)
+    );
+    const [mostKills, mostDeaths, highestScore, mostTurfs, mostHeists] = [
+      take(
+        orderBy(gangWires, _ => _.stats.kills, 'desc'),
+        USERS_TO_SELECT
+      ),
+      take(
+        orderBy(gangWires, _ => _.stats.deaths, 'desc'),
+        USERS_TO_SELECT
+      ),
+      take(
+        orderBy(gangWires, _ => _.stats.score, 'desc'),
+        USERS_TO_SELECT
+      ),
+      take(
+        orderBy(gangWires, _ => _.stats.turfs, 'desc'),
+        USERS_TO_SELECT
+      ),
+      take(
+        orderBy(gangWires, _ => _.stats.heists, 'desc'),
+        USERS_TO_SELECT
+      ),
+    ];
+    return {
+      mostKills,
+      mostDeaths,
+      highestScore,
+      mostTurfs,
+      mostHeists,
+      timestamp: Moment().unix(),
+    };
   }
 }

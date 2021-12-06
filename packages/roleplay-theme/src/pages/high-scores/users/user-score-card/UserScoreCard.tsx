@@ -24,19 +24,21 @@ export function UserScoreCard({
   return (
     <Card header={getHeader()}>
       {users.map(user => (
-        <div className="top-user-container" key={`top_user_${user.id}`}>
-          <div className="row">
-            <div className="col-4">
-              <Avatar look={user.figure} headOnly />
-            </div>
-            <div className="col-8 text-right">
-              <h3>{user.username}</h3>
-              <h5 style={{marginTop: -10}}>
-                <b>{userStat(user)}</b> {userStatLabel}
-              </h5>
+        <Link key={`top_user_${user.id}`} to={`/profile/${user.username}`}>
+          <div className="top-user-container" style={{cursor: 'pointer'}}>
+            <div className="row">
+              <div className="col-4">
+                <Avatar look={user.figure} headOnly />
+              </div>
+              <div className="col-8 text-right">
+                <h3>{user.username}</h3>
+                <h5 style={{marginTop: -10}}>
+                  <b>{userStat(user)}</b> {userStatLabel}
+                </h5>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </Card>
   );

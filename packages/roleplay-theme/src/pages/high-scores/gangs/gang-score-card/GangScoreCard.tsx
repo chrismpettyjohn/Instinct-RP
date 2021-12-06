@@ -1,7 +1,8 @@
+import {Link} from 'wouter';
 import React, {useContext} from 'react';
 import {Icon, configContext} from '@instinct-web/core';
-import {Card} from '../../../../components/generic/card/Card';
 import {GangScoreCardProps} from './GangScoreCard.types';
+import {Card} from '../../../../components/generic/card/Card';
 
 export function GangScoreCard({
   gangs,
@@ -26,22 +27,26 @@ export function GangScoreCard({
   return (
     <Card header={getHeader()}>
       {gangs.map(gang => (
-        <div className="top-user-container" key={`top_gang_${gang.id}`}>
-          <div className="row">
-            <div className="col-4">
-              <img
-                src={`${config.swfBadgeURL}/${gang.badge}.gif`}
-                onError={(event: any) => (event.target.style.display = 'none')}
-              />
-            </div>
-            <div className="col-8 text-right">
-              <h3>{gang.name}</h3>
-              <h5 style={{marginTop: -10}}>
-                <b>{gangStat(gang)}</b> {gangStatLabel}
-              </h5>
+        <Link key={`top_gang_${gang.id}`} to={`/gangs/view/${gang.id}`}>
+          <div className="top-user-container" style={{cursor: 'pointer'}}>
+            <div className="row">
+              <div className="col-4">
+                <img
+                  src={`${config.swfBadgeURL}/${gang.badge}.gif`}
+                  onError={(event: any) =>
+                    (event.target.style.display = 'none')
+                  }
+                />
+              </div>
+              <div className="col-8 text-right">
+                <h3>{gang.name}</h3>
+                <h5 style={{marginTop: -10}}>
+                  <b>{gangStat(gang)}</b> {gangStatLabel}
+                </h5>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </Card>
   );

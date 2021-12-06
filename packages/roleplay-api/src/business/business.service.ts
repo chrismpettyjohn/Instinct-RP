@@ -7,7 +7,7 @@ import {rpUserWire} from '../database/user/user.wire';
 import {RPUserEntityStruct} from '../database/user/user.types';
 import {RPUserRepository} from '../database/user/user.repository';
 import {BusinessEntity} from '../database/business/business.entity';
-import {BusinessPositionEntity} from '@instinct-plugin/roleplay-api';
+import {BusinessPositionEntity} from '../database/business/business-position.entity';
 
 @Injectable()
 export class BusinessService {

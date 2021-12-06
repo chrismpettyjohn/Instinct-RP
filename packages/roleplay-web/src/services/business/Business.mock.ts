@@ -18,7 +18,7 @@ export class BusinessServiceMock implements BusinessService {
     return;
   }
 
-  async geOpenPositions() {
+  async getOpenPositions() {
     return [];
   }
 }

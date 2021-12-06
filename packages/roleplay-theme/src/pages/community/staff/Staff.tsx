@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Row} from '../../../components/generic/row/Row';
-import {setURL, Skeleton, Icon} from '@instinct-web/core';
 import {UserLayout} from '../../../components/layout/user';
 import {Card} from '../../../components/generic/card/Card';
 import {useFetchRPStaff} from '@instinct-plugin/roleplay-web';
+import {setURL, Skeleton, Icon, configContext} from '@instinct-web/core';
 import {Container} from '../../../components/generic/container/Container';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
 import {UserContainer} from '../../../components/templates/user-container/UserContainer';
@@ -12,6 +12,7 @@ setURL('community/staff', <Staff />);
 
 export function Staff() {
   const staff = useFetchRPStaff();
+  const {config} = useContext(configContext);
 
   return (
     <UserLayout section="community_team">
@@ -45,11 +46,24 @@ export function Staff() {
           {staff !== undefined ? (
             staff!.map(rank => (
               <div className="col-6" key={rank.id} style={{marginBottom: 20}}>
-                <Card key={rank.id} header={rank.name}>
-                  <b className="text-info">
-                    <Icon type="info-circle" /> What we Do:
-                  </b>
-                  <p>{(rank as any).desc}</p>
+                <Card
+                  key={rank.id}
+                  header={
+                    <>
+                      <img
+                        className="mr-2"
+                        src={`${config.rankBadgeURL}/${rank.badge}.gif`}
+                        height={50}
+                        width={50}
+                      />{' '}
+                      {rank.name}
+                    </>
+                  }
+                >
+                  <p style={{marginLeft: 60, marginTop: -20}}>
+                    <Icon className="text-info mr-2" type="info-circle" />
+                    {(rank as any).desc}
+                  </p>
                   {rank.users!.map(user => (
                     <div key={user.id} className="mt-4">
                       <UserContainer

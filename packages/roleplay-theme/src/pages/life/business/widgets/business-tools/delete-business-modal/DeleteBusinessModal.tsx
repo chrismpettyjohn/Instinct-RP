@@ -1,13 +1,12 @@
 import {useLocation} from 'wouter';
 import {toast} from 'react-toastify';
-import React, {useContext, useState} from 'react';
-import {Icon, sessionContext} from '@instinct-web/core';
+import React, {useState} from 'react';
+import {Icon} from '@instinct-web/core';
 import {BusinessToolsProps} from '../BusinessTools.types';
 import {businessService} from '@instinct-plugin/roleplay-web';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 export function DeleteBusinessModal({business}: BusinessToolsProps) {
-  const {user} = useContext(sessionContext);
   const [spinner, setSpinner] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useLocation();
@@ -27,10 +26,6 @@ export function DeleteBusinessModal({business}: BusinessToolsProps) {
     } finally {
       setSpinner(false);
     }
-  }
-
-  if (business.owner.id !== user!.id) {
-    return null;
   }
 
   return (

@@ -72,9 +72,7 @@ export function BusinessPage() {
                 />
               </div>
             </Card>
-            <Card className="text-center" header="Business Tools">
-              <BusinessTools business={business} />
-            </Card>
+            <BusinessTools business={business} />
           </Col>
           <Col xs={9}>
             {business.positions.map(position => (

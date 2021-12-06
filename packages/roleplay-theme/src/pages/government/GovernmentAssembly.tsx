@@ -37,7 +37,14 @@ export function GovernmentAssembly() {
 
   return (
     <UserLayout section="games_ranking">
-      <Container>
+      <Container
+        style={{
+          background: '#4A148C',
+          boxShadow: '#212121 6px 6px',
+          marginTop: '2%',
+          padding: '2%',
+        }}
+      >
         <Row>
           <div className="col-12">
             <MiniJumbotron>

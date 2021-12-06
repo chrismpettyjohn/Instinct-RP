@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'wouter';
 import {Avatar, Icon} from '@instinct-web/core';
 import {UserScoreCardProps} from './UserScoreCard.types';
 import {Card} from '../../../../components/generic/card/Card';

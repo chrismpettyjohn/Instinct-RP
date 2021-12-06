@@ -52,6 +52,14 @@ export function JobMarket() {
             />
           </div>
         </Row>
+        {isLoading && (
+          <Row>
+            <div className="col-12 d-flex text-white text-uppercase">
+              <Icon className="fa-3x fa-spin mr-4" type="spinner" />
+              <h2 className="pt-2">Fetching positions...</h2>
+            </div>
+          </Row>
+        )}
         {!isLoading && (
           <Row>
             {filteredPositions?.map(_ => (

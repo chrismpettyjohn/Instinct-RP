@@ -10,4 +10,5 @@ export interface BusinessService {
   getByID(businessID: string): Promise<Business>;
   delete(businessID: string): Promise<void>;
   getOpenPositions(): Promise<BusinessPosition[]>;
+  acceptOpenPosition(positionID: string): void;
 }

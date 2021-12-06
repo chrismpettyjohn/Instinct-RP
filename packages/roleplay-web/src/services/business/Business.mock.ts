@@ -21,4 +21,6 @@ export class BusinessServiceMock implements BusinessService {
   async getOpenPositions() {
     return [];
   }
+
+  async acceptOpenPosition(positionID: string) {}
 }

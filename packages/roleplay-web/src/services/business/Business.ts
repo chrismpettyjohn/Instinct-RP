@@ -39,4 +39,8 @@ export class BusinessServiceImplementation implements BusinessService {
       await backendAPI.get('business-positions');
     return openPositions.data;
   }
+
+  async acceptOpenPosition(positionID: string) {
+    await backendAPI.post(`business-positions/${positionID}/accept`);
+  }
 }

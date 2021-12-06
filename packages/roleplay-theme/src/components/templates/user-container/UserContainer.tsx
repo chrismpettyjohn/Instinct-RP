@@ -61,9 +61,7 @@ export function UserContainer({
                 {user.rpStats.job ? (
                   <b>
                     {user.rpStats.job.positionName} @{' '}
-                    <Link
-                      to={`/businesses/view/${user.rpStats.job.businessID}`}
-                    >
+                    <Link to={`/businesses/${user.rpStats.job.businessID}`}>
                       {user.rpStats.job.businessName}
                     </Link>
                   </b>

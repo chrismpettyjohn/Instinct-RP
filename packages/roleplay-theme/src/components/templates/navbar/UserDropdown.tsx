@@ -28,6 +28,7 @@ export function UserDropdown() {
         <NavBarChildLink to={`/profile/${user.username}`}>
           My Profile
         </NavBarChildLink>
+        <NavBarChildLink to="/vibe-of-the-week">Vibez</NavBarChildLink>
         <NavBarChildLink to="/logout">Logout</NavBarChildLink>
         {user.rank?.permissions.websiteShowAdminPanel && (
           <>

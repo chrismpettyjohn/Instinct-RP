@@ -7,7 +7,10 @@ import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
 import {BusinessPositionCard} from './business-position-card/BusinessPositionCard';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
-import {useFetchAllBusinesses, useFetchOpenPositions} from '@instinct-plugin/roleplay-web';
+import {
+  useFetchAllBusinesses,
+  useFetchOpenPositions,
+} from '@instinct-plugin/roleplay-web';
 
 setURL('businesses/jobs', <JobMarket />);
 
@@ -24,7 +27,7 @@ export function JobMarket() {
   return (
     <UserLayout>
       <Container>
-        <Row>>
+        <Row>
           <div className="col-12">
             <MiniJumbotron>
               <h1>
@@ -49,17 +52,18 @@ export function JobMarket() {
             />
           </div>
         </Row>
-        {
-          !isLoading && (
-            <Row>
-              {filteredPositions?.map(_ => (
-                <Col key={`position_${_.id}`} xs={6}>
-                  <BusinessPositionCard business={businesses.find(bus => bus.id === _.businessID)!} position={_} />
-                </Col>
-              ))}
-            </Row>
-          )
-        }
+        {!isLoading && (
+          <Row>
+            {filteredPositions?.map(_ => (
+              <Col key={`position_${_.id}`} xs={6}>
+                <BusinessPositionCard
+                  business={businesses.find(bus => bus.id === _.businessID)!}
+                  position={_}
+                />
+              </Col>
+            ))}
+          </Row>
+        )}
         {(positions?.length ?? 0) > 0 && filteredPositions.length === 0 && (
           <div className="col-12">
             <Card className="text-center">

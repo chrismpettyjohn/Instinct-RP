@@ -10,14 +10,6 @@ export class PoliticalPartyMemberRepository extends BaseRepository<PoliticalPart
     @InjectRepository(PoliticalPartyMemberEntity)
     politicalPartyMemberRepo: Repository<PoliticalPartyMemberEntity>
   ) {
-    super(politicalPartyMemberRepo, [
-      'user',
-      'user.rank',
-      'user.rpStats',
-      'members',
-      'members.user',
-      'members.user.user',
-      'members.user.user.rank',
-    ]);
+    super(politicalPartyMemberRepo, []);
   }
 }

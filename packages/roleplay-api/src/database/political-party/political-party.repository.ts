@@ -13,7 +13,6 @@ export class PoliticalPartyRepository extends BaseRepository<PoliticalPartyEntit
     super(politicalPartyRepo, [
       'user',
       'user.rank',
-      'user.rpStats',
       'members',
       'members.user',
       'members.user.user',

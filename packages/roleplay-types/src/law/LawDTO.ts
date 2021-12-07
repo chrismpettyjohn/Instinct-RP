@@ -1,4 +1,4 @@
-import {LawVoteStatus} from './Law';
+import {LawPresidentialStatus, LawVoteStatus} from './Law';
 
 export interface LawDTO {
   title: string;
@@ -8,4 +8,8 @@ export interface LawDTO {
 
 export interface LawVoteDTO {
   status: LawVoteStatus;
+}
+
+export interface LawPresidentialDecisionDTO {
+  decision: 'approved' | 'rejected';
 }

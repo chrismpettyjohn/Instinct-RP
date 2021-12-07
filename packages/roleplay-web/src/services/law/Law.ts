@@ -1,7 +1,12 @@
 import {AxiosResponse} from 'axios';
 import {LawService} from './Law.types';
 import {backendAPI} from '@instinct-web/core';
-import {Law, LawDTO, LawVoteDTO} from '@instinct-plugin/roleplay-types';
+import {
+  Law,
+  LawDTO,
+  LawPresidentialDecisionDTO,
+  LawVoteDTO,
+} from '@instinct-plugin/roleplay-types';
 
 export class LawServiceImplementation implements LawService {
   async getAll() {
@@ -41,5 +46,15 @@ export class LawServiceImplementation implements LawService {
 
   async stopVotingByID(lawID: number) {
     await backendAPI.post(`laws/${lawID}/voting/stop`);
+  }
+
+  async givePresidentialReview(
+    lawID: number,
+    presidentialReview: LawPresidentialDecisionDTO
+  ) {
+    await backendAPI.post(
+      `laws/${lawID}/presidential-review`,
+      presidentialReview
+    );
   }
 }

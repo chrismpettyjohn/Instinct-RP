@@ -30,7 +30,7 @@ export function VoteOnLawModal({
   }
 
   return (
-    <RPPermissionGuard permission="websiteVoteOnLaws">
+    <RPPermissionGuard permission="websiteVoteOnLaws" redirect={false}>
       <Modal isOpen={isOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Confirmation</ModalHeader>
         <ModalBody>

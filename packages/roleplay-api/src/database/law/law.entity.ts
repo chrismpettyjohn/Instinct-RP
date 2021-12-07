@@ -9,9 +9,12 @@ import {
   JoinColumn,
 } from 'typeorm';
 import {RPUserEntity} from '../user/user.entity';
-import {RPUserEntityStruct} from '../user/user.types';
-import {LawStatus} from '@instinct-plugin/roleplay-types';
 import {LawEventEntity} from './law-event.entity';
+import {RPUserEntityStruct} from '../user/user.types';
+import {
+  LawStatus,
+  LawPresidentialStatus,
+} from '@instinct-plugin/roleplay-types';
 
 @Entity('instinct_rp_laws')
 export class LawEntity {
@@ -37,14 +40,20 @@ export class LawEntity {
   @Column({type: 'enum'})
   status!: LawStatus;
 
+  @Column({name: 'presidential_status'})
+  presidentialStatus!: LawPresidentialStatus;
+
   @Column({name: 'created_at', type: 'int'})
   createdAt!: number;
 
   @Column({name: 'updated_at', type: 'int'})
   updatedAt!: number;
 
-  @Column({name: 'enacted_at', type: 'int'})
+  @Column({name: 'enacted_at', type: 'int', nullable: true})
   enactedAt?: number;
+
+  @Column({name: 'presidential_timestamp', type: 'int', nullable: true})
+  presidentialTimestamp?: number;
 
   @OneToMany(() => LawVoteEntity, lawVote => lawVote.law)
   votes?: LawVoteEntity[];

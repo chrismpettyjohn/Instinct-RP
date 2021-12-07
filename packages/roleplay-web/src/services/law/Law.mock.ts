@@ -1,5 +1,10 @@
 import {LawService} from './Law.types';
-import {exampleLaw, LawDTO, LawVoteDTO} from '@instinct-plugin/roleplay-types';
+import {
+  exampleLaw,
+  LawDTO,
+  LawPresidentialDecisionDTO,
+  LawVoteDTO,
+} from '@instinct-plugin/roleplay-types';
 
 export class LawServiceMock implements LawService {
   async getAll() {
@@ -28,4 +33,9 @@ export class LawServiceMock implements LawService {
   async openVotingByID(lawID: number) {}
 
   async stopVotingByID(lawID: number) {}
+
+  async givePresidentialReview(
+    lawID: number,
+    presidentialReview: LawPresidentialDecisionDTO
+  ) {}
 }

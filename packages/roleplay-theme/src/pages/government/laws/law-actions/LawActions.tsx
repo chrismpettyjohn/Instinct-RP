@@ -4,11 +4,12 @@ import React, {ReactNode, useContext} from 'react';
 import {LawActionsProps} from './LawActions.types';
 import {Icon, sessionContext} from '@instinct-web/core';
 import {VoteOnLawModal} from './vote-on-law-modal/VoteOnLawModal';
-import {OpenVotingModal} from './open-voting-modal/OpenVotingModal';
 import {DismissLawModal} from './dismiss-law-modal/DismissLawModal';
+import {OpenVotingModal} from './open-voting-modal/OpenVotingModal';
+import {CloseVotingModal} from './close-voting-modal/CloseVotingModal';
 import {LawStatus, LawVoteStatus} from '@instinct-plugin/roleplay-types';
 import {RPPermissionGuard} from '../../../../components/templates/permission-guard';
-import {CloseVotingModal} from './close-voting-modal/CloseVotingModal';
+import {PresidentialReviewModal} from './presidential-review-modal/PresidentialReviewModal';
 
 export function LawActions({law, onChange}: LawActionsProps) {
   const {user} = useContext(sessionContext);
@@ -53,6 +54,7 @@ export function LawActions({law, onChange}: LawActionsProps) {
       <div className="col-6" style={{borderRight: '1px solid white'}}>
         <h4>Voting</h4>
         {lawStatusToActions[law.status]}
+        <PresidentialReviewModal law={law} onFinish={onChange} />
       </div>
       <div className="col-6">
         <h4>Other</h4>

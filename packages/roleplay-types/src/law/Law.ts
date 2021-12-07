@@ -14,6 +14,15 @@ export interface Law {
   createdAt: number;
   updatedAt: number;
   enactedAt?: number;
+  presidentialStatus: LawPresidentialStatus;
+  presidentialTimestamp?: number;
+}
+
+export enum LawPresidentialStatus {
+  NotValid = 'not_valid',
+  Pending = 'pending',
+  Rejected = 'rejected',
+  Approved = 'approved',
 }
 
 export enum LawStatus {
@@ -66,4 +75,5 @@ export const exampleLaw: Law = {
   votes: [],
   comments: [],
   events: [],
+  presidentialStatus: LawPresidentialStatus.NotValid,
 };

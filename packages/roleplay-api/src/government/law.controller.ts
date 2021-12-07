@@ -1,9 +1,17 @@
 import Moment from 'moment';
 import {LawService} from './law.service';
-import {LawDTOImplementation} from './law.dto';
+import {
+  LawDTOImplementation,
+  LawPresidentialDecisionDTOImplementation,
+} from './law.dto';
 import {lawWire} from '../database/law/law.wire';
 import {GetSession, HasSession} from '@instinct-api/session';
-import {Law, LawStatus, LawVoteStatus} from '@instinct-plugin/roleplay-types';
+import {
+  Law,
+  LawPresidentialStatus,
+  LawStatus,
+  LawVoteStatus,
+} from '@instinct-plugin/roleplay-types';
 import {LawRepository} from '../database/law/law.repository';
 import {RPUserEntityStruct} from '../database/user/user.types';
 import {HasRPScope} from '../session/permission-scope.decorator';
@@ -157,7 +165,7 @@ export class LawController {
       {id: law.id!},
       {
         status: isApproved ? LawStatus.Approved : LawStatus.Rejected,
-        enactedAt: isApproved ? Moment().unix() : undefined,
+        presidentialStatus: LawPresidentialStatus.Pending,
       }
     );
     await this.lawService.registerEvent(
@@ -198,6 +206,32 @@ export class LawController {
       `${session.username} (${session.rank!.name}) voted ${
         lawVoteDTO.status === LawVoteStatus.Approved ? 'aye' : 'nay'
       }`
+    );
+  }
+
+  @Post(':lawID/presidential-review')
+  @HasRPScope('websiteHasPresidentialPower')
+  async givePresidentialReviewOnLaw(
+    @Param('lawID', LawPipe) law: LawEntity,
+    @GetSession() session: RPUserEntityStruct,
+    @Body() {decision}: LawPresidentialDecisionDTOImplementation
+  ) {
+    if (law.presidentialStatus !== LawPresidentialStatus.Pending) {
+      throw new BadRequestException(
+        'This law has already been reviewed by the president'
+      );
+    }
+
+    await this.lawVoteRepo.update(
+      {id: law.id!},
+      {
+        presidentialStatus:
+          decision === 'approved'
+            ? LawPresidentialStatus.Approved
+            : LawPresidentialStatus.Rejected,
+        presidentialTimestamp: Moment().unix(),
+        enactedAt: decision === 'approved' ? Moment().unix() : undefined,
+      }
     );
   }
 

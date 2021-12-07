@@ -1,5 +1,8 @@
 import {IsString} from 'class-validator';
-import {LawDTO} from '@instinct-plugin/roleplay-types';
+import {
+  LawDTO,
+  LawPresidentialDecisionDTO,
+} from '@instinct-plugin/roleplay-types';
 
 export class LawDTOImplementation implements LawDTO {
   @IsString()
@@ -10,4 +13,11 @@ export class LawDTOImplementation implements LawDTO {
 
   @IsString()
   content!: string;
+}
+
+export class LawPresidentialDecisionDTOImplementation
+  implements LawPresidentialDecisionDTO
+{
+  @IsString()
+  decision!: 'approved' | 'rejected';
 }

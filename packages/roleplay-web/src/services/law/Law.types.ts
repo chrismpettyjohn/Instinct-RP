@@ -1,4 +1,9 @@
-import {Law, LawDTO, LawVoteDTO} from '@instinct-plugin/roleplay-types';
+import {
+  Law,
+  LawDTO,
+  LawPresidentialDecisionDTO,
+  LawVoteDTO,
+} from '@instinct-plugin/roleplay-types';
 
 export interface LawService {
   getAll(): Promise<Law[]>;
@@ -9,4 +14,8 @@ export interface LawService {
   voteByID(lawID: number, lawVoteDTO: LawVoteDTO): Promise<void>;
   openVotingByID(lawID: number): Promise<void>;
   stopVotingByID(lawID: number): Promise<void>;
+  givePresidentialReview(
+    lawID: number,
+    presidentialReview: LawPresidentialDecisionDTO
+  ): Promise<void>;
 }

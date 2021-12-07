@@ -11,6 +11,8 @@ export function lawWire(lawEntity: LawEntity, users: RPUser[]): Law {
     createdAt: lawEntity.createdAt,
     updatedAt: lawEntity.updatedAt,
     enactedAt: lawEntity.enactedAt,
+    presidentialStatus: lawEntity.presidentialStatus,
+    presidentialTimestamp: lawEntity.presidentialTimestamp,
     user: users.find(_ => _.id === lawEntity.userID)!,
     votes: lawEntity.votes!.map(lawVote => {
       const user = users.find(_ => _.id === lawVote.userID)!;

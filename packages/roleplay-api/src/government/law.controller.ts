@@ -62,6 +62,7 @@ export class LawController {
       status: LawStatus.Draft,
       createdAt: Moment().unix(),
       updatedAt: Moment().unix(),
+      presidentialStatus: LawPresidentialStatus.NotValid,
     });
 
     const users = await this.lawService.getUsersForLaw({
@@ -230,8 +231,17 @@ export class LawController {
             ? LawPresidentialStatus.Approved
             : LawPresidentialStatus.Rejected,
         presidentialTimestamp: Moment().unix(),
+        status:
+          decision === 'approved' ? LawStatus.Approved : LawStatus.Rejected,
         enactedAt: decision === 'approved' ? Moment().unix() : undefined,
       }
+    );
+
+    await this.lawService.registerEvent(
+      law.id!,
+      `President ${session.username} has made their decision to ${
+        decision === 'approved' ? 'enact' : 'veto'
+      } this bill`
     );
   }
 

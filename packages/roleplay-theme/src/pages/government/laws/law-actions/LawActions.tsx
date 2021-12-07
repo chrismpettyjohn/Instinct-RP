@@ -43,7 +43,7 @@ export function LawActions({law, onChange}: LawActionsProps) {
         </VoteOnLawModal>
       </div>
     ) : (
-      <p>You already voted on this law</p>
+      ''
     ),
     [LawStatus.Approved]: <p>Voting for this law has finished</p>,
     [LawStatus.Rejected]: <p>Voting for this law has finished</p>,

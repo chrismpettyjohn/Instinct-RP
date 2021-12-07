@@ -145,13 +145,10 @@ export function LawDirectory() {
                   </div>
                   <div className="ml-4">
                     <h4>
-                      Type: <b>General Bill</b>{' '}
-                    </h4>
-                    <h4>
                       Proposed By: <b>{bill.user.username}</b>
                     </h4>
                     <h4>
-                      Status: <b>{getPrettyLawStatus(bill.status)}</b>
+                      Status: <b>{getPrettyLawStatus(bill)}</b>
                     </h4>
                   </div>
                 </div>

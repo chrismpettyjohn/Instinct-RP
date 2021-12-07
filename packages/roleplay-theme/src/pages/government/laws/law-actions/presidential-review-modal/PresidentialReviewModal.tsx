@@ -103,9 +103,9 @@ export function PresidentialReviewModal({
           </ModalFooter>
         </Modal>
       )}
-      <button className="btn btn-block btn-success" onClick={toggleModal}>
+      <button className="btn btn-outline-info" onClick={toggleModal}>
         <Icon type="gavel" />
-        Presidential Decision
+        Give Presidential Decision
       </button>
     </RPPermissionGuard>
   );

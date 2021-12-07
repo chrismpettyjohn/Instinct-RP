@@ -9,9 +9,12 @@ import {Card} from '../../../components/generic/card/Card';
 import {UserLayout} from '../../../components/layout/user';
 import {useFetchLawByID} from '@instinct-plugin/roleplay-web';
 import {Container} from '../../../components/generic/container/Container';
-import {LawVoteStatus} from '@instinct-plugin/roleplay-types';
+import {
+  LawPresidentialStatus,
+  LawVoteStatus,
+} from '@instinct-plugin/roleplay-types';
 import {LawActions} from './law-actions/LawActions';
-import {getPrettyLawStatus} from './bill.const';
+import {getPrettyLawStatus, getPrettyPresidentialStatus} from './bill.const';
 
 setURL('government/laws/view/:lawID', <LawView />);
 
@@ -46,7 +49,7 @@ export function LawView() {
           </div>
           <div className="col-4 text-right">
             <h3 className="mt-3">
-              <b>{law?.status ? getPrettyLawStatus(law.status) : ''}</b>
+              <b>{law?.status ? getPrettyLawStatus(law) : ''}</b>
             </h3>
           </div>
         </Row>
@@ -56,16 +59,38 @@ export function LawView() {
               <Card className="mb-4">
                 <div className="row">
                   <div className="col-4 mb-4">
-                    <h4>Type:</h4>
-                    <p>General Bill</p>
-                  </div>
-                  <div className="col-4 mb-4">
                     <h4>Long Title:</h4>
                     <p>{law.description}</p>
                   </div>
                   <div className="col-4 mb-4">
+                    <h4>Presidential Status:</h4>
+                    <p>{getPrettyPresidentialStatus(law)}</p>
+                  </div>
+                  <div className="col-4 mb-4">
+                    <h4>President Voted On:</h4>
+                    <p>
+                      {law.presidentialTimestamp
+                        ? Moment.unix(law.presidentialTimestamp).format(
+                            'MMM DD, YYYY'
+                          )
+                        : 'N/A'}
+                    </p>
+                  </div>
+                  <div className="col-4 mb-4">
                     <h4>Effective Date:</h4>
-                    <p>N/A</p>
+                    <p>
+                      {law.enactedAt
+                        ? Moment.unix(law.enactedAt).format('MMM DD, YYYY')
+                        : 'N/A'}
+                    </p>
+                  </div>
+                  <div className="col-4 mb-4">
+                    <h4>Voted "Aye"</h4>
+                    {ayeVotes?.length}
+                  </div>
+                  <div className="col-4 mb-4">
+                    <h4>Voted "Nay"</h4>
+                    {nayVotes?.length}
                   </div>
                   <div className="col-4 mb-4">
                     <h4>Supporter</h4>
@@ -87,14 +112,6 @@ export function LawView() {
                         <p>{law.user.rank.name}</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-4 mb-4">
-                    <h4>Voted "Aye"</h4>
-                    {ayeVotes?.length}
-                  </div>
-                  <div className="col-4 mb-4">
-                    <h4>Voted "Nay"</h4>
-                    {nayVotes?.length}
                   </div>
                 </div>
               </Card>

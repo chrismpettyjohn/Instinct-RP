@@ -1,6 +1,6 @@
 import Moment from 'moment';
-import {GetSession, HasSession} from '@instinct-api/session';
 import {PoliticalPartyPipe} from './political-party.pipe';
+import {GetSession, HasSession} from '@instinct-api/session';
 import {RPUserEntityStruct} from '../database/user/user.types';
 import {PoliticalPartyService} from './political-party.service';
 import {HasRPScope} from '../session/permission-scope.decorator';
@@ -17,6 +17,7 @@ import {
   Param,
   Patch,
   Post,
+  BadRequestException,
   UnauthorizedException,
 } from '@nestjs/common';
 import {PoliticalPartyMemberRepository} from '../database/political-party/political-party-member.repository';
@@ -58,12 +59,22 @@ export class PoliticalPartyController {
     @Body() politicalPartyDTO: PoliticalPartyDTOImplementation,
     @GetSession() session: RPUserEntityStruct
   ): Promise<PoliticalParty> {
+    const existingOwnedPoliticalParty = await this.politicalPartyRepo.findOne({
+      userID: session.id!,
+    });
+
+    if (existingOwnedPoliticalParty) {
+      throw new BadRequestException('You already own a political party');
+    }
+
     const newPoliticalParty = await this.politicalPartyRepo.create({
       ...politicalPartyDTO,
       userID: session.id!,
       createdAt: Moment().unix(),
       updatedAt: Moment().unix(),
     });
+
+    await this.politicalPartyMemberRepo.delete({userID: session.id!});
 
     await this.politicalPartyMemberRepo.create({
       politicalPartyID: newPoliticalParty.id!,

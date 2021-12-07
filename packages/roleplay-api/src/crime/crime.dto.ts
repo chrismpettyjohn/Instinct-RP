@@ -8,6 +8,9 @@ export class CrimeDTOImplementation implements CrimeDTO {
   @IsString()
   aliases!: string;
 
+  @IsString()
+  description!: string;
+
   @IsNumber()
   jailTimeInMinutes!: number;
 

@@ -19,6 +19,9 @@ export class CrimeEntity {
   name!: string;
 
   @Column()
+  description!: string;
+
+  @Column()
   aliases!: string;
 
   @Column({name: 'jail_time', type: 'int'})

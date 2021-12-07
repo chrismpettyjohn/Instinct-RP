@@ -8,6 +8,7 @@ import {UserLayout} from '../../../components/layout/user';
 import {Container} from '../../../components/generic/container/Container';
 import {useFetchAllCrimes, useFilter} from '@instinct-plugin/roleplay-web';
 import {MiniJumbotron} from '../../../components/generic/mini-jumbotron/MiniJumbotron';
+import {CrimeDetailsModal} from './crime-details-modal/CrimeDetailsModal';
 
 setURL('crimes', <ListCrimes />);
 
@@ -63,7 +64,9 @@ export function ListCrimes() {
                     {orderBy(filteredCrimes, _ => _.jailTimeInMinutes).map(
                       _ => (
                         <tr key={`crime_${_.id}`}>
-                          <td>{_.name}</td>
+                          <td>
+                            <CrimeDetailsModal crime={_} />
+                          </td>
                           <td>
                             {_.ticketable ? (
                               <>

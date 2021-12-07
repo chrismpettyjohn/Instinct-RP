@@ -6,6 +6,7 @@ export function crimeWire(entity: CrimeEntity): Crime {
     id: entity.id!,
     name: entity.name,
     aliases: entity.aliases,
+    description: entity.description,
     jailTimeInMinutes: entity.jailTimeInMinutes,
     ticketable: entity.ticketable === CrimeTicketable.Yes,
     ticketCost: entity.ticketCost,

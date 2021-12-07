@@ -1,6 +1,7 @@
 export interface Crime {
   id: number;
   name: string;
+  description: string;
   aliases: string;
   jailTimeInMinutes: number;
   ticketable: boolean;
@@ -11,6 +12,7 @@ export interface Crime {
 export const exampleCrime: Crime = {
   id: 1,
   name: '',
+  description: '',
   aliases: '',
   jailTimeInMinutes: 0,
   ticketable: false,

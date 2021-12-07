@@ -222,7 +222,7 @@ export class LawController {
       );
     }
 
-    await this.lawVoteRepo.update(
+    await this.lawRepo.update(
       {id: law.id!},
       {
         presidentialStatus:

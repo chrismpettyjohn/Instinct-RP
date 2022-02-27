@@ -4,7 +4,7 @@
 <img src="https://i.imgur.com/hnXKQig.png" />
 
 ## Screenshots
-https://imgur.com/a/0c5zTbi
+https://imgur.com/a/BvNBWdV
 
 ## Discord
 Join our Discord here: https://discord.gg/ecweHJ3F9M
